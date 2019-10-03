@@ -14,4 +14,7 @@ def printy(*args, **kwargs):
     print(lineno(),"----------")
     print(*args, **kwargs)
     print(" ",end="\n")
+
+def test():
+    pass
     
