@@ -21,7 +21,14 @@ from sklearn.pipeline import Pipeline
 def doInitialSettings(figsize=(5,3)):
     warnings.simplefilter("always")
     multioutput()
-    plt.rcParams["figure.figsize"] = figsize   
+    plt.rcParams["figure.figsize"] = figsize  
+    pd.set_option('display.max_rows',20)
+    pd.set_option("io.excel.xlsx.reader", "openpyxl")
+    pd.set_option("io.excel.xlsm.reader", "openpyxl")
+    pd.set_option("io.excel.xlsb.reader", "openpyxl")
+    pd.set_option("io.excel.xlsx.writer", "openpyxl")
+    pd.set_option("io.excel.xlsm.writer", "openpyxl")
+
 
 def multioutput(type="all"):
     from IPython.core.interactiveshell import InteractiveShell
@@ -498,3 +505,34 @@ def featureImportanceEncoded(importance,feature_names,figsize=(8,6)):
     dfimp.reset_index(inplace=True)
     dfimp["Feature"]=dfimp["Encoded"].apply(lambda x:x[4:].split('_')[0] if "OHE" in x else x)
     dfimp.groupby(by='Feature')["Importance"].sum().sort_values().plot(kind='barh');
+    
+    
+def compareClassifiers(gs,tableorplot='plot',figsize=(10,5)):
+    cvres = gs.cv_results_
+    cv_results = pd.DataFrame(cvres)
+    cv_results['param_clf']=cv_results['param_clf'].apply(lambda x:str(x).split('(')[0])
+    cols={"mean_test_score":"MAX of mean_test_score","mean_fit_time":"MIN of mean_fit_time"}
+    summary=cv_results.groupby(by='param_clf').agg({"mean_test_score":"max", "mean_fit_time":"min"}).rename(columns=cols)
+    summary.sort_values(by='MAX of mean_test_score', ascending=False,inplace=True)
+    
+    
+    if tableorplot=='table':
+        return summary
+    else:
+        fig, ax1 = plt.subplots(figsize=figsize)
+        color = 'tab:red'
+        ax1.set_xticklabels('Classifiers', rotation=45,ha='right')
+        
+        ax1.set_ylabel('MAX of mean_test_score', color=color)
+        ax1.bar(summary.index, summary['MAX of mean_test_score'], color=color)
+        ax1.tick_params(axis='y', labelcolor=color)
+        
+
+        ax2 = ax1.twinx() 
+
+        color = 'tab:blue'
+        ax2.set_ylabel('MIN of mean_fit_time', color=color) 
+        ax2.plot(summary.index, summary['MIN of mean_fit_time'], color=color)
+        ax2.tick_params(axis='y', labelcolor=color)
+
+        plt.show()    
