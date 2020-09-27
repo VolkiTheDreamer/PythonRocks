@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.metrics import silhouette_samples, silhouette_score
+from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score,roc_auc_score,roc_curve
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -11,6 +12,10 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 #from sklearn.utils import column_or_1d
 import warnings
 from sklearn.pipeline import Pipeline 
+import os, sys, site
+import functools
+import time
+import itertools
 
 ##docstring yapılcak
 
@@ -18,11 +23,15 @@ from sklearn.pipeline import Pipeline
 #*******************************************************************************
 #***************************************General*********************************
 #*******************************************************************************
+
 def doInitialSettings(figsize=(5,3)):
     warnings.simplefilter("always")
     multioutput()
     plt.rcParams["figure.figsize"] = figsize  
-    pd.set_option('display.max_rows',20)
+    plt.rc('axes', labelsize=14)
+    plt.rc('xtick', labelsize=12)
+    plt.rc('ytick', labelsize=12)
+    pd.set_option('display.max_rows',20)  
     pd.set_option("io.excel.xlsx.reader", "openpyxl")
     pd.set_option("io.excel.xlsm.reader", "openpyxl")
     pd.set_option("io.excel.xlsb.reader", "openpyxl")
@@ -35,12 +44,48 @@ def multioutput(type="all"):
     InteractiveShell.ast_node_interactivity = type
 
     
-    
-
+def scriptforReload():
+    print("""
+    %load_ext autoreload
+    %autoreload 2""")
    
     
+def scriptforTraintest():
+    print("X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)")
     
+def scriptForCitation():
+    print("""<p style="font-size:smaller;text-align:center">Görsel <a href="url">bu sayfadan</a> alınmıştır</p>""")
     
+def pythonSomeInfo():
+    print("system packages folder:",sys.prefix, end="\n\n")
+    print("pip install folder:",site.getsitepackages(), end="\n\n")    
+    print("python version:", sys.version, end="\n\n")
+    print("executables location:",sys.executable, end="\n\n")
+    print("pip version:", os.popen('pip version').read(), end="\n\n")
+    pathes= sys.path
+    print("Python pathes")
+    for p in pathes:
+        print(p)
+
+def timeElapse(func):
+    """
+        usage:
+        @timeElapse
+        def somefunc():
+            ...
+            ...
+            
+        somefunc()
+    """
+    @functools.wraps(func)
+    def wrapper(*args,**kwargs):
+        start=time.time()
+        value=func(*args,**kwargs)
+        func()
+        finito=time.time()
+        print("Time elapsed:{}".format(finito-start))
+        return value
+    return wrapper    
 #*******************************************************************************
 #******************************EDA and Analysis*********************************
 #*******************************************************************************
@@ -69,20 +114,28 @@ def getColumnsInLowCardinality(df,i):
             
     return list_
 
-def multicountplot(datafr,i=5,fig=(4,5),r=45):  
+
+def multicountplot(datafr,i=5,fig=(4,5),r=45, colsize=1):  
     """countplots for columns whose # of unique value is less than i """
     
     dict_=dict(datafr.nunique())
-    hedef=[k for k,v in dict_.items() if v<=i]
+    target=[k for k,v in dict_.items() if v<=i]
+        
+    lng=0
+    if len(target)//colsize==len(target)/colsize:
+        lng=len(target)//colsize    
+    else:
+        lng=len(target)//colsize+1
     
-    fig, axes= plt.subplots(len(hedef),1,figsize=fig)
-    i=0
-    for h in hedef: 
-        sns.countplot(datafr[h].fillna("Null"), label="Count",ax=axes[i])
-        plt.tight_layout() 
-        axes[i].set_xticklabels(axes[i].get_xticklabels(), rotation=r,ha='right')
-        plt.title(h)
-        i=i+1
+    
+    fig, axes= plt.subplots(lng,colsize,figsize=fig)
+    k=0
+    for i in range(lng):
+        for j in range(colsize):
+            sns.countplot(datafr[target[k]].fillna("Null"), label="Count",ax=axes[i,j])
+            plt.tight_layout() 
+            axes[i,j].set_xticklabels(axes[i,j].get_xticklabels(), rotation=r,ha='right')
+            k=k+1
                     
 def ShowTopN(df,n=5):
     for d in df.select_dtypes("number").columns:
@@ -302,12 +355,32 @@ def countifwithConditon(df,feature,condition):
 def nullPlot(df):
     sns.heatmap(df.isnull(),yticklabels=False,cbar=False,cmap='viridis')
     
-    
+
+def checkCardinality(df):
+    pass
+
+def checkRarity(df):
+    pass
 
 
 #*******************************************************************************
 #**************************Machine Learning/Data Science************************
 #*******************************************************************************
+def printScores(y_test,y_pred,*, alg_type='c'):
+    """
+    
+    Args:
+    alg_type: c for classfication, r for regressin
+    """
+    if alg_type=='c':
+        print("Accuracy:",accuracy_score(y_test,y_pred))
+        print("Recall:",recall_score(y_test,y_pred))
+        print("Precision:",precision_score(y_test,y_pred))
+        print("F1:",f1_score(y_test,y_pred))
+    else:
+        print("RMSE:",mean_squared_error(y_test,y_pred))
+        print("MAE:",mean_absolute_error(y_test,y_pred))
+        print("r2:",r2_score(y_test,y_pred))
 
 def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
     if isbasic==False:
@@ -536,3 +609,31 @@ def compareClassifiers(gs,tableorplot='plot',figsize=(10,5)):
         ax2.tick_params(axis='y', labelcolor=color)
 
         plt.show()    
+
+def plot_confusion_matrix(cm, classes,
+                          normalize=False,
+                          title='Confusion matrix',
+                          cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    """
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')        
