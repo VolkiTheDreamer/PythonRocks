@@ -6,6 +6,7 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.cluster import KMeans
+from sklearn.neighbors import NearestNeighbors
 import seaborn as sns
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -15,57 +16,22 @@ from sklearn.pipeline import Pipeline
 import os, sys, site
 import functools
 import time
-import itertools
-
-##docstring yapılcak
-
-
-#*******************************************************************************
-#***************************************General*********************************
-#*******************************************************************************
-
-def doInitialSettings(figsize=(5,3)):
-    warnings.simplefilter("always")
-    multioutput()
-    plt.rcParams["figure.figsize"] = figsize  
-    plt.rc('axes', labelsize=14)
-    plt.rc('xtick', labelsize=12)
-    plt.rc('ytick', labelsize=12)
-    pd.set_option('display.max_rows',20)  
-    pd.set_option("io.excel.xlsx.reader", "openpyxl")
-    pd.set_option("io.excel.xlsm.reader", "openpyxl")
-    pd.set_option("io.excel.xlsb.reader", "openpyxl")
-    pd.set_option("io.excel.xlsx.writer", "openpyxl")
-    pd.set_option("io.excel.xlsm.writer", "openpyxl")
+import itertools    
+from numpy.random import uniform
+from random import sample
+from math import isnan
+from itertools import combinations
+import multiprocessing
+from multiprocessing import Pool
+from tqdm import tqdm
+from IPython.display import Markdown, display
 
 
-def multioutput(type="all"):
-    from IPython.core.interactiveshell import InteractiveShell
-    InteractiveShell.ast_node_interactivity = type
+# *************************************************************************************************************
+#Module level methods
+def printmd(string):
+    display(Markdown(string))
 
-    
-def scriptforReload():
-    print("""
-    %load_ext autoreload
-    %autoreload 2""")
-   
-    
-def scriptforTraintest():
-    print("X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)")
-    
-def scriptForCitation():
-    print("""<p style="font-size:smaller;text-align:center">Görsel <a href="url">bu sayfadan</a> alınmıştır</p>""")
-    
-def pythonSomeInfo():
-    print("system packages folder:",sys.prefix, end="\n\n")
-    print("pip install folder:",site.getsitepackages(), end="\n\n")    
-    print("python version:", sys.version, end="\n\n")
-    print("executables location:",sys.executable, end="\n\n")
-    print("pip version:", os.popen('pip version').read(), end="\n\n")
-    pathes= sys.path
-    print("Python pathes")
-    for p in pathes:
-        print(p)
 
 def timeElapse(func):
     """
@@ -74,7 +40,7 @@ def timeElapse(func):
         def somefunc():
             ...
             ...
-            
+
         somefunc()
     """
     @functools.wraps(func)
@@ -86,76 +52,216 @@ def timeElapse(func):
         print("Time elapsed:{}".format(finito-start))
         return value
     return wrapper    
+
+
+def pandas_df_to_markdown_table(df):    
+    fmt = ['---' for i in range(len(df.columns))]
+    df_fmt = pd.DataFrame([fmt], columns=df.columns)
+    df_formatted = pd.concat([df_fmt, df])
+    display(Markdown(df_formatted.to_csv(sep="|", index=False))) 
+
+
+#use:df.style.applymap(color_code(1), subset=['col1','col2'])
+def color_code(thresh):
+    def color_code_by_val(val):
+        color = None
+        if val <= thresh:
+            color = 'red'        
+        return 'background-color: %s' % color
+    return color_code_by_val  
+
+
+
+        
+
+
+# *************************************************************************************************************
+
+        
+        
+#*******************************************************************************
+#***************************************General*********************************
+#*******************************************************************************
+class General:
+    def __init__(self):
+        pass
+    
+
+    def doInitialSettings(self,figsize=(5,3)):
+        try:
+            warnings.simplefilter("always")
+            multioutput()
+            plt.rcParams["figure.figsize"] = figsize  
+            plt.rc('axes', labelsize=14)
+            plt.rc('xtick', labelsize=12)
+            plt.rc('ytick', labelsize=12)
+            pd.set_option('display.max_rows',20)  
+            pd.set_option("io.excel.xlsx.reader", "openpyxl")
+            pd.set_option("io.excel.xlsm.reader", "openpyxl")
+            pd.set_option("io.excel.xlsb.reader", "openpyxl")
+            pd.set_option("io.excel.xlsx.writer", "openpyxl")
+            pd.set_option("io.excel.xlsm.writer", "openpyxl")
+        except:
+            pass
+
+
+    def multioutput(self,type="all"):
+        from IPython.core.interactiveshell import InteractiveShell
+        InteractiveShell.ast_node_interactivity = type
+
+        
+    def scriptforReload(self):
+        print("""
+        %load_ext autoreload
+        %autoreload 2""")
+    
+        
+    def scriptforTraintest(self):
+        print("X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)")
+        
+    def scriptForCitation(self):
+        print("""<p style="font-size:smaller;text-align:center">Görsel <a href="url">bu sayfadan</a> alınmıştır</p>""")
+        
+    def pythonSomeInfo(self):
+        print("system packages folder:",sys.prefix, end="\n\n")
+        print("pip install folder:",site.getsitepackages(), end="\n\n")    
+        print("python version:", sys.version, end="\n\n")
+        print("executables location:",sys.executable, end="\n\n")
+        print("pip version:", os.popen('pip version').read(), end="\n\n")
+        pathes= sys.path
+        print("Python pathes")
+        for p in pathes:
+            print(p)
+
+
+    def showMemoryUsage(self):
+        dict_={}
+        global_vars = list(globals().items())
+        for var, obj in global_vars:
+            if not var.startswith('_'):
+                dict_[var]=sys.getsizeof(obj)
+                
+        final={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1],reverse=True)}    
+        print(final)
+        
+    def readfile(self,path,enc='cp1254'):
+        with io.open(path, "r", encoding=enc) as f:
+            return f.read()
+
+    def getFirstItemFromDictionary(self,dict_):
+        return next(iter(dict_)),next(iter(dict_.values()))
+        
+        
 #*******************************************************************************
 #******************************EDA and Analysis*********************************
 #*******************************************************************************
 
-def printUniques(datafr,i=10):    
-    dict_=dict(datafr.nunique())
-    for k,v in dict_.items():
-        if int(v)<=i: #we don't want to see the unique items that are greater than i
-            print("Unique items in column",k)
-            print(datafr[k].unique(),end="\n\n")
+def printUniques(datafr,i=10):   
+    """
+    prints unique values in a dataframe whose nunique value <= 10 
+    """ 
+    try:   
+        dict_=dict(datafr.nunique())
+        for k,v in dict_.items():
+            if int(v)<=i: #we don't want to see the unique items that are greater than i
+                print("Unique items in column",k)
+                print(datafr[k].unique(),end="\n\n")
+        print("You may want to convert the numerics with low cardinality to categorical")
+    except Exception as e: 
+        print(e)
+
             
 def printValueCount(datafr,i=10):    
-    #prints value counts for columns whose # of unique value is less than i 
-    dict_=dict(datafr.nunique())
-    for k,v in dict_.items():
-        if int(v)<=i:
-            print("Unique items in column",k)
-            print(datafr[k].value_counts(dropna=False),end="\n\n")
-            
-def getColumnsInLowCardinality(df,i):
-    dict_=dict(df.nunique())
-    list_=[]
-    for k,v in dict_.items():
-        if int(v)<=i:
-            list_.append(k)
-            
-    return list_
+    """
+    prints value counts for columns whose # of unique value is less than i 
+    """
+    try:
+        dict_=dict(datafr.nunique())
+        for k,v in dict_.items():
+            if int(v)<=i:
+                print("Unique items in column",k)
+                print(datafr[k].value_counts(dropna=False),end="\n\n")
+    except Exception as e: 
+        print(e)
+                    
+def getColumnsInLowCardinality(df,i=10):
+    #buna gerek var mı ? printUniques fakrı ne?
+    try:
+        dict_=dict(df.nunique())
+        list_=[]
+        for k,v in dict_.items():
+            if int(v)<=i:
+                list_.append(k)
+                
+        return list_
+    except Exception as e: 
+        print(e)
 
-
-def multicountplot(datafr,i=5,fig=(4,5),r=45, colsize=1):  
+def multicountplot(datafr,i=5,fig=(4,5),r=45, colsize=2,hue=None):  
     """countplots for columns whose # of unique value is less than i """
     
-    dict_=dict(datafr.nunique())
-    target=[k for k,v in dict_.items() if v<=i]
+    try:        
+        dict_=dict(datafr.nunique())
+        target=[k for k,v in dict_.items() if v<=i]
+            
+        lng=0
+        if len(target)<=2:
+            print("plot manually due to <=2 target feature")
+            return
+        if len(target)//colsize==len(target)/colsize:
+            lng=len(target)//colsize    
+        else:
+            lng=len(target)//colsize+1
         
-    lng=0
-    if len(target)//colsize==len(target)/colsize:
-        lng=len(target)//colsize    
-    else:
-        lng=len(target)//colsize+1
-    
-    
-    fig, axes= plt.subplots(lng,colsize,figsize=fig)
-    k=0
-    for i in range(lng):
-        for j in range(colsize):
-            sns.countplot(datafr[target[k]].fillna("Null"), label="Count",ax=axes[i,j])
-            plt.tight_layout() 
-            axes[i,j].set_xticklabels(axes[i,j].get_xticklabels(), rotation=r,ha='right')
-            k=k+1
-                    
+        
+        fig, axes= plt.subplots(lng,colsize,figsize=fig)
+        k=0    
+        for i in range(lng):
+            for j in range(colsize):
+                if k==len(target):
+                    break
+                elif target[k]==hue:
+                    pass
+                else:
+                    sns.countplot(x=datafr[target[k]].fillna("Null"), ax=axes[i,j], data=datafr, hue=hue)
+                    plt.tight_layout()                     
+                    axes[i,j].set_xticklabels(axes[i,j].get_xticklabels(), rotation=r,ha='right')
+                    k=k+1
+    except Exception as e: 
+        print(e)
+        print("You may want to increase the size of i")
+
 def ShowTopN(df,n=5):
-    for d in df.select_dtypes("number").columns:
-        print(f"Top {n} in {d}:")
-        print(df[d].sort_values(ascending=False).head(n))
-        print("---------------------------")
+    """
+    Works for numeric features. Even if you pass categorical features they will be disregarded
+    """
+    try:
+        for d in df.select_dtypes("number").columns:
+            print(f"Top {n} in {d}:")
+            print(df[d].sort_values(ascending=False).head(n))
+            print("---------------------------")
+    except Exception as e: 
+        print(e)
 
 def sortAndPrintMaxMinNValues(df,columns,n=1,removeNull=True):
-    #if n=1 returns some unusual values, we can increase n    
-    for c in columns:
-        sorted_=df[c].sort_values()        
-        if removeNull==True:
-            sorted_=sorted_.dropna()
-        print((c,sorted_[:n].values,sorted_[-n:].values))        
-            
+    #if n=1 returns some unusual values, we can increase n 
+    try:   
+        for c in columns:
+            sorted_=df[c].sort_values()        
+            if removeNull==True:
+                sorted_=sorted_.dropna()
+            print((c,sorted_[:n].values,sorted_[-n:].values))        
+    except Exception as e: 
+        print(e)
+
 def addStdMeanMedian(df):
+    warnings.warn("Warning...addStdMeanMedian is depreciated. Use addCoefOfVarianceToDescribe")
+
+def addCoefOfVarianceToDescribe(df):
     df=df.describe().T
     df["mean/median"]=df["mean"]/df["50%"]
     df["std/mean"]=df["std"]/df["mean"]
-    return df
+    return df    
 
 def outlierinfo(df,featurelist,imputestrategy="None",thresh=0.25):
     """
@@ -187,14 +293,16 @@ def outlierinfo(df,featurelist,imputestrategy="None",thresh=0.25):
         print(f"{f}, Min:{df[f].min()}, Max:{df[f].max()}, Q1:{Q1:9.2f}, Q3:{Q3:9.2f}, IQR:{IQR:9.2f}, Q3+1,5*IQR:{top:9.2f}, Q1-1,5*IQR:{bottom:9.2f}, Mean within the box:{mbox:9.2f}, Total Mean:{m:9.2f}, Outliers:{outliers}",end="\n\n")
         
 
-def outliers1(df,featurelist,imputestrategy="None",thresh=0.25):
+def outliers_IQR(df,featurelist,imputestrategy="None",thresh=0.25,printorreturn='print'):
     """
-    This is the approach that boxplot uses.
+    This is the approach that boxplot uses, which is IQR approach.
     sensitive to null. the more null, the narrower box from both end. boxplot just shrinks, thus number of outliers increases. 
     so it would be sensible to impute the nulls first. we, here, impute them temporarily just in case.
     Args:
         imputestrategy:median, mean, mode, None
+        printorreturn:(print,return,both). if print, it prints the results, if return, it returns the list of results as a list of tuple,if both, it prints an returns
     """
+    retlist=[]
     for f in featurelist:
         if imputestrategy=='None':
             Q1 = df[f].quantile(thresh)
@@ -205,13 +313,28 @@ def outliers1(df,featurelist,imputestrategy="None",thresh=0.25):
         IQR = Q3-Q1
         top=(Q3 + 1.5 * IQR)
         bottom=(Q1 - 1.5 * IQR)
-        print("{} outliers exists in feature '{}'".format(len(df[(df[f] > top) | (df[f] < bottom)]),f))
+        adet=len(df[(df[f] > top) | (df[f] < bottom)])
+        if adet>0:
+            if printorreturn=='print':
+                print(f"{adet} outliers exists in feature '{f}'")
+            elif printorreturn=='return':
+                retlist.append((f,adet))
+            elif printorreturn=='both':
+                retlist.append((f,adet))
+                print(f"{adet} outliers exists in feature '{f}'")
+            else:
+                print("wrong value for printorreturn")
+                raise
+        
+    if printorreturn=='return':
+        return retlist
 
-def outliers2(df,featurelist,n=3,imputestrategy="None"): 
+def outliers_std(df,featurelist,n=3,imputestrategy="None",printorreturn='print'): 
     """
     if the std is higher than mean it may go negative at the bottom edge, so you cannot catch bottom outliers
     Args:
-        imputestrategy:median, mean, mode, None    
+        imputestrategy:median, mean, mode, None 
+        printorreturn:(print,return,both). if print, it prints the results, if return, it returns the list of results as a list of tuple,if both, it prints an returns
     """
     for f in featurelist:
         if imputestrategy=='None':
@@ -220,25 +343,58 @@ def outliers2(df,featurelist,n=3,imputestrategy="None"):
         else:
             top=df[f].fillna(df[f].agg(imputestrategy)).mean()+n*df[f].fillna(df[f].agg(imputestrategy)).std()
             bottom=df[f].fillna(df[f].agg(imputestrategy)).mean()-n*df[f].fillna(df[f].agg(imputestrategy)).std()
-        print("{} outliers exists in feature '{}'".format(len(df[(df[f]>top) | (df[f]<bottom)]),f))
+        adet=len(df[(df[f] > top) | (df[f] < bottom)])
+        if adet>0:
+            if printorreturn=='print':
+                print(f"{adet} outliers exists in feature '{f}'")
+            elif printorreturn=='return':
+                retlist.append((f,adet))
+            elif printorreturn=='both':
+                retlist.append((f,adet))
+                print(f"{adet} outliers exists in feature '{f}'")
+            else:
+                print("wrong value for printorreturn")
+                raise
+        
+    if printorreturn=='return':
+        return retlist
         
 
-def outliers3(df,featurelist,thresh_z=3,imputestrategy="None"):   
+def outliers_zs(df,featurelist,thresh_z=3,imputestrategy="None",printorreturn='print'):   
     """
     finds the outliers to the z score.
     Args:
-        imputestrategy:median, mean, mode, None    
+        imputestrategy:median, mean, mode, None 
+        printorreturn:(print,return,both). if print, it prints the results, if return, it returns the list of results as a list of tuple,if both, it prints an returns
     """
     for f in featurelist:
         if imputestrategy=='None':
             z= np.abs(stats.zscore(df[f]))
         else:
             z= np.abs(stats.zscore(df[f].fillna(df[f].agg(imputestrategy))))
-        print("{} outliers exists in feature '{}'".format(len(df[np.abs(df[f])>df.iloc[np.where(z>thresh_z)][f].min()]),f))
+        
+        adet=len(df[np.abs(df[f])>df.iloc[np.where(z>thresh_z)][f].min()])
+        if adet>0:
+            if printorreturn=='print':
+                print(f"{adet} outliers exists in feature '{f}'")
+            elif printorreturn=='return':
+                retlist.append((f,adet))
+            elif printorreturn=='both':
+                retlist.append((f,adet))
+                print(f"{adet} outliers exists in feature '{f}'")
+            else:
+                print("wrong value for printorreturn")
+                raise
+        
+    if printorreturn=='return':
+        return retlist
 
         
 def plotHistWithoutOutliers(df,fig=(12,8),thresh=0.25,imputestrategy="median",outliertreat="remove"):
-    """this function does not change the dataframe permanently"""
+    """this function does not change the dataframe permanently
+    args:
+        outliertreat: remove or cap
+    """
     df=df.select_dtypes("number")
     
     col=4
@@ -289,17 +445,27 @@ def findNullLikeValues(df,listofvalues=[[-1,-999],["na","yok","tanımsız","bili
                       first item in this list are the numeric ones, second one contains strings,
                       default values:[[-1,-999],["na","yok","tanımsız","bilinmiyor","?"]
     """
+    t=0
     for f in df.select_dtypes("number").columns:
         x=0
-        for i in listofvalues[0]: #first is 
-            x=x+len(df[df[f]==i])
-        print("{} null-like values in {}".format(x,f))
+        for i in listofvalues[0]:
+            x+=len(df[df[f]==i])
+            t+=1
+            
+        if x>0:    
+            print("{} null-like values in {}".format(x,f))
     for f in df.select_dtypes("object"):
         x=0
         for i in listofvalues[1]:
-            x=x+len(df[df[f].str.lower()==i])
-        print("{} null-like values in {}".format(x,f))
-        
+            try: #in case of nulls
+                x+=len(df[df[f].str.lower()==i])
+                t+=1
+            except:
+                pass
+        if x>0:    
+            print("{} null-like values in {}".format(x,f))
+    if t==0:
+        print("There are no null-like values")
 
 def parse_col_json(column, key):
     """
@@ -315,7 +481,11 @@ def parse_col_json(column, key):
             list1.append((i[j][key]))# the key 'name' contains the name of the genre
         movies_df.loc[index,column]=str(list1)
 
-def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sort=False,hueCol=None):        
+def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sort=False,hueCol=None):      
+    """
+    - cast and nums must be array-like.
+    - plots will be displayed such that that each numeric feature could be tracked in the rows and categories in the columns
+    """
     cols=len(cats)    
     rows=len(nums)
     c=0
@@ -324,13 +494,14 @@ def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sor
     for cat in cats:  
         r=0
         for num in nums:
+            ix=axes[r,c] if rows>1 else axes[c]  
             if hueCol is None or hueCol==cat:
                 if sort==True:
                     gruplu=df.groupby(cat)[num].agg(aggf).sort_values(ascending=False)
                 else:
                     gruplu=df.groupby(cat)[num].agg(aggf)
-                    
-                sns.barplot(x=gruplu.index, y=gruplu.values,ax=axes[r,c])            
+                  
+                sns.barplot(x=gruplu.index, y=gruplu.values,ax=ix)            
             else:
                 if sort==True:
                     gruplu=df.groupby([cat,hueCol])[num].agg(aggf).sort_values(ascending=False)
@@ -339,11 +510,11 @@ def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sor
                     
                 temp=gruplu.to_frame()
                 grupludf=temp.swaplevel(0,1).reset_index()
-                sns.barplot(x=cat, y=num,ax=axes[r,c], data=grupludf, hue=hueCol)
+                sns.barplot(x=cat, y=num,ax=ix, data=grupludf, hue=hueCol)
             
             #plt.xticks(rotation= 45) #isimler uzun olursa horizontalalignment='right' da ekle
-            axes[r,c].set_xticklabels(axes[r,c].get_xticklabels(), rotation=r,ha='right')
-            axes[r,c].set_title(f"{aggf.upper()} for {num}")
+            ix.set_xticklabels(ix.get_xticklabels(), rotation=r,ha='right')
+            ix.set_title(f"{aggf.upper()} for {num}")
             plt.tight_layout()
             r=r+1
         c=c+1
@@ -356,16 +527,22 @@ def nullPlot(df):
     sns.heatmap(df.isnull(),yticklabels=False,cbar=False,cmap='viridis')
     
 
-def checkCardinality(df):
-    pass
-
-def checkRarity(df):
-    pass
 
 
 #*******************************************************************************
 #**************************Machine Learning/Data Science************************
 #*******************************************************************************
+def printAlgorithm(algo):
+    """
+    You need the change the path.
+    """
+    p=os.getcwd()
+    os.chdir(r"E:\OneDrive\Dökümanlar\GitHub\PythonRocks")
+    df=pd.read_excel("Algorithms.xlsx",skiprows=1)
+    print(df[df.Algorithm==algo].T)
+    os.chdir(p)
+
+
 def printScores(y_test,y_pred,*, alg_type='c'):
     """
     
@@ -383,6 +560,9 @@ def printScores(y_test,y_pred,*, alg_type='c'):
         print("r2:",r2_score(y_test,y_pred))
 
 def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
+    """
+    Used for K-means
+    """
     if isbasic==False:
         for n_clusters in range_n_clusters:
         # Create a subplot with 1 row and 2 columns
@@ -477,7 +657,20 @@ def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
                 print(n,score)
         plt.plot(range_n_clusters,ss)
 
-        
+def drawEpsilonDecider(data,n):
+    """
+    for DBSCAN
+    n: # of neighbours
+    data:numpy array
+    """
+    neigh = NearestNeighbors(n_neighbors=n)
+    nbrs = neigh.fit(data)
+    distances, indices = nbrs.kneighbors(data)
+    distances = np.sort(distances, axis=0)
+    distances = distances[:,1]
+    plt.ylabel("eps")
+    plt.plot(distances)
+    
 def draw_elbow(ks,data):
     wcss = []
     for i in ks:
@@ -492,6 +685,9 @@ def draw_elbow(ks,data):
     
 #PCA biplot    
 def biplot(score,coeff,y,variance,labels=None):
+    """
+    found here: https://stackoverflow.com/questions/39216897/plot-pca-loadings-and-loading-in-biplot-in-sklearn-like-rs-autoplot
+    """
     xs = score[:,0]
     ys = score[:,1]
     n = coeff.shape[0]
@@ -637,3 +833,190 @@ def plot_confusion_matrix(cm, classes,
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')        
+    
+def CheckForClusterinTendencyWithHopkins(df):
+    """
+    taken from https://matevzkunaver.wordpress.com/2017/06/20/hopkins-test-for-cluster-tendency/
+    the closer to 1, the higher probability of clustering tendency
+    """
+    d = df.shape[1]
+    #d = len(vars) # columns
+    n = len(df) # rows
+    m = int(0.1 * n) # heuristic from article [1]
+    nbrs = NearestNeighbors(n_neighbors=1).fit(df.values)
+ 
+    rand_X = sample(range(0, n, 1), m)
+ 
+    ujd = []
+    wjd = []
+    for j in range(0, m):
+        u_dist, _ = nbrs.kneighbors(uniform(np.amin(df,axis=0),np.amax(df,axis=0),d).reshape(1, -1), 2, return_distance=True)
+        ujd.append(u_dist[0][1])
+        w_dist, _ = nbrs.kneighbors(df.iloc[rand_X[j]].values.reshape(1, -1), 2, return_distance=True)
+        wjd.append(w_dist[0][1])
+ 
+    H = sum(ujd) / (sum(ujd) + sum(wjd))
+    if isnan(H):
+        print(ujd, wjd)
+        H = 0
+ 
+    return H    
+
+def getNumberofCatsAndNumsFromDatasets(path,size=10_000_000):
+    """
+    returns the number of features by their main type(i.e categorical or numeric or datetime)
+    args:
+        path:path of the files residing in.
+        size:size of the file(default is ~10MB). if chosen larger, it will take longer to return.
+    """
+    os.chdir(path)
+    files=os.listdir()
+    liste=[]
+    for d in files:  
+        try:
+            if os.path.isfile(d) and os.path.getsize(d)<size:        
+                if os.path.splitext(d)[1]==".csv":
+                    df=pd.read_csv(d,encoding = "ISO-8859-1")
+                elif os.path.splitext(d)[1]==".xlsx":
+                    df=pd.read_excel(d)
+                else:            
+                    continue      
+
+                nums=len(df.select_dtypes("number").columns)        
+                date=len(df.select_dtypes(include=[np.datetime64]).columns)
+                cats=len(df.select_dtypes("O").columns)-date
+                liste.append((d,nums,cats,date))
+        except:
+            pass
+
+    dffinal=pd.DataFrame(liste,columns=["filename","numeric","categorical","datettime"])
+    dffinal.set_index("filename")
+    return dffinal
+
+def SuperInfo(df, dropna=False):
+    """
+    Returns a dataframe consisting of datatypes, nuniques, #s of nulls head(1), most frequent item and its frequncy,
+    where the column names are indices.
+    """
+    
+    dt=pd.DataFrame(df.dtypes, columns=["Type"])
+    dn=pd.DataFrame(df.nunique(), columns=["Nunique"])
+    nonnull=pd.DataFrame(df.isnull().sum(), columns=["#of Missing"])
+    firstT=df.head(1).T.rename(columns={0:"First"})
+    MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] for x in df.columns], columns=["MostFreqItem"],index=df.columns)
+    MostFreqC=pd.DataFrame([df[x].value_counts().head(1).values[0] for x in df.columns], columns=["MostFreqCount"],index=df.columns)
+    return pd.concat([dt,dn,nonnull,MostFreqI,MostFreqC,firstT],axis=1)
+
+
+def prepareListOfCombinationsForRelationFinder(df,i=5):
+    dict_=dict(df.nunique())
+    target=[k for k,v in dict_.items() if v<=i]
+
+    if len(target)>50:
+        c=3
+    elif len(target)>20:
+        c=4
+    else:
+        c=5
+    comb=[list(combinations(target,x)) for x in range(2,c)]
+    flat_list = [item for sublist in comb for item in sublist]
+    return flat_list
+
+def findRelationsAmongFeatures(tpl):
+    """
+        Must be used with multiprocessing module.
+    args
+        tpl:tuple consisting of a dataframe and a inner tuple of features of some combinations returning from 'prepareListOfCombinationsForRelationFinder' method. These tuples must be provieded as parallel in a multiprocess-based procedure. 
+    """
+    df,item=tpl
+    list_=list(item)
+    dist=df.drop_duplicates(list_)[list_]
+    for i in list_:
+        uns = dist[i].unique()
+        for u in uns:
+            if len(dist[dist[i]==u])==1:
+                return (list_,i,uns,u)
+
+def getListOfRelationsParallel(df):
+    if __name__ == "__main__":#windows-jupyter olayı nedeniyle if main
+        cpu=multiprocessing.cpu_count()    
+        flat_list=prepareListOfCombinationsForRelationFinder(df)
+        tpl=[(df,i) for i in flat_list] 
+        with Pool(cpu) as p:
+            list_= p.map(findRelationsAmongFeatures, tqdm(tpl))
+        return list_
+    
+
+#Functions to run before and during modelling
+def checkIfNumberOfInstanceEnough(df):
+    """
+    o Çok az satır varsa daha fazla veri toplanması sağlanmalıdır
+    o Aşırı çok satır varsa kısmi sampling yapılabilir.(Detayları göreceğiz)
+    o Data çokluğundan emin değilseniz tamamıyla deneyin. Eğitim süresi çok uzun sürüyorsa aşamalı olarak azaltabilirsiniz.
+    """
+
+def checkIfNumberOFeatures(df):
+    """
+    o Az kolon(feature) varsa yenileri temin edilmeye çalışılabilir
+    o Çok kolon varsa çeşitli boyut indirgeme ve önemli kolonları seçme yöntemleri uygulanır(Detayları sorna göreceğiz)
+    o Yine satırlardaki aynı mantıkla çok kolon olup olmadığında emin değilseniz önce tümüyle birlikte modelleme yapılır. Eğitim süresi uzun ise veya overfitting oluyorsa feature azaltma yöntemleri uygulanabilir.
+    Kolon sayısını azaltma sadece eğitim zamanını kısatlmakla kalmaz aynı zamanda overfittingi de engeller.
+    """
+
+def checkForImbalancednessForLabels(df):    
+    """
+    (Imbalanced ise train/test ayrımından sonra oversample yapılır)
+    """
+
+def remindForSomeProcesses():
+    """
+    ....
+    """
+    print("transformasyon gerektirmeyen kısımlar: feature extraction, feaute selection, feature elimination")        
+    
+def remindForDiscreteization():
+    """
+    yüksek carianlitiy olan numeriklerde hangi durumlarda discretization?
+    """
+    
+#arada X ve y manuel belirlenir    
+def traintest(X,y,testsize):
+    # önce trasin test yaptır, gerekirse başka parameterler de al
+    print("dont touch test set")
+    
+def remindForStep2FE():
+    print("transformasyon gerektiren işlemler step 2, hangileri?????????")
+
+#bu arada aşağıdaki açıklamadaki ilk satır çalışablir
+def buildModel(train,test):
+    """
+        çoklu model mi kursak burda? VotingClassifier. parametre olarak pipelineları mı versek. evetse bi önjceki stepte bunu da hatıratsın, tellWhatAlgorithmsToUse bu da çalışsın tabi
+        fit trasnform
+        pedicr
+        skor kontrolü, çok düşükse underfitting sebeplerine bak, belli bi sebep yoksa yeni feature + yeni veri(azsa), veya yeni model
+        skor iyiyse cv kontrol
+        test setini ver
+
+    """
+
+
+def tellWhatAlgorithmsToUse(df,type):
+    """
+    s ve u için ayrı ayrı mı?
+    """    
+    
+def pandas_df_to_markdown_table(df):    
+    fmt = ['---' for i in range(len(df.columns))]
+    df_fmt = pd.DataFrame([fmt], columns=df.columns)
+    df_formatted = pd.concat([df_fmt, df])
+    display(Markdown(df_formatted.to_csv(sep="|", index=False)))    
+    
+def topNValExcluded(serie, n):
+    return serie[~serie.isin(serie.nlargest(10).values)]
+
+def getHighestPairsOfCorrelation(dfcorr,top=5):
+    c=dfcorr.abs()
+    s=c.unstack()
+    sorted_s = s.sort_values(ascending=False)
+    final=sorted_s[sorted_s<1]
+    return final[:top*2:2] #because of the same correlations for left-right and right-left
