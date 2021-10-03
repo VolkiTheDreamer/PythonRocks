@@ -25,6 +25,10 @@ import multiprocessing
 from multiprocessing import Pool
 from tqdm import tqdm
 from IPython.display import Markdown, display
+from scipy.spatial import distance
+from sklearn.metrics.pairwise import cosine_similarity
+import csv
+
 
 
 # *************************************************************************************************************
@@ -1020,3 +1024,47 @@ def getHighestPairsOfCorrelation(dfcorr,top=5):
     sorted_s = s.sort_values(ascending=False)
     final=sorted_s[sorted_s<1]
     return final[:top*2:2] #because of the same correlations for left-right and right-left
+
+def areContentsOfFeaturesSame(df,features):
+    combs=list(combinations(features,2))
+    for c in combs:
+        if np.all(np.where(df[c[0]] == df[c[1]], True, False)):
+            print(f"The content of the features of {c[0]} and {c[1]} are the same")
+            
+def calculateManhattanSimilarity(df,features,typeofsim="classic",threshold=0.01):            
+    combs=list(combinations(features,2))
+    dict_={}
+    for c in combs:
+        manhattan=distance.cityblock(df[c[0]].fillna(0).values,df[c[1]].fillna(0).values)
+        if typeofsim=="classic":
+            manhattansim=1/(1+manhattan)    
+        elif typeofsim=="divbymean":
+            manhattansim=manhattan/np.mean(df[c[0]].fillna(0).values)    
+        else:
+            print("wrong value for typeofsim")
+            raise
+        if manhattansim>threshold:
+            dict_[(c[0],c[1])]=(int(manhattan),manhattansim)
+    newdict={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1])}
+    for k,v in newdict.items():
+        print(k,v)
+        
+def calculateCosineSimilarity(df,features,threshold=0.9):            
+    combs=list(combinations(features,2))
+    dict_={}
+    for c in combs:        
+        cossim=cosine_similarity(df[c[0]].fillna(0).values.reshape(1,-1),df[c[1]].fillna(0).values.reshape(1,-1))        
+        if cossim>threshold:
+            dict_[(c[0],c[1])]=(cossim)
+    newdict={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1])}
+    for k,v in newdict.items():
+        print(k,v)
+        
+def getCartesian(*listeler):   
+    kartezyen=itertools.product(*listeler)
+    os.chdir(r"c:\users\N35516\desktop")
+    csvfile = "kartezyen.csv"
+    with open(csvfile, "w") as output:
+        writer = csv.writer(output, lineterminator='\n')
+        writer.writerows(kartezyen)
+        
