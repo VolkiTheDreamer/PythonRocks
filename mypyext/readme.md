@@ -5,9 +5,9 @@ There is no **pip** installation for the time being. Instead, You can put the wh
 ## Usage:
 
 ```
-from myext.import dataanalysis as da
-from myext.import ml
-from myext.import pythonutility as pu
+from myext import dataanalysis as da
+from myext import ml
+from myext import pythonutility as pu
 
 da.multioutput()
 ```
