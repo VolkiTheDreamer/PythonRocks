@@ -573,7 +573,8 @@ def GetOnlyOneTriangleInCorr(df,target,whichpart="lower",diagonal=True,heatmap=F
     else:
         return sortedcorr       
 
-def plotTargetByCats(df, cats, target, subplot_tpl=(r,c),shrink=0.9,bins=10)
+def plotTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
+    r,c=subplot_tpl
     for e,cat in enumerate([x for x in cats if x!=target]):    
         plt.subplot(r,c,e+1)
         (df
