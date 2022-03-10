@@ -1,0 +1,2 @@
+iki kopya var, biri pythonrocks diğeri site-packages. hangisinde güncelleme yaparsan diğerine aktarmayı unutma
+pythonrocks içindeki github paylşaımı için, diğeri kütüphanei mportu için
