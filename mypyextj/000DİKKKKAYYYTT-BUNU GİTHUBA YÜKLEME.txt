@@ -1,1 +1,0 @@
-Bu klasörü sitepackages içinden mklink /J komutu ile junciton olarak aldım, bu bir shotrcut klasörü değildir.
