@@ -13,29 +13,22 @@ from sklearn.pipeline import Pipeline
 import os, sys, site
 import itertools    
 from numpy.random import uniform
-from random import sample
+from random import sample, seed
 from math import isnan
 from multiprocessing import Pool
 from scipy.spatial import distance
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.model_selection import learning_curve
+import networkx as nx
 
-
-def printAlgorithm(algo):
-    """
-    You need the change the path.
-    """
-    p=os.getcwd()
-    os.chdir(r"E:\OneDrive\Dökümanlar\GitHub\PythonRocks")
-    df=pd.read_excel("Algorithms.xlsx",skiprows=1)
-    print(df[df.Algorithm==algo].T)
-    os.chdir(p)
+   
 
 def adjustedr2(R_sq,y,y_pred,x):
     return 1 - (1-R_sq)*(len(y)-1)/(len(y_pred)-x.shape[1]-1)
 
 def calculate_aic_bic(n, mse, num_params):
     """
-    n=number of instances in y
+        n=number of instances in y        
     """    
     aic = n *np.log(mse) + 2 * num_params
     bic = n * np.log(mse) + num_params * np.log(n)
@@ -47,13 +40,12 @@ def calculate_aic_bic(n, mse, num_params):
     return aic, bic   
 
     
-
-
-
-def printScores(y_test,y_pred,x=None,*, alg_type='c'):
+def printScores(y_test,y_pred,x=None,*, alg_type='c',f1avg=None):
     """    
+    prints the available performanse scores.
     Args:
     alg_type: c for classfication, r for regressin
+    f1avg: if None, taken as binary.
     """
     if alg_type=='c':
         acc=accuracy_score(y_test,y_pred)
@@ -62,7 +54,10 @@ def printScores(y_test,y_pred,x=None,*, alg_type='c'):
         print("Recall:",recall)
         precision=precision_score(y_test,y_pred)
         print("Precision:",precision)
-        f1=f1_score(y_test,y_pred)
+        if f1vg is None:
+            f1=f1_score(y_test,y_pred)
+        else:
+            f1=f1_score(y_test,y_pred,average=f1avg)
         print("F1:",f1)
         return acc,recall,precision,f1
     else:
@@ -80,11 +75,13 @@ def printScores(y_test,y_pred,x=None,*, alg_type='c'):
         print("BIC:",round(bic,2))
         return (rmse,mae,r2,adjr2,round(aic,2),round(bic,2))
 
-def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
+def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True,random_state=42):
     """
-    Used for K-means
+    - isbasic:if True, plots scores as line chart whereas false, plots the sihoutte chart.
+    - taken from https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html and modified as needed.
     """
     if isbasic==False:
+        silhouette_max=0
         for n_clusters in range_n_clusters:
         # Create a subplot with 1 row and 2 columns
             fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -97,13 +94,15 @@ def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
 
             # Initialize the clusterer with n_clusters value and a random generator
             # seed of 10 for reproducibility.
-            clusterer = KMeans(n_clusters=n_clusters, random_state=10)
+            clusterer = KMeans(n_clusters=n_clusters, random_state=random_state)
             cluster_labels = clusterer.fit_predict(data)
 
             # The silhouette_score gives the average value for all the samples.
             # This gives a perspective into the density and separation of the formed
             # clusters
             silhouette_avg = silhouette_score(data, cluster_labels)
+            if silhouette_avg>silhouette_max:
+                silhouette_max,nc=silhouette_avg,n_clusters
             print("For n_clusters =", n_clusters,
                 "The average silhouette_score is :", silhouette_avg)
 
@@ -164,12 +163,13 @@ def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
 
             plt.suptitle(("Silhouette analysis for KMeans clustering on sample data "
                         "with n_clusters = %d" % n_clusters),
-                        fontsize=14, fontweight='bold')
+                        fontsize=14, fontweight='bold')            
             plt.show()
+        print(f"Best score is {silhouette_max} for {nc}")
     else:
         ss = []
         for n in range_n_clusters:
-            kmeans = KMeans(n_clusters=n)
+            kmeans = KMeans(n_clusters=n, random_state=random_state)
             kmeans.fit_transform(data)
             labels = kmeans.labels_
             score = silhouette_score(data, labels)
@@ -177,6 +177,7 @@ def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True):
             if printScores==True:
                 print(n,score)
         plt.plot(range_n_clusters,ss)
+        plt.xticks(range_n_clusters) #so it shows all the ticks
 
 def drawEpsilonDecider(data,n):
     """
@@ -195,19 +196,20 @@ def drawEpsilonDecider(data,n):
 def draw_elbow(ks,data):
     wcss = []
     for i in ks:
-        kmeans = KMeans(n_clusters=i, init='k-means++', max_iter=300, n_init=10, random_state=0) #k-means++ ensures that you get don’t fall into the random initialization trap.???????
+        kmeans = KMeans(n_clusters=i, init='k-means++', max_iter=300, n_init=10, random_state=0) 
         kmeans.fit(data)
         wcss.append(kmeans.inertia_)
     plt.plot(ks, wcss)
     plt.title('Elbow Method')
     plt.xlabel('# of clusters')
     plt.ylabel('WCSS')
+    plt.xticks(ks)
     plt.show()
     
-#PCA biplot    
 def biplot(score,coeff,y,variance,labels=None):
     """
-    found here: https://stackoverflow.com/questions/39216897/plot-pca-loadings-and-loading-in-biplot-in-sklearn-like-rs-autoplot
+    PCA biplot.
+    Found here: https://stackoverflow.com/questions/39216897/plot-pca-loadings-and-loading-in-biplot-in-sklearn-like-rs-autoplot
     """
     xs = score[:,0]
     ys = score[:,1]
@@ -240,7 +242,7 @@ def PCAChart(X_pca,alpha=0.2):
     else:
         print("n should be either 2 or 3")
         
-def getfullitemsforOHE(wholedf,featlist,sort=True):
+def getfullitemsforOHE(wholedf,featlist,sort=True,prefix=False):
     """
     wholedf should be the dataframe including both train and test set.
     """
@@ -251,11 +253,18 @@ def getfullitemsforOHE(wholedf,featlist,sort=True):
             return sorted(X)
        
     fulllist=[]
-    for feat in featlist:
-        fulllist.append(sortornot(wholedf[feat].unique()))
+    if prefix is not None:
+        for feat in featlist:        
+            fulllist.append([feat+"_"+str(x) for x in sortornot(wholedf[feat].unique())]) #just in case x might be a number
+    else:
+        for feat in featlist:        
+            fulllist.append(sortornot(wholedf[feat].unique()))
     return fulllist
 
 def getfeaturenames(ct,dataframe):
+    """
+        returns feature names in a dataframe passet to a column transformer. Useful if you have lost the names due to conversion to numpy.
+    """
     final_features=[]
     
     for trs in ct.transformers_:
@@ -288,6 +297,9 @@ def getfeaturenames(ct,dataframe):
     return final_features 
 
 def featureImportanceEncoded(importance,feature_names,figsize=(8,6)):
+    """
+        plots the feature importance plot.
+    """
     plt.figure(figsize=figsize)
     dfimp=pd.DataFrame(importance.reshape(-1,1).T,columns=feature_names).T
     dfimp.index.name="Encoded"
@@ -297,12 +309,15 @@ def featureImportanceEncoded(importance,feature_names,figsize=(8,6)):
     dfimp.groupby(by='Feature')["Importance"].sum().sort_values().plot(kind='barh');
     
     
-def compareClassifiers(gs,tableorplot='plot',figsize=(10,5)):
+def compareEstimatorsInGS(gs,tableorplot='plot',figsize=(10,5),est="param_clf"):
+    """
+        Gives a comparison table/plot of the estimators in a gridsearch.
+    """
     cvres = gs.cv_results_
     cv_results = pd.DataFrame(cvres)
-    cv_results['param_clf']=cv_results['param_clf'].apply(lambda x:str(x).split('(')[0])
+    cv_results[est]=cv_results[est].apply(lambda x:str(x).split('(')[0])
     cols={"mean_test_score":"MAX of mean_test_score","mean_fit_time":"MIN of mean_fit_time"}
-    summary=cv_results.groupby(by='param_clf').agg({"mean_test_score":"max", "mean_fit_time":"min"}).rename(columns=cols)
+    summary=cv_results.groupby(by=est).agg({"mean_test_score":"max", "mean_fit_time":"min"}).rename(columns=cols)
     summary.sort_values(by='MAX of mean_test_score', ascending=False,inplace=True)
     
     
@@ -311,7 +326,7 @@ def compareClassifiers(gs,tableorplot='plot',figsize=(10,5)):
     else:
         fig, ax1 = plt.subplots(figsize=figsize)
         color = 'tab:red'
-        ax1.set_xticklabels('Classifiers', rotation=45,ha='right')
+        ax1.set_xticklabels('Estimators', rotation=45,ha='right')
         
         ax1.set_ylabel('MAX of mean_test_score', color=color)
         ax1.bar(summary.index, summary['MAX of mean_test_score'], color=color)
@@ -355,25 +370,35 @@ def plot_confusion_matrix(cm, classes,
     plt.ylabel('True label')
     plt.xlabel('Predicted label')        
     
-def CheckForClusterinTendencyWithHopkins(df):
+def CheckForClusteringTendencyWithHopkins(X,random_state=42):    
     """
     taken from https://matevzkunaver.wordpress.com/2017/06/20/hopkins-test-for-cluster-tendency/
-    the closer to 1, the higher probability of clustering tendency
+    X:numpy array or dataframe
+    the closer to 1, the higher probability of clustering tendency    
+    X must be scaled priorly.
     """
-    d = df.shape[1]
+        
+    d = X.shape[1]
     #d = len(vars) # columns
-    n = len(df) # rows
+    n = len(X) # rows
     m = int(0.1 * n) # heuristic from article [1]
-    nbrs = NearestNeighbors(n_neighbors=1).fit(df.values)
- 
+    if type(X)==np.ndarray:
+        nbrs = NearestNeighbors(n_neighbors=1).fit(X)
+    else:
+        nbrs = NearestNeighbors(n_neighbors=1).fit(X.values)
+    seed(random_state) 
     rand_X = sample(range(0, n, 1), m)
  
     ujd = []
     wjd = []
     for j in range(0, m):
-        u_dist, _ = nbrs.kneighbors(uniform(np.amin(df,axis=0),np.amax(df,axis=0),d).reshape(1, -1), 2, return_distance=True)
+        #-------------------bi ara random state yap----------
+        u_dist, _ = nbrs.kneighbors(uniform(np.amin(X,axis=0),np.amax(X,axis=0),d).reshape(1, -1), 2, return_distance=True)
         ujd.append(u_dist[0][1])
-        w_dist, _ = nbrs.kneighbors(df.iloc[rand_X[j]].values.reshape(1, -1), 2, return_distance=True)
+        if type(X)==np.ndarray:
+            w_dist, _ = nbrs.kneighbors(X[rand_X[j]].reshape(1, -1), 2, return_distance=True)
+        else:
+            w_dist, _ = nbrs.kneighbors(X.iloc[rand_X[j]].values.reshape(1, -1), 2, return_distance=True)
         wjd.append(w_dist[0][1])
  
     H = sum(ujd) / (sum(ujd) + sum(wjd))
@@ -415,62 +440,195 @@ def getNumberofCatsAndNumsFromDatasets(path,size=10_000_000):
     return dffinal
 
 
-    
+def plot_learning_curve(
+    estimator,
+    title,
+    X,
+    y,
+    axes=None,
+    ylim=None,
+    cv=None,
+    n_jobs=None,
+    train_sizes=np.linspace(0.1, 1.0, 5),
+    random_state=42
+):
+    """
+    https://scikit-learn.org/stable/auto_examples/model_selection/plot_learning_curve.html#sphx-glr-auto-examples-model-selection-plot-learning-curve-py
+    Generate 3 plots: the test and training learning curve, the training
+    samples vs fit times curve, the fit times vs score curve.
+    The plot in the second column shows the times required by the models to train 
+    with various sizes of training dataset. The plot in the third columns shows 
+    how much time was required to train the models for each training sizes.
 
-#Functions to run before and during modelling
-def checkIfNumberOfInstanceEnough(df):
-    """
-    o Çok az satır varsa daha fazla veri toplanması sağlanmalıdır
-    o Aşırı çok satır varsa kısmi sampling yapılabilir.(Detayları göreceğiz)
-    o Data çokluğundan emin değilseniz tamamıyla deneyin. Eğitim süresi çok uzun sürüyorsa aşamalı olarak azaltabilirsiniz.
-    """
+    Parameters
+    ----------
+    estimator : estimator instance
+        An estimator instance implementing `fit` and `predict` methods which
+        will be cloned for each validation.
 
-def checkIfNumberOFeatures(df):
-    """
-    o Az kolon(feature) varsa yenileri temin edilmeye çalışılabilir
-    o Çok kolon varsa çeşitli boyut indirgeme ve önemli kolonları seçme yöntemleri uygulanır(Detayları sorna göreceğiz)
-    o Yine satırlardaki aynı mantıkla çok kolon olup olmadığında emin değilseniz önce tümüyle birlikte modelleme yapılır. Eğitim süresi uzun ise veya overfitting oluyorsa feature azaltma yöntemleri uygulanabilir.
-    Kolon sayısını azaltma sadece eğitim zamanını kısatlmakla kalmaz aynı zamanda overfittingi de engeller.
-    """
+    title : str
+        Title for the chart.
 
-def checkForImbalancednessForLabels(df):    
-    """
-    (Imbalanced ise train/test ayrımından sonra oversample yapılır)
-    """
+    X : array-like of shape (n_samples, n_features)
+        Training vector, where ``n_samples`` is the number of samples and
+        ``n_features`` is the number of features.
 
-def remindForSomeProcesses():
-    """
-    ....
-    """
-    print("transformasyon gerektirmeyen kısımlar: feature extraction, feaute selection, feature elimination")        
-    
-def remindForDiscreteization():
-    """
-    yüksek carianlitiy olan numeriklerde hangi durumlarda discretization?
-    """
-    
-#arada X ve y manuel belirlenir    
-def traintest(X,y,testsize):
-    # önce trasin test yaptır, gerekirse başka parameterler de al
-    print("dont touch test set")
-    
-def remindForStep2FE():
-    print("transformasyon gerektiren işlemler step 2, hangileri?????????")
+    y : array-like of shape (n_samples) or (n_samples, n_features)
+        Target relative to ``X`` for classification or regression;
+        None for unsupervised learning.
 
-#bu arada aşağıdaki açıklamadaki ilk satır çalışablir
-def buildModel(train,test):
-    """
-        çoklu model mi kursak burda? VotingClassifier. parametre olarak pipelineları mı versek. evetse bi önjceki stepte bunu da hatıratsın, tellWhatAlgorithmsToUse bu da çalışsın tabi
-        fit trasnform
-        pedicr
-        skor kontrolü, çok düşükse underfitting sebeplerine bak, belli bi sebep yoksa yeni feature + yeni veri(azsa), veya yeni model
-        skor iyiyse cv kontrol
-        test setini ver
+    axes : array-like of shape (3,), default=None
+        Axes to use for plotting the curves.
 
+    ylim : tuple of shape (2,), default=None
+        Defines minimum and maximum y-values plotted, e.g. (ymin, ymax).
+
+    cv : int, cross-validation generator or an iterable, default=None
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+
+          - None, to use the default 5-fold cross-validation,
+          - integer, to specify the number of folds.
+          - :term:`CV splitter`,
+          - An iterable yielding (train, test) splits as arrays of indices.
+
+        For integer/None inputs, if ``y`` is binary or multiclass,
+        :class:`StratifiedKFold` used. If the estimator is not a classifier
+        or if ``y`` is neither binary nor multiclass, :class:`KFold` is used.
+
+        Refer :ref:`User Guide <cross_validation>` for the various
+        cross-validators that can be used here.
+
+    n_jobs : int or None, default=None
+        Number of jobs to run in parallel.
+        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
+        for more details.
+
+    train_sizes : array-like of shape (n_ticks,)
+        Relative or absolute numbers of training examples that will be used to
+        generate the learning curve. If the ``dtype`` is float, it is regarded
+        as a fraction of the maximum size of the training set (that is
+        determined by the selected validation method), i.e. it has to be within
+        (0, 1]. Otherwise it is interpreted as absolute sizes of the training
+        sets. Note that for classification the number of samples usually have
+        to be big enough to contain at least one sample from each class.
+        (default: np.linspace(0.1, 1.0, 5))
     """
+    if axes is None:
+        _, axes = plt.subplots(1, 3, figsize=(20, 5))
+
+    axes[0].set_title(title)
+    if ylim is not None:
+        axes[0].set_ylim(*ylim)
+    axes[0].set_xlabel("Training examples")
+    axes[0].set_ylabel("Score")
+
+    train_sizes, train_scores, test_scores, fit_times, _ = learning_curve(
+        estimator,
+        X,
+        y,
+        cv=cv,
+        n_jobs=n_jobs,
+        train_sizes=train_sizes,
+        return_times=True,
+        random_state=random_state
+    )
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
+    test_scores_mean = np.mean(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
+    fit_times_mean = np.mean(fit_times, axis=1)
+    fit_times_std = np.std(fit_times, axis=1)
+
+    # Plot learning curve
+    axes[0].grid()
+    axes[0].fill_between(
+        train_sizes,
+        train_scores_mean - train_scores_std,
+        train_scores_mean + train_scores_std,
+        alpha=0.1,
+        color="r",
+    )
+    axes[0].fill_between(
+        train_sizes,
+        test_scores_mean - test_scores_std,
+        test_scores_mean + test_scores_std,
+        alpha=0.1,
+        color="g",
+    )
+    axes[0].plot(
+        train_sizes, train_scores_mean, "o-", color="r", label="Training score"
+    )
+    axes[0].plot(
+        train_sizes, test_scores_mean, "o-", color="g", label="Cross-validation score"
+    )
+    axes[0].legend(loc="best")
+
+    # Plot n_samples vs fit_times
+    axes[1].grid()
+    axes[1].plot(train_sizes, fit_times_mean, "o-")
+    axes[1].fill_between(
+        train_sizes,
+        fit_times_mean - fit_times_std,
+        fit_times_mean + fit_times_std,
+        alpha=0.1,
+    )
+    axes[1].set_xlabel("Training examples")
+    axes[1].set_ylabel("fit_times")
+    axes[1].set_title("Scalability of the model")
+
+    # Plot fit_time vs score
+    fit_time_argsort = fit_times_mean.argsort()
+    fit_time_sorted = fit_times_mean[fit_time_argsort]
+    test_scores_mean_sorted = test_scores_mean[fit_time_argsort]
+    test_scores_std_sorted = test_scores_std[fit_time_argsort]
+    axes[2].grid()
+    axes[2].plot(fit_time_sorted, test_scores_mean_sorted, "o-")
+    axes[2].fill_between(
+        fit_time_sorted,
+        test_scores_mean_sorted - test_scores_std_sorted,
+        test_scores_mean_sorted + test_scores_std_sorted,
+        alpha=0.1,
+    )
+    axes[2].set_xlabel("fit_times")
+    axes[2].set_ylabel("Score")
+    axes[2].set_title("Performance of the model")
+
+    return plt
 
 
-def tellWhatAlgorithmsToUse(df,type):
+def drawNeuralNetwork(layers,figsize=(10,8)):
     """
-    s ve u için ayrı ayrı mı?
+        Draws a represantion of the neural network using networkx.
+        layers:list of the # of layers including input and output.
     """    
+    plt.figure(figsize=figsize)
+    pos={}    
+    for e,l in enumerate(layers):
+        for i in range(l):
+            pos[str(l)+"_"+str(i)]=((e+1)*50,i*5+50)
+
+
+    X=nx.Graph()
+    nx.draw_networkx_nodes(X,pos,nodelist=pos.keys(),node_color='r')
+    X.add_nodes_from(pos.keys())
+
+    edgelist=[] #list of tuple
+    for e,l in enumerate(layers):
+        for i in range(l):
+            try:
+                for k in range(layers[e+1]):
+                    try:
+                        edgelist.append((str(l)+"_"+str(i),str(layers[e+1])+"_"+str(k)))
+                    except:
+                        pass
+            except:
+                    pass
+
+
+    X.add_edges_from(edgelist)
+    for n, p in pos.items():
+        X.nodes[n]['pos'] = p    
+
+    nx.draw(X, pos);    

@@ -7,7 +7,6 @@ import seaborn as sns
 from scipy import stats
 import warnings
 import os
-
 from itertools import combinations
 import multiprocessing
 from multiprocessing import Pool
@@ -17,7 +16,28 @@ from scipy.spatial import distance
 from sklearn.metrics.pairwise import cosine_similarity
 
 
+
+# my first initial settings when imported. These are my cup of tea, feel free to change to your preference.
+try:
+    warnings.simplefilter("always")
+    print("all warnings will be shown")
+    plt.rc('axes', labelsize=14)
+    plt.rc('xtick', labelsize=12)
+    plt.rc('ytick', labelsize=12)
+    pd.set_option('display.max_rows',None)  
+    pd.set_option('display.min_rows',None) 
+    pd.set_option("io.excel.xlsx.reader", "openpyxl")
+    pd.set_option("io.excel.xlsm.reader", "openpyxl")
+    pd.set_option("io.excel.xlsb.reader", "openpyxl")
+    pd.set_option("io.excel.xlsx.writer", "openpyxl")
+    pd.set_option("io.excel.xlsm.writer", "openpyxl")
+except:
+    pass    
+
 def printmd(string):
+    """
+        converts a string as markdown.
+    """
     display(Markdown(string))
 
 def pandas_df_to_markdown_table(df):    
@@ -36,46 +56,13 @@ def color_code(thresh):
         return 'background-color: %s' % color
     return color_code_by_val  
 
-def doInitialSettings(figsize=(5,3)):
-    try:
-        warnings.simplefilter("always")
-        from IPython.core.interactiveshell import InteractiveShell
-        InteractiveShell.ast_node_interactivity = 'all'
-        plt.rcParams["figure.figsize"] = figsize  
-        plt.rc('axes', labelsize=14)
-        plt.rc('xtick', labelsize=12)
-        plt.rc('ytick', labelsize=12)
-        pd.set_option('display.max_rows',20)  
-        pd.set_option("io.excel.xlsx.reader", "openpyxl")
-        pd.set_option("io.excel.xlsm.reader", "openpyxl")
-        pd.set_option("io.excel.xlsb.reader", "openpyxl")
-        pd.set_option("io.excel.xlsx.writer", "openpyxl")
-        pd.set_option("io.excel.xlsm.writer", "openpyxl")
-    except:
-        pass
-
-
-def printUniques(datafr,i=10):   
-    """
-    prints unique values in a dataframe whose nunique value <= 10 
-    """ 
-    try:   
-        dict_=dict(datafr.nunique())
-        for k,v in dict_.items():
-            if int(v)<=i: #we don't want to see the unique items that are greater than i
-                print("Unique items in column",k)
-                print(datafr[k].unique(),end="\n\n")
-        print("You may want to convert the numerics with low cardinality to categorical")
-    except Exception as e: 
-        print(e)
-
-            
-def printValueCount(datafr,i=10):    
+          
+def printValueCount(df,i=10):    
     """
     prints value counts for columns whose # of unique value is less than i 
     """
     try:
-        dict_=dict(datafr.nunique())
+        dict_=dict(df.nunique())
         for k,v in dict_.items():
             if int(v)<=i:
                 print("Unique items in column",k)
@@ -83,24 +70,32 @@ def printValueCount(datafr,i=10):
     except Exception as e: 
         print(e)
                     
-def getColumnsInLowCardinality(df,i=10):
-    #buna gerek var mı ? printUniques fakrı ne?
+def getColumnsInLowCardinality(df,i=10,isprint=True):
+    """
+    prints unique values in a dataframe whose nunique value <= 10 
+    """     
     try:
         dict_=dict(df.nunique())
         list_=[]
         for k,v in dict_.items():
-            if int(v)<=i:
+            if int(v)<=i: #we don't want to see the unique items that are greater than i
                 list_.append(k)
+                if isprint:
+                    print("Unique items in column",k)
+                    print(df[k].unique(),end="\n\n")
+        print("You may want to convert the numerics with low cardinality to categorical")
                 
         return list_
     except Exception as e: 
         print(e)
 
-def multicountplot(datafr,i=5,fig=(4,5),r=45, colsize=2,hue=None):  
-    """countplots for columns whose # of unique value is less than i """
+def multicountplot(df,i=5,fig=(4,5),r=45, colsize=2,hue=None):  
+    """
+    countplots for columns whose # of unique value is less than i 
+    """
     
     try:        
-        dict_=dict(datafr.nunique())
+        dict_=dict(df.nunique())
         target=[k for k,v in dict_.items() if v<=i]
             
         lng=0
@@ -122,7 +117,7 @@ def multicountplot(datafr,i=5,fig=(4,5),r=45, colsize=2,hue=None):
                 elif target[k]==hue:
                     pass
                 else:
-                    sns.countplot(x=datafr[target[k]].fillna("Null"), ax=axes[i,j], data=datafr, hue=hue)
+                    sns.countplot(x=df[target[k]].fillna("Null"), ax=axes[i,j], data=df, hue=hue)
                     plt.tight_layout()                     
                     axes[i,j].set_xticklabels(axes[i,j].get_xticklabels(), rotation=r,ha='right')
                     k=k+1
@@ -135,17 +130,21 @@ def ShowTopN(df,n=5):
     Works for numeric features. Even if you pass categorical features they will be disregarded
     """
     try:
-        for d in df.select_dtypes("number").columns:
-            print(f"Top {n} in {d}:")
-            print(df[d].sort_values(ascending=False).head(n))
+        for c in df.select_dtypes("number").columns:
+            print(f"Top {n} in {c}:")
+            print(df[c].sort_values(ascending=False).head(n))
             print("---------------------------")
     except Exception as e: 
         print(e)
 
 def sortAndPrintMaxMinNValues(df,columns,n=1,removeNull=True):
+    """
+       Works for numeric features. Even if you pass categorical features they will be disregarded 
+       n: Top N min/max
+    """
     #if n=1 returns some unusual values, we can increase n 
     try:   
-        for c in columns:
+        for c in df.select_dtypes("number").columns:
             sorted_=df[c].sort_values()        
             if removeNull==True:
                 sorted_=sorted_.dropna()
@@ -157,6 +156,9 @@ def addStdMeanMedian(df):
     warnings.warn("Warning...addStdMeanMedian is depreciated. Use addCoefOfVarianceToDescribe")
 
 def addCoefOfVarianceToDescribe(df):
+    """
+    First get the describe view of the the df and then adds variance coefficient to the its end.
+    """
     df=df.describe().T
     df["mean/median"]=df["mean"]/df["50%"]
     df["std/mean"]=df["std"]/df["mean"]
@@ -331,13 +333,7 @@ def plotHistWithoutOutliers(df,fig=(12,8),thresh=0.25,imputestrategy="median",ou
         fc=fc+1
        
     
-        
-def numpyValuecounts(dizi):
-    unique, counts = np.unique(dizi, return_counts=True)
-    return np.asarray((unique, counts)).T
-
-
-def findNullLikeValues(df,listofvalues=[[-1,-999],["na","yok","tanımsız","bilinmiyor","?"]]): 
+def findNullLikeValues(df,listofvalues=[[-1,-999],["-","na","yok","tanımsız","bilinmiyor","?"]]): 
     """
         df:dataframe,
         listofvalues: turkish words that might mean null. put your own language equivalents.
@@ -345,44 +341,39 @@ def findNullLikeValues(df,listofvalues=[[-1,-999],["na","yok","tanımsız","bili
                       default values:[[-1,-999],["na","yok","tanımsız","bilinmiyor","?"]
     """
     t=0
+    values_n=[]
+    values_o=[]
     for f in df.select_dtypes("number").columns:
         x=0
         for i in listofvalues[0]:
-            x+=len(df[df[f]==i])
-            t+=1
+            r=len(df[df[f]==i])
+            if r>0:
+                x+=len(df[df[f]==i])
+                values_n.append(i)
+                t+=1
             
         if x>0:    
-            print("{} null-like values in {}".format(x,f))
+            print(f"{x} null-like values,which are '{','.join(set(values_n))}', in {f}")
     for f in df.select_dtypes("object"):
         x=0
         for i in listofvalues[1]:
             try: #in case of nulls
-                x+=len(df[df[f].str.lower()==i])
-                t+=1
+                r=len(df[df[f]==i])
+                if r>0:                
+                    x+=len(df[df[f].str.lower()==i])
+                    values_o.append(i)
+                    t+=1
             except:
                 pass
         if x>0:    
-            print("{} null-like values in {}".format(x,f))
+            print(f"{x} null-like values,which are '{','.join(set(values_o))}', in {f}")
     if t==0:
         print("There are no null-like values")
 
-def parse_col_json(column, key):
-    """
-    Args:
-        column: string
-            name of the column to be processed.
-        key: string
-            name of the dictionary key which needs to be extracted
-    """
-    for index,i in zip(movies_df.index,movies_df[column].apply(json.loads)):
-        list1=[]
-        for j in range(len(i)):
-            list1.append((i[j][key]))# the key 'name' contains the name of the genre
-        movies_df.loc[index,column]=str(list1)
 
 def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sort=False,hueCol=None):      
     """
-    BUNA SANKİ GEREK YOK GİBİ; CATPLOT YAPIYOR BU İŞİ, HW1'den kontrol et
+    catplot?
     - cast and nums must be array-like.
     - plots will be displayed such that that each numeric feature could be tracked in the rows and categories in the columns
     """
@@ -420,29 +411,16 @@ def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sor
         c=c+1
 
 
-def countifwithConditon(df,feature,condition):
-    print(df[df[feature].isin(df[condition][feature])].groupby(feature).size().value_counts())
     
 def nullPlot(df):
     sns.heatmap(df.isnull(),yticklabels=False,cbar=False,cmap='viridis')
-        
-
-def SuperInfo(df, dropna=False):
-    """
-    Returns a dataframe consisting of datatypes, nuniques, #s of nulls head(1), most frequent item and its frequncy,
-    where the column names are indices.
-    """
-    
-    dt=pd.DataFrame(df.dtypes, columns=["Type"])
-    dn=pd.DataFrame(df.nunique(), columns=["Nunique"])
-    nonnull=pd.DataFrame(df.isnull().sum(), columns=["#of Missing"])
-    firstT=df.head(1).T.rename(columns={0:"First"})
-    MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] for x in df.columns], columns=["MostFreqItem"],index=df.columns)
-    MostFreqC=pd.DataFrame([df[x].value_counts().head(1).values[0] for x in df.columns], columns=["MostFreqCount"],index=df.columns)
-    return pd.concat([dt,dn,nonnull,MostFreqI,MostFreqC,firstT],axis=1)
 
 
 def prepareListOfCombinationsForRelationFinder(df,i=5):
+    """
+    prepares a list of feature combinations of 2-3-4.
+    not to be used solo, instead it is called within getListOfRelationsParallel.
+    """
     dict_=dict(df.nunique())
     target=[k for k,v in dict_.items() if v<=i]
 
@@ -460,7 +438,8 @@ def findRelationsAmongFeatures(tpl):
     """
         Must be used with multiprocessing module.
     args
-        tpl:tuple consisting of a dataframe and a inner tuple of features of some combinations returning from 'prepareListOfCombinationsForRelationFinder' method. These tuples must be provieded as parallel in a multiprocess-based procedure. 
+        tpl:tuple consisting of a dataframe and a inner tuple of features of some combinations returning from 'prepareListOfCombinationsForRelationFinder' method. 
+        These tuples must be provieded as parallel in a multiprocess-based procedure, which is "getListOfRelationsParallel" below.
     """
     df,item=tpl
     list_=list(item)
@@ -472,22 +451,15 @@ def findRelationsAmongFeatures(tpl):
                 return (list_,i,uns,u)
 
 def getListOfRelationsParallel(df):
-    if __name__ == "__main__":#windows-jupyter olayı nedeniyle if main
+
+    if __name__ == "__main__":#because of windows-jupyter forking issue, used with "if main"
         cpu=multiprocessing.cpu_count()    
         flat_list=prepareListOfCombinationsForRelationFinder(df)
         tpl=[(df,i) for i in flat_list] 
         with Pool(cpu) as p:
-            list_= p.map(findRelationsAmongFeatures, tqdm(tpl))
+            list_= p.map(findRelationsAmongFeatures, tpl)
         return list_
-            
-
-
-    
-def pandas_df_to_markdown_table(df):    
-    fmt = ['---' for i in range(len(df.columns))]
-    df_fmt = pd.DataFrame([fmt], columns=df.columns)
-    df_formatted = pd.concat([df_fmt, df])
-    display(Markdown(df_formatted.to_csv(sep="|", index=False)))    
+          
     
 def topNValExcluded(serie, n):
     return serie[~serie.isin(serie.nlargest(10).values)]
@@ -505,66 +477,26 @@ def areContentsOfFeaturesSame(df,features):
         if np.all(np.where(df[c[0]] == df[c[1]], True, False)):
             print(f"The content of the features of {c[0]} and {c[1]} are the same")
             
-def calculateManhattanSimilarity(df,features,typeofsim="classic",threshold=0.01):            
-    combs=list(combinations(features,2))
-    dict_={}
-    for c in combs:
-        manhattan=distance.cityblock(df[c[0]].fillna(0).values,df[c[1]].fillna(0).values)
-        if typeofsim=="classic":
-            manhattansim=1/(1+manhattan)    
-        elif typeofsim=="divbymean":
-            manhattansim=manhattan/np.mean(df[c[0]].fillna(0).values)    
-        else:
-            print("wrong value for typeofsim")
-            raise
-        if manhattansim>threshold:
-            dict_[(c[0],c[1])]=(int(manhattan),manhattansim)
-    newdict={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1])}
-    for k,v in newdict.items():
-        print(k,v)
-        
-def calculateCosineSimilarity(df,features,threshold=0.9):            
-    combs=list(combinations(features,2))
-    dict_={}
-    for c in combs:        
-        cossim=cosine_similarity(df[c[0]].fillna(0).values.reshape(1,-1),df[c[1]].fillna(0).values.reshape(1,-1))        
-        if cossim>threshold:
-            dict_[(c[0],c[1])]=(cossim)
-    newdict={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1])}
-    for k,v in newdict.items():
-        print(k,v)
-        
-def getCartesian(*listeler):   
-    kartezyen=itertools.product(*listeler)
-    os.chdir(r"c:\users\N35516\desktop")
-    csvfile = "kartezyen.csv"
-    with open(csvfile, "w") as output:
-        writer = csv.writer(output, lineterminator='\n')
-        writer.writerows(kartezyen)
                     
-def GetOnlyOneTriangleInCorr(df,target,whichpart="lower",diagonal=True,heatmap=False):
+def GetOnlyOneTriangleInCorr(df,target,diagonal=True,heatmap=False):
+    """
+    returns the lower part of the correlation matrix. if preffered, heatmap could be plotted.
+    args:
+        diagonal:if False, the values at the diagonal to be made null
+    """
     sortedcorr=df.corr().sort_index().sort_index(axis=1)        
     cols = [col for col in sortedcorr if col != target] + [target]
     sortedcorr = sortedcorr[cols]
     new_index = [i for i in sortedcorr.index if i != target] + [target]
     sortedcorr=sortedcorr.reindex(new_index)
     for i in range(len(sortedcorr)):
-        for c in range(len(sortedcorr.columns)):
-            if whichpart=="lower":
-                if diagonal==True:
-                    if i<c:                
-                        sortedcorr.iloc[i,c]=np.nan 
-                else:
-                    if i<=c:                
-                        sortedcorr.iloc[i,c]=np.nan 
-
+        for c in range(len(sortedcorr.columns)):            
+            if diagonal==True:
+                if i<c:                
+                    sortedcorr.iloc[i,c]=np.nan 
             else:
-                if diagonal==True:
-                    if i>c:                
-                        sortedcorr.iloc[i,c]=np.nan 
-                else:
-                    if i>=c:                
-                        sortedcorr.iloc[i,c]=np.nan 
+                if i<=c:                
+                    sortedcorr.iloc[i,c]=np.nan 
     
     sortedcorr.rename(columns={target: "*"+target+"*"},inplace=True)
     sortedcorr.rename(index={target: "*"+target+"*"},inplace=True)
@@ -574,6 +506,12 @@ def GetOnlyOneTriangleInCorr(df,target,whichpart="lower",diagonal=True,heatmap=F
         return sortedcorr       
 
 def plotTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
+    """
+    args:
+        cats: categoric features
+        tareget: target column
+        subplot_tpl: layout of the subplot(r*c)
+    """
     r,c=subplot_tpl
     for e,cat in enumerate([x for x in cats if x!=target]):    
         plt.subplot(r,c,e+1)
@@ -592,6 +530,12 @@ def plotTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
     
     
 def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
+    """
+    args:
+        cats: categoric features
+        tareget: target column
+        subplot_tpl: layout of the subplot(r*c)
+    """    
     r,c=subplot_tpl
     for e,cat in enumerate([x for x in cats if x!=target]):
         plt.subplot(r,c,e+1)
@@ -607,3 +551,5 @@ def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
         
     plt.tight_layout()    
     plt.show();
+
+
