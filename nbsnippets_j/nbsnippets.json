@@ -1,0 +1,387 @@
+{
+    "name": "My Scripts",
+    "sub-menu": [
+        {
+            "name": "General Python",
+            "sub-menu": [
+                {
+                    "name": "a-href",
+                    "snippet": [
+                        "<a href='url'>şuraya</a>"
+                    ]
+                },
+                {
+                    "name": "citation",
+                    "snippet": [
+                        "<p style='font-size:smaller;text-align:center'>Görsel <a href='url'>bu sayfadan</a> alınmıştır</p>"
+                    ]
+                },
+                {
+                    "name": "reload",
+                    "snippet": [
+                        "%load_ext autoreload",
+                        "%autoreload 2"
+                    ]
+                },
+                {
+                    "name": "youtube",
+                    "snippet": [
+                        "from IPython.display import YouTubeVideo",
+                        "YouTubeVideo('videoid')"
+                    ]
+                },
+                {
+                    "name": "multiouput",
+                    "snippet": [
+                        "from IPython.core.interactiveshell import InteractiveShell",
+                        "InteractiveShell.ast_node_interactivity = 'all'"
+                    ]
+                },
+                {
+                    "name": "plot zoom",
+                    "snippet": [
+                        "plt.xlim(lowerX, upperX)",
+                        "plt.ylim(lowerY, upperY)"
+                    ]
+                }                
+            ]
+        },
+        {
+            "name": "DA&DS&ML imports",
+            "sub-menu": [                                
+                {
+                    "name": "import EDA",
+                    "snippet": [
+                        "import numpy as np",
+                        "import pandas as pd",
+                        "import matplotlib.pyplot as plt",
+                        "import seaborn as sns",
+                        "from mypyext import mymagics",
+                        "from mypyext import pythonutility as pu",
+                        "from mypyext import dataanalysis as da",
+                        "from dataprep.eda import plot, plot_correlation, plot_missing, create_report",
+                        "import sweetviz as sv"
+                    ]
+                },
+                {
+                    "name": "import ML",
+                    "snippet": [
+                        "from mypyext import ml",
+                        "from sklearn.model_selection import train_test_split,cross_val_score,cross_val_predict,StratifiedKFold,RepeatedKFold,RepeatedStratifiedKFold",
+                        "from sklearn.experimental import enable_iterative_imputer",
+                        "from sklearn.impute import SimpleImputer,IterativeImputer,KNNImputer",                        
+                        "from sklearn.preprocessing import StandardScaler,MinMaxScaler,RobustScaler",
+                        "from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, LabelEncoder",
+                        "from category_encoders import OrdinalEncoder as COE",
+                        "from sklearn.decomposition import PCA",
+                        "from sklearn.compose import ColumnTransformer",
+                        "from sklearn.preprocessing import FunctionTransformer",
+                        "from sklearn.base import TransformerMixin,BaseEstimator",
+                        "from sklearn.pipeline import Pipeline,make_pipeline",
+                        "from sklearn.preprocessing import FunctionTransformer",
+                        "from sklearn.model_selection import GridSearchCV,RandomizedSearchCV",
+                        "from sklearn.feature_selection import VarianceThreshold,SelectKBest, chi2, f_classif, mutual_info_classif,RFE,RFECV",
+                        ""
+                    ]
+                },
+                {
+                    "name": "traintest",
+                    "snippet": [
+                        "X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25, random_state=42)"
+                    ]
+                },
+                {
+                    "name": "import Regression",
+                    "snippet": [
+                        "from sklearn.linear_model import LinearRegression,BayesianRidge,Lasso",
+                        "from sklearn.neighbors import KNeighborsRegressor",
+                        "from sklearn.tree import DecisionTreeRegressor",
+                        "from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor",
+                        "from sklearn.ensemble import GradientBoostingRegressor, BaggingRegressor, AdaBoostRegressor",
+                        "from xgboost import XGBRegressor",
+                        "from sklearn.metrics import mean_squared_error"                        
+                    ]
+                },
+                {
+                    "name": "import Classification",
+                    "snippet": [
+                        "from sklearn.linear_model import LogisticRegression",                        
+                        "from sklearn.tree import DecisionTreeClassifier",
+                        "from sklearn.ensemble import RandomForestClassifier,ExtraTreesClassifier,GradientBoostingClassifier, AdaBoostClassifier,BaggingClassifier,VotingClassifier",                        
+                        "from xgboost import XGBClassifier",
+                        "from lightgbm import LGBMClassifier",
+                        "from sklearn.neighbors import KNeighborsClassifier",
+                        "from sklearn.naive_bayes import BernoulliNB, MultinomialNB",
+                        "from sklearn.svm import SVC",
+                        "from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score",
+                        "from sklearn.metrics import confusion_matrix,classification_report,plot_confusion_matrix,ConfusionMatrixDisplay",
+                        "from sklearn.metrics import auc,roc_auc_score,precision_recall_curve,roc_curve,brier_score_loss"
+                    ]
+                },
+                {
+                    "name": "import Clustering",
+                    "snippet": [
+                        "from sklearn.cluster import AgglomerativeClustering, KMeans, DBSCAN",
+                        "from sklearn.neighbors import NearestNeighbors",
+                        "from sklearn.model_selection import ParameterGrid",
+                        "from sklearn.metrics import silhouette_samples,silhouette_score,adjusted_rand_score,homogeneity_score,completeness_score,v_measure_score,davies_bouldin_score",
+                        "from scipy.cluster.hierarchy import dendrogram, linkage",
+                        "from sklearn.metrics.cluster import calinski_harabasz_score"
+                        
+                    ]
+                },
+
+                {
+                    "name": "import statistics",
+                    "snippet": [
+                        "from dython.nominal import cramers_v, correlation_ratio",
+                        "from scipy.stats import chi2_contingency",
+                        "import scipy.stats as stats",
+                        "from scipy.stats import spearmanr",
+                        ""
+                    ]
+                },
+                {
+                    "name": "import distance&similarity",
+                    "snippet": [
+                        "from scipy.spatial import distance",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "name": "import NLP",
+                    "snippet": [
+                        "from sklearn.naive_bayes import BernoulliNB, MultinomialNB",
+                        "from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer,TfidfVectorizer",
+                        "from nltk.tokenize import word_tokenize,wordpunct_tokenize,sent_tokenize,regexp_tokenize",
+                        "from nltk.tokenize import RegexpTokenizer,WordPunctTokenizer #üstteki gibi metod olarak da çağrıalbilir",
+                        "from nltk.tokenize import TweetTokenizer",
+                        "import nltk",
+                        "from nltk.stem import WordNetLemmatizer #sadece ingilzice desteği var",
+                        "from nltk.corpus import wordnet",
+                        "from nltk.tag import pos_tag"
+                    ]
+                }
+
+            ]
+        },
+        {
+            "name": "Pipeline & Gridsearch",
+            "sub-menu": [
+                {
+                    "name": "Basic Pipeline",
+                    "snippet": [
+                        "pipeline = Pipeline(steps =[",
+                                "\t('ss', StandardScaler()),",                                
+                                "\t('clf', LogisticRegression())",
+                                "])"
+
+                    ]
+                },
+                {
+                    "name": "ColTrans + Pipeline",
+                    "snippet": [
+                        "def customFunc(df,param):",                            
+                            "\t#.....",
+                            "\treturn 0\n",
+                        "coltrans = ColumnTransformer([",
+                            "\t('c1',OneHotEncoder(),[1,2,3]),",
+                            "\t('c2',FunctionTransformer(customFunc,kw_args=dict(param=cats)),[e for e,v in enumerate(X.columns) if v in catspipe])",
+                            "],remainder = 'passthrough')\n",
+                        "pipeline = Pipeline(steps =[",
+                                "\t('ct', coltrans),",                                
+                                "\t('clf', LogisticRegression())",
+                                "])"
+
+                    ]
+                },
+                {
+                    "name": "SubPipeline + ColTrans + MainPipeline",
+                    "snippet": [
+                        "def customFunc(df,param):",                            
+                            "\t#.....",
+                            "\treturn 0\n",
+                        "num_pipe=Pipeline([",
+                            "\t'p1', IterativeImputer(estimator=DecisionTreeRegressor(random_state=0))),",
+                            "\t('p2', FunctionTransformer(cap_outliers))",
+                            "])\n",     
+                        "cat_pipe=Pipeline([",
+                            "\t('p1', IterativeImputer(estimator=DecisionTreeRegressor(random_state=0))),",
+                            "\t('p2', FunctionTransformer(cap_outliers))",
+                            "])\n",
+                        "coltrans = ColumnTransformer([",
+                            "\t('c1',num_pipe,[e for e,v in enumerate(X.columns) if v in nums]),",
+                            "\t('c2',FunctionTransformer(categoricImputer,kw_args=dict(param=cats)),[e for e,v in enumerate(X.columns) if v in catspipe])",
+                            "],remainder = 'passthrough')\n",
+                        "pipeline = Pipeline(steps =[",
+                                "\t('ct', coltrans),",                                
+                                "\t('clf', LogisticRegression())",
+                                "])\n"
+                    ]
+                },               
+                {
+                    "name": "Params & Gridsearch",
+                    "snippet": [
+                        "params = [",
+                            "\t{",
+                              "\t\t'tf1__p1__ii__max_iter':[5,10,15],",
+                              "\t\t'tf1__p1__ii__base_estimator__max_features':['log2','sqrt'],",
+                            "\t}",
+                            "\t,",
+                            "\t{",
+                              "\t\t'tf1__p1__ii__max_iter':[5,10,15],",
+                              "\t\t'tf1__p1__ii__base_estimator__max_features':['log2','sqrt'],",
+                            "\t}",                            
+                           "]\n",
+                           "gs = GridSearchCV(pipeline, params, cv=cv, scoring='scorename',n_jobs=-1,verbose=1)",
+                           "gs.fit(X, y)",
+                           "gs.best_params_",
+                           "gs.best_score_"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hottopic",
+            "sub-menu": [
+                {
+                    "name": "countvectorizer",
+                    "snippet": [
+                        "from sklearn.feature_extraction.text import CountVectorizer #CountVectorizer(lowercase=True,ngram_range=(1,2))",
+                        "#vect = CountVectorizer(lowercase=True,ngram_range=(1,2),stop_words='english') #türkçeler için list halinde verilebilir",
+                        "#vect = CountVectorizer(lowercase=True,ngram_range=(1,2),stop_words='english',strip_accents='unicode')",
+                        "vect = CountVectorizer()",
+                        "res= vect.fit_transform(corpus)",
+                        "res=pd.DataFrame(res.toarray(),columns=vect.get_feature_names_out())"
+                    ]
+                },
+                {
+                    "name": "TFIDF-Pipeline",
+                    "snippet": [
+                        "from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer",
+                        "from sklearn.pipeline import Pipeline",
+                        "# or it's better to use pipeline",
+                        "pipe = Pipeline([",
+                            "('count_vec', CountVectorizer(strip_accents='unicode')),",
+                            "('tfidf_vec', TfidfTransformer(smooth_idf=False))",
+                        "])",
+                        "pipe.fit_transform(corpus)",
+                        "# or we can directly use TfidfVectorizer",
+                        "tf_vect = TfidfVectorizer(strip_accents='unicode', smooth_idf=False)",
+                        "tf_vect.fit_transform(corpus)"
+                    ]
+                },
+                {
+                    "name": "MLP sklearn",
+                    "snippet": [
+                        "from sklearn.neural_network import MLPClassifier #multi layer perceptron. perceptron en küçük neuron ağıdır",
+                        "pipe = Pipeline([",
+                        "#         ('scaler', pre.StandardScaler()), #zaten scale edilmiş olduğu için gerek yok",
+                                  "('mlp', MLPClassifier(hidden_layer_sizes=(100,50), activation='relu', solver='adam',learning_rate_init=0.001, ",
+                                        "batch_size=32, max_iter=10,random_state=42,verbose=1)) #,verbose=1",
+                        "])",
+                        "\n",
+                        "cross_val_score(pipe, X_train_skl, y_train, cv=3).mean()",
+                        "\n",
+                        "pipe.fit(X_train_skl, y_train)",
+                        "X_val_skl=X_val.reshape(5000,784)",
+                        "y_pred = pipe.predict(X_val_skl)",
+                        "accuracy_score(y_val,y_pred)"
+                    ]
+                },
+                {
+                    "name": "MLP keras",
+                    "snippet": [
+                        "model = keras.models.Sequential()",
+                        "model.add(keras.layers.Flatten(input_shape=X_train.shape[1:]))",
+                        "model.add(keras.layers.Dense(100, activation=keras.activations.relu, name='hidden1')) # hidden layer 1",
+                        "model.add(keras.layers.Dense(50, activation='relu', name='hidden2')) # hidden layer 2",
+                        "# model.add(keras.layers.Dense(1, name='output')) # output layer in binary / regression",
+                        "model.add(keras.layers.Dense(10, activation=keras.activations.softmax, name='output')) # output layer in multiclass",
+                        "model.summary()",
+                        "\n",                        
+                        "weights, biases = model.layers[1].get_weights() ",
+                        "weights[0]",                        
+                        "\n",
+                        "model.compile(optimizer=keras.optimizers.SGD(learning_rate=0.001),",
+                            "loss=keras.losses.sparse_categorical_crossentropy,",
+                            "metrics=['accuracy']) #metrics, liste alıyor",
+                            "#keras.losses.mean_squared_error in regression",
+                        "\n",
+                        "h = model.fit(X_train, y_train, batch_size=32, epochs=10, verbose=1,",
+                        "validation_data=(X_val, y_val))",
+                        "\n",
+                        "df = pd.DataFrame(h.history)",
+                        "df",
+                        "\n",
+                        "df.plot(figsize=(10, 6));",
+                        "\n",
+                        "plt.figure(figsize=(10, 6))",
+                        "plt.plot(df.index, df['val_loss'], label='val_loss')",
+                        "plt.plot(df.index, df['val_accuracy'], label='val_accuracy')",
+                        "plt.plot(df.index - 0.5, df['loss'], label='loss')",
+                        "plt.plot(df.index - 0.5, df['accuracy'], label='accuracy')",
+                        
+                        "plt.legend()",
+                        "plt.show();",
+                        "\n",
+                        "model.evaluate(X_test, y_test)",
+                        "\n",
+                        "model.predict(X_test[:2]).argmax(axis=1)"
+                    ]
+                },
+                {
+                    "name": "clusterings",
+                    "snippet": [
+                        "from sklearn.model_selection import ParameterGrid",
+                        "param_grid = {'eps': np.arange(0.1,1,0.1), 'min_samples': [3,5,7,8,9]}",
+                        "params=ParameterGrid(param_grid)",
+                        "for p in params:",
+                            "dbs=DBSCAN(eps=p['eps'],min_samples=p['min_samples'],n_jobs=-1)",
+                            "dbs.fit(X)",
+                            "plt.scatter(X[:,0],X[:,1],c=dbs.labels_)",
+                            "plt.title(p)",
+                            "plt.show();",
+
+                        "for l in ['ward','single','average','complete']:",
+                            "agg=AgglomerativeClustering(n_clusters=2, linkage=l)",
+                            "agg.fit(X)",
+                            "plt.scatter(X[:,0],X[:,1],c=agg.labels_)",
+                            "plt.title(l)",
+                            "plt.show();"
+                    ]
+                }, 
+                {
+                    "name": "svd",
+                    "snippet": [
+                        "U, S, VT = np.linalg.svd(train,full_matrices=False)",
+                        "list(map(np.shape,[U,S,VT]))",
+                        "U=U[:,:200]",
+                        "S=S[:200]",
+                        "VT=VT[:200,:]",
+                        "list(map(np.shape,[U,S,VT]))",
+                        "\n",
+                        "from sklearn.decomposition import TruncatedSVD",
+                        "svd=TruncatedSVD(n_components=200,algorithm='arpack')",
+                        "train_svd=svd.fit_transform(train) # bu U vektörü, U ve S'nin dot productı",
+                        "svd.components_.shape #VT. Bunun T'sini alırsan V"
+                    ]
+                },                                 
+
+                {
+                    "name": "custom class",
+                    "snippet": [
+                        "class CenterData(BaseEstimator, TransformerMixin):",
+                            "\tdef fit(self, X, y=None): # train",
+                                "\t\tself.mean_point = X.mean(axis=0)",
+                                "\t\treturn self",
+                            
+                            "\tdef transform(self, X, y=None): # train & test",
+                                "\t\treturn X - self.mean_point"
+                    ]
+                }                  
+            ]
+        }
+    ]
+}
