@@ -5,6 +5,7 @@ import pandas as pd
 
 # I chosed to create the pandas extension with pandas_flavor. We can use forbidden_fruit, though. But since its syntax is simpler i prefer the former.
 
+#**************************************list*******************************************
 def getLongestInnerList(self):
     """
         Extension method for list type. Returns longest inner list, its length and its index.
@@ -15,14 +16,6 @@ def getLongestInnerList(self):
     return longest,len(longest),index
 
 curse(list, "getLongestInnerList", getLongestInnerList)
-
-def getFirstItemFromDictionary(self):
-    """
-        Extension method for dict type. Gets the first item from a dictionary.
-        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
-    """    
-    return next(iter(self)),next(iter(self.values()))   
-curse(dict, "getFirstItemFromDictionary", getFirstItemFromDictionary)
 
 
 def removeItemsFromList(self,list2,inplace=True):    
@@ -57,6 +50,35 @@ def containsLike(self,what):
 curse(list, "containsLike", containsLike)
 
 
+
+
+#**************************************dict*******************************************
+
+def getFirstItemFromDictionary(self):
+    """
+        Extension method for dict type. Gets the first item from a dictionary.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    return next(iter(self)),next(iter(self.values()))   
+curse(dict, "getFirstItemFromDictionary", getFirstItemFromDictionary)
+
+def sortbyValue(self,inplace=True):    
+    """
+        Extension method for dicitonary type. Sorts the dictionary by values.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """
+    if inplace:
+        self = sorted(self.items(), key=lambda x: x[1], reverse=True)    
+        return self
+    else:
+        return sorted(self.items(), key=lambda x: x[1], reverse=True)    
+    
+curse(dict, "sortbyValue", sortbyValue)
+
+
+
+#**************************************numpy*******************************************
+
 def valuecounts(self):
     """
         Extension method for numpy array type. Returns items containing some substrings.
@@ -65,7 +87,11 @@ def valuecounts(self):
     unique, counts = np.unique(self, return_counts=True)
     return np.asarray((unique, counts)).T
 
-curse(np.array, "valuecounts", valuecounts)
+curse(np.ndarray, "valuecounts", valuecounts)
+
+
+
+
 
 
 #********************************
@@ -105,17 +131,25 @@ def head_and_tail(df,n=5):
 
        
 @register_dataframe_method        
-def SuperInfo(df, dropna=False):
+def super_info(df, dropna=False):
     """
     Returns a dataframe consisting of datatypes, nuniques, #s of nulls head(1), most frequent item and its frequncy,
     where the column names are indices.
+    First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  
     """
     
     dt=pd.DataFrame(df.dtypes, columns=["Type"])
-    dn=pd.DataFrame(df.nunique(dropna=dropna)), columns=["Nunique"])    
+    dn=pd.DataFrame(df.nunique(dropna=dropna), columns=["Nunique"])    
     nonnull=pd.DataFrame(df.isnull().sum(), columns=["#of Missing"])
     firstT=df.head(1).T.rename(columns={0:"First"})
     MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] for x in df.columns], columns=["MostFreqItem"],index=df.columns)
     MostFreqC=pd.DataFrame([df[x].value_counts().head(1).values[0] for x in df.columns], columns=["MostFreqCount"],index=df.columns)
     return pd.concat([dt,dn,nonnull,MostFreqI,MostFreqC,firstT],axis=1)
         
+@register_dataframe_method        
+def argwhere(df,column,value):
+    """
+    Returns the index of the value in the given column.    
+    First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  
+    """    
+    return df[df[column]==value].index[0]
