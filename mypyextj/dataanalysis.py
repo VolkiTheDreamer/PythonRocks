@@ -34,6 +34,12 @@ try:
 except:
     pass    
 
+def SuperInfo(df):
+    warnings.warn("Warning...SuperInfo is depreciated. Use super_info extension method of dataframe object. this method is located in extensions.py file")
+
+def printUniques(df):
+    warnings.warn("Warning...printUniques is depreciated. Use getColumnsInLowCardinality instead")
+
 def printmd(string):
     """
         converts a string as markdown.
@@ -83,7 +89,7 @@ def getColumnsInLowCardinality(df,i=10,isprint=True):
                 if isprint:
                     print("Unique items in column",k)
                     print(df[k].unique(),end="\n\n")
-        print("You may want to convert the numerics with low cardinality to categorical")
+        print("You may want to consider the numerics with low cardinality as categorical in the analysis")
                 
         return list_
     except Exception as e: 
@@ -464,12 +470,22 @@ def getListOfRelationsParallel(df):
 def topNValExcluded(serie, n):
     return serie[~serie.isin(serie.nlargest(10).values)]
 
-def getHighestPairsOfCorrelation(dfcorr,top=5):
-    c=dfcorr.abs()
-    s=c.unstack()
-    sorted_s = s.sort_values(ascending=False)
-    final=sorted_s[sorted_s<1]
-    return final[:top*2:2] #because of the same correlations for left-right and right-left
+def getHighestPairsOfCorrelation(dfcorr,target=None,topN_or_threshold=5):
+    if target is None:
+        c=dfcorr.abs()
+        s=c.unstack()
+        sorted_s = s.sort_values(ascending=False)
+        final=sorted_s[sorted_s<1]
+        if isinstance(topN_or_threshold,int): #top N
+            return final[:topN_or_threshold*2:2] #because of the same correlations for left-right and right-left
+        else: #threshold
+            return final[final>topN_or_threshold][::2]
+    else:
+        seri=dfcorr[target]
+        if isinstance(topN_or_threshold,int): #top N
+            return seri[seri.index!=target].sort_values(ascending=False)[:topN_or_threshold]    
+        else:
+            return seri[seri.index!=target].sort_values(ascending=False)[seri>topN_or_threshold]    
 
 def areContentsOfFeaturesSame(df,features):
     combs=list(combinations(features,2))
@@ -504,6 +520,14 @@ def GetOnlyOneTriangleInCorr(df,target,diagonal=True,heatmap=False):
         sns.heatmap(sortedcorr,annot=True)        
     else:
         return sortedcorr       
+
+def plotNumericsByTarget(df,target,nums=None,layout=None,figsize=None):
+    if nums==None:
+        nums=df.select_dtypes("number").columns
+    grup=df.groupby(target)[nums].mean()
+    grup.plot(subplots=True,layout=layout,figsize=figsize,kind="bar",legend=None)
+    plt.tight_layout() 
+    plt.show();
 
 def plotTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
     """
@@ -552,4 +576,16 @@ def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
     plt.tight_layout()    
     plt.show();
 
+def plotTargetForNumCatsPairs(df,nums,cats,target,height,aspect):
+    for num in nums:
+        print(f"Plots for {num},\n----------------------")
+        for cat in [x for x in cats if x!=target]:       
+            g=sns.catplot(x=target,y=num, data=df, col=cat, kind="bar", height=height, aspect=aspect)        
+            plt.show();
 
+def plotCategoricForNumTargetPairs(df,nums,cats,target,height,aspect):
+    for num in nums:
+        print(f"Plots for {num},\n----------------------")
+        for cat in [x for x in cats if x!=target]:
+            g=sns.catplot(x=cat,y=num, data=df, col=target, kind="bar", height=height, aspect=aspect)        
+            plt.show();

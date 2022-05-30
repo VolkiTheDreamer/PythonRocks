@@ -60,8 +60,8 @@ def showMemoryUsage():
     final={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1],reverse=True)}    
     print(final)
     
-def readfile(path,enc='cp1254'):
-    with io.open(path, "r", encoding=enc) as f:
+def read_filecontent(path,enc='cp1254'):
+    with open(path, "r", encoding=enc) as f:
         return f.read()
 
 

@@ -55,3 +55,12 @@ def mgc_beep(line, cell=None):
 #     playsound(r"C:\Windows\Media\notify.wav")
     winsound.PlaySound(r"C:\Windows\Media\\notify.wav", winsound.SND_FILENAME)
     # winsound.Beep(1000, 100)    
+
+@register_line_magic  
+def mgc_nbsinppet(line):
+    temp=[]
+    for x in eval(line).split("\n"):     
+        rep=x.replace("\"","'")
+        temp.append("\""+rep+"\"")
+
+    print(",\n".join(temp))    

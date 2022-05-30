@@ -1,14 +1,14 @@
 import numpy as np
 import pandas as pd
 from sklearn.metrics import silhouette_samples, silhouette_score
-from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score,roc_auc_score,roc_curve
+from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score,roc_auc_score,roc_curve,precision_recall_curve
 from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder,binarize
 from sklearn.pipeline import Pipeline 
 import os, sys, site
 import itertools    
@@ -20,8 +20,6 @@ from scipy.spatial import distance
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.model_selection import learning_curve
 import networkx as nx
-
-   
 
 def adjustedr2(R_sq,y,y_pred,x):
     return 1 - (1-R_sq)*(len(y)-1)/(len(y_pred)-x.shape[1]-1)
@@ -54,7 +52,7 @@ def printScores(y_test,y_pred,x=None,*, alg_type='c',f1avg=None):
         print("Recall:",recall)
         precision=precision_score(y_test,y_pred)
         print("Precision:",precision)
-        if f1vg is None:
+        if f1avg is None:
             f1=f1_score(y_test,y_pred)
         else:
             f1=f1_score(y_test,y_pred,average=f1avg)
@@ -75,7 +73,7 @@ def printScores(y_test,y_pred,x=None,*, alg_type='c',f1avg=None):
         print("BIC:",round(bic,2))
         return (rmse,mae,r2,adjr2,round(aic,2),round(bic,2))
 
-def draw_siluet(range_n_clusters,data,isbasic=True,printScores=True,random_state=42):
+def draw_sihoutte(range_n_clusters,data,isbasic=True,printScores=True,random_state=42):
     """
     - isbasic:if True, plots scores as line chart whereas false, plots the sihoutte chart.
     - taken from https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html and modified as needed.
@@ -209,7 +207,7 @@ def draw_elbow(ks,data):
 def biplot(score,coeff,y,variance,labels=None):
     """
     PCA biplot.
-    Found here: https://stackoverflow.com/questions/39216897/plot-pca-loadings-and-loading-in-biplot-in-sklearn-like-rs-autoplot
+    Found at https://stackoverflow.com/questions/39216897/plot-pca-loadings-and-loading-in-biplot-in-sklearn-like-rs-autoplot
     """
     xs = score[:,0]
     ys = score[:,1]
@@ -242,66 +240,53 @@ def PCAChart(X_pca,alpha=0.2):
     else:
         print("n should be either 2 or 3")
         
-def getfullitemsforOHE(wholedf,featlist,sort=True,prefix=False):
-    """
-    wholedf should be the dataframe including both train and test set.
-    """
-    def sortornot(X):
-        if sort==False:
-            return X
-        else:
-            return sorted(X)
-       
-    fulllist=[]
-    if prefix is not None:
-        for feat in featlist:        
-            fulllist.append([feat+"_"+str(x) for x in sortornot(wholedf[feat].unique())]) #just in case x might be a number
-    else:
-        for feat in featlist:        
-            fulllist.append(sortornot(wholedf[feat].unique()))
-    return fulllist
 
-def getfeaturenames(ct,dataframe):
+def get_feature_names_from_columntransformer(ct):
     """
         returns feature names in a dataframe passet to a column transformer. Useful if you have lost the names due to conversion to numpy.
+        if it doesn't work, try out the one at https://johaupt.github.io/blog/columnTransformer_feature_names.html or at https://lifesaver.codes/answer/cannot-get-feature-names-after-columntransformer-12525
     """
     final_features=[]
-    
-    for trs in ct.transformers_:
-        trName=trs[0]
-        trClass=trs[1]
-        features=trs[2]
-        if isinstance(trClass,Pipeline):   
-            n,tr=zip(*trClass.steps)
-            for t in tr: #t is a transformator object, tr is the list of all transoformators in the pipeline                
-                if isinstance(t,OneHotEncoder):
-                    for f in t.get_feature_names(features):
-                        final_features.append("OHE_"+f) 
-                    break
-            else: #if not found onehotencoder, add the features directly
-                for f in features:
-                    final_features.append(f)                
-        elif isinstance(trClass,OneHotEncoder): #?type(trClass)==OneHotEncoder:
-            for f in trClass.get_feature_names(features):
-                final_features.append("OHE_"+f) 
-        else:
-            #remainders
-            if trName=="remainder":
-                for i in features:
-                    final_features.append(list(dataframe.columns)[i])
-            #all the others
+    try:
+        
+        for trs in ct.transformers_:
+            trName=trs[0]
+            trClass=trs[1]
+            features=trs[2]
+            if isinstance(trClass,Pipeline):   
+                n,tr=zip(*trClass.steps)
+                for t in tr: #t is a transformator object, tr is the list of all transoformators in the pipeline                
+                    if isinstance(t,OneHotEncoder):
+                        for f in t.get_feature_names_out(features):
+                            final_features.append("OHE_"+f) 
+                        break
+                else: #if not found onehotencoder, add the features directly
+                    for f in features:
+                        final_features.append(f)                
+            elif isinstance(trClass,OneHotEncoder): #?type(trClass)==OneHotEncoder:
+                for f in trClass.get_feature_names_out(features):
+                    final_features.append("OHE_"+f) 
             else:
-                for f in features:
-                    final_features.append(f)                
+                #remainders
+                if trName=="remainder":
+                    for i in features:
+                        final_features.append(ct.feature_names_in_[i])
+                #all the others
+                else:
+                    for f in features:
+                        final_features.append(f)                
+    except AttributeError:
+        print("Your sklearn version may be old and you may need to upgrade it via 'python -m pip install scikit-learn -U'")
 
     return final_features 
 
-def featureImportanceEncoded(importance,feature_names,figsize=(8,6)):
+def featureImportanceEncoded(feature_importance_array,feature_names,figsize=(8,6)):
     """
         plots the feature importance plot.
+        feature_importance_array:feature_importance_ attribute
     """
     plt.figure(figsize=figsize)
-    dfimp=pd.DataFrame(importance.reshape(-1,1).T,columns=feature_names).T
+    dfimp=pd.DataFrame(feature_importance_array.reshape(-1,1).T,columns=feature_names).T
     dfimp.index.name="Encoded"
     dfimp.rename(columns={0: "Importance"},inplace=True)
     dfimp.reset_index(inplace=True)
@@ -309,7 +294,7 @@ def featureImportanceEncoded(importance,feature_names,figsize=(8,6)):
     dfimp.groupby(by='Feature')["Importance"].sum().sort_values().plot(kind='barh');
     
     
-def compareEstimatorsInGS(gs,tableorplot='plot',figsize=(10,5),est="param_clf"):
+def compareEstimatorsInGridSearch(gs,tableorplot='plot',figsize=(10,5),est="param_clf"):
     """
         Gives a comparison table/plot of the estimators in a gridsearch.
     """
@@ -324,23 +309,24 @@ def compareEstimatorsInGS(gs,tableorplot='plot',figsize=(10,5),est="param_clf"):
     if tableorplot=='table':
         return summary
     else:
-        fig, ax1 = plt.subplots(figsize=figsize)
+        _, ax1 = plt.subplots(figsize=figsize)
         color = 'tab:red'
-        ax1.set_xticklabels('Estimators', rotation=45,ha='right')
-        
+        ax1.xaxis.set_ticks(range(len(summary)))
+        ax1.set_xticklabels(summary.index, rotation=45,ha='right')
+                
         ax1.set_ylabel('MAX of mean_test_score', color=color)
         ax1.bar(summary.index, summary['MAX of mean_test_score'], color=color)
         ax1.tick_params(axis='y', labelcolor=color)
-        
+        ax1.set_ylim(0,summary["MAX of mean_test_score"].max()*1.1)
 
         ax2 = ax1.twinx() 
-
         color = 'tab:blue'
         ax2.set_ylabel('MIN of mean_fit_time', color=color) 
         ax2.plot(summary.index, summary['MIN of mean_fit_time'], color=color)
-        ax2.tick_params(axis='y', labelcolor=color)
+        ax2.tick_params(axis='y', labelcolor=color)        
+        ax2.set_ylim(0,summary["MIN of mean_fit_time"].max()*1.1)
 
-        plt.show()    
+        plt.show()      
 
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
@@ -348,7 +334,8 @@ def plot_confusion_matrix(cm, classes,
                           cmap=plt.cm.Blues):
     """
     This function prints and plots the confusion matrix.
-    Normalization can be applied by setting `normalize=True`.
+    Normalization(as percentage) can be applied by setting `normalize=True`.
+    classes should be written in proper order
     """
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
@@ -358,7 +345,7 @@ def plot_confusion_matrix(cm, classes,
     plt.yticks(tick_marks, classes)
 
     if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        cm = np.round(cm.astype('float') / cm.sum(axis=1)[:, np.newaxis],4)
 
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -632,3 +619,89 @@ def drawNeuralNetwork(layers,figsize=(10,8)):
         X.nodes[n]['pos'] = p    
 
     nx.draw(X, pos);    
+
+def plotROC(y_test,X_test,estimator,pos_label=1,figsize=(6,6)):
+    cm = confusion_matrix(y_test, estimator.predict(X_test))    
+    fpr, tpr, _ = roc_curve(y_test, estimator.predict_proba(X_test)[:,1],pos_label=pos_label)
+    roc_auc = auc(fpr, tpr)
+    plt.figure(figsize=figsize)
+    plt.plot(fpr, tpr, label='LR (ROC-AUC = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], 'k--')
+    tn, fp, fn, tp = [i for i in cm.ravel()]
+    plt.plot(fp/(fp+tn), tp/(tp+fn), 'ro', markersize=8, label='Decision Point')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('ROC Curve (TPR vs FPR at each probability threshold)')
+    plt.legend(loc="lower right")
+    plt.show();
+
+def plot_precision_recall_curve(y_test_encoded,X_test,estimator,thresholds=np.linspace(0.0, 0.98, 40),figsize=(16,6)):
+    """
+        y_test should be labelencoded.
+    """
+    pred_prob = estimator.predict_proba(X_test)
+    precision, recall, thresholds = precision_recall_curve(y_test_encoded, pred_prob[:,1])
+    pr_auc = auc(recall, precision)
+
+    Xt = [] ; Yp = [] ; Yr = [] 
+    for thresh in thresholds:
+        y_pred = binarize(pred_prob, threshold=thresh)[:,1]
+        Xt.append(thresh)
+        Yp.append(precision_score(y_test_encoded, y_pred))
+        Yr.append(recall_score(y_test_encoded, y_pred))
+        
+    plt.figure(figsize=figsize)
+    plt.subplot(121)
+    plt.plot(Xt, Yp, "--", label='Precision', color='red')
+    plt.plot(Xt, Yr, "--", label='Recall', color='blue')
+    plt.title("Precision vs Recall based on decision threshold")
+    plt.xlabel('Decision threshold') ; plt.ylabel('Precision - Recall')
+    plt.legend()
+    plt.subplot(122)
+    plt.step(Yr, Yp, color='black', label='LR (PR-AUC = %0.2f)' % pr_auc)
+    # calculate the no skill line as the proportion of the positive class (0.145)
+    no_skill = len(y_test_encoded[y_test_encoded==1]) / len(y_test_encoded)
+    # plot the no skill precision-recall curve
+    plt.plot([0, 1], [no_skill, no_skill], linestyle='--', color='green', label='No Skill')
+    # plot the perfect PR curve
+    plt.plot([0, 1],[1, 1], color='blue', label='Perfect')
+    plt.plot([1, 1],[1, len(y_test_encoded[y_test_encoded==1]) / len(y_test_encoded)], color='blue')
+    plt.title('PR Curve')
+    plt.xlabel('Recall: TP / (TP+FN)') ; plt.ylabel('Precison: TP / (TP+FP)')
+    plt.legend(loc="upper right")
+    plt.show();
+
+def find_best_cutoff_for_classification(y_test_le, y_pred, X_test, costlist):    
+    """
+    y_test should be labelencoded as y_test_le
+    costlist=cost list for TN, TP, FN, FP
+    """
+    y_pred_prob = gs4.predict_proba(X_test)
+    Xp = [] ; Yp = [] # initialization
+
+    print("Cutoff\t Cost/Instance\t Accuracy\t FN\t FP\t TP\t TN\t Recall\t Precision F1-score")
+    for cutoff in np.linspace(0., 0.98, 20):
+        y_pred = binarize(y_pred_prob, threshold=cutoff)[:,1]
+        cm = confusion_matrix(y_test_le, y_pred)
+        TP = cm[1,1]
+        TN = cm[0,0]
+        FP = cm[0,1]
+        FN = cm[1,0]
+        cost = costlist[0]*TN + costlist[1]*TP + costlist[2]*FN + costlist[3]*FP
+        cost_per_instance = cost/len(y_test_le)
+        Xp.append(cutoff)
+        Yp.append(cost_per_instance)
+        acc=accuracy_score(y_test_le, y_pred)
+        rec = cm[1,1]/(cm[1,1]+cm[1,0])
+        pre = cm[1,1]/(cm[1,1]+cm[0,1])
+        f1  = 2*pre*rec/(pre+rec)
+        print(f"{cutoff:.2f}\t {cost_per_instance:.2f}\t\t {acc:.3f}\t\t {FN}\t {FP}\t {TP}\t {TN}\t {rec:.3f}\t {pre:.3f}\t   {f1:.3f}")
+
+    plt.figure(figsize=(10,6))
+    plt.plot(Xp, Yp)
+    plt.xlabel('Threshold value for probability')
+    plt.ylabel('Cost per instance')
+    plt.axhline(y=min(Yp), xmin=0., xmax=1., linewidth=1, color = 'r')
+    plt.show();

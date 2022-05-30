@@ -5,8 +5,17 @@ import pandas as pd
 
 # I chosed to create the pandas extension with pandas_flavor. We can use forbidden_fruit, though. But since its syntax is simpler i prefer the former.
 
+#*************************************string**************************************
+def contains_(self,lookup):
+    """
+    same as "xx in a-string"
+    """
+    return lookup in self
+
+curse(str, "contains_", contains_)    
+
 #**************************************list*******************************************
-def getLongestInnerList(self):
+def getLongestInnerList_(self):
     """
         Extension method for list type. Returns longest inner list, its length and its index.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -15,10 +24,10 @@ def getLongestInnerList(self):
     index=self.index(longest)
     return longest,len(longest),index
 
-curse(list, "getLongestInnerList", getLongestInnerList)
+curse(list, "getLongestInnerList_", getLongestInnerList_)
 
 
-def removeItemsFromList(self,list2,inplace=True):    
+def removeItemsFromList_(self,list2,inplace=True):    
     """
         Extension method for list type. Removes items from list2 from list1.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -33,10 +42,10 @@ def removeItemsFromList(self,list2,inplace=True):
             temp.remove(x)
         return temp
     
-curse(list, "removeItemsFromList", removeItemsFromList)
+curse(list, "removeItemsFromList_", removeItemsFromList_)
 
 
-def containsLike(self,what):    
+def containsLike_(self,what):    
     """
         Extension method for list type. Returns items containing some substrings.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -47,22 +56,22 @@ def containsLike(self,what):
     else:
         return False    
     
-curse(list, "containsLike", containsLike)
+curse(list, "containsLike_", containsLike_)
 
 
 
 
 #**************************************dict*******************************************
 
-def getFirstItemFromDictionary(self):
+def getFirstItemFromDictionary_(self):
     """
         Extension method for dict type. Gets the first item from a dictionary.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
     """    
     return next(iter(self)),next(iter(self.values()))   
-curse(dict, "getFirstItemFromDictionary", getFirstItemFromDictionary)
+curse(dict, "getFirstItemFromDictionary_", getFirstItemFromDictionary_)
 
-def sortbyValue(self,inplace=True):    
+def sortbyValue_(self,inplace=True):    
     """
         Extension method for dicitonary type. Sorts the dictionary by values.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -73,21 +82,21 @@ def sortbyValue(self,inplace=True):
     else:
         return sorted(self.items(), key=lambda x: x[1], reverse=True)    
     
-curse(dict, "sortbyValue", sortbyValue)
+curse(dict, "sortbyValue_", sortbyValue_)
 
 
 
 #**************************************numpy*******************************************
 
-def valuecounts(self):
+def valuecounts_(self):
     """
-        Extension method for numpy array type. Returns items containing some substrings.
+        Extension method for numpy array type. Returns unique counts.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
     """       
     unique, counts = np.unique(self, return_counts=True)
     return np.asarray((unique, counts)).T
 
-curse(np.ndarray, "valuecounts", valuecounts)
+curse(np.ndarray, "valuecounts_", valuecounts_)
 
 
 
@@ -99,7 +108,7 @@ curse(np.ndarray, "valuecounts", valuecounts)
 #********************************
 
 @register_dataframe_method
-def search(df,lookup_value):
+def search_(df,lookup_value):
     """
         Extension method for pandas dataframes. With this, you can search a value withing whole dataframe just like you do in Excel.
         First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/        
@@ -111,7 +120,7 @@ def search(df,lookup_value):
             
             
 @register_dataframe_method
-def nullColumns(df):
+def nullColumns_(df):
     """
         Extension method for pandas dataframes. With this, you return the null-containing column names..
         First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  
@@ -120,7 +129,7 @@ def nullColumns(df):
 
 
 @register_dataframe_method
-def head_and_tail(df,n=5):    
+def head_and_tail_(df,n=5):    
     """
         Extension method for pandas dataframes. The name is self explanotory.
         First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  
@@ -131,7 +140,7 @@ def head_and_tail(df,n=5):
 
        
 @register_dataframe_method        
-def super_info(df, dropna=False):
+def super_info_(df, dropna=False):
     """
     Returns a dataframe consisting of datatypes, nuniques, #s of nulls head(1), most frequent item and its frequncy,
     where the column names are indices.
@@ -147,7 +156,7 @@ def super_info(df, dropna=False):
     return pd.concat([dt,dn,nonnull,MostFreqI,MostFreqC,firstT],axis=1)
         
 @register_dataframe_method        
-def argwhere(df,column,value):
+def argwhere_(df,column,value):
     """
     Returns the index of the value in the given column.    
     First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  

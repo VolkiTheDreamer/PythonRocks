@@ -5,6 +5,16 @@
             "name": "General Python",
             "sub-menu": [
                 {
+                    "name": "useful libs",
+                    "snippet": [
+                        "from pprint import pprint",
+                        "import os",
+                        "import sys",
+                        "import itertools",
+                        "from mypyext.pythonutility import printy"                        
+                    ]
+                },
+                {
                     "name": "a-href",
                     "snippet": [
                         "<a href='url'>şuraya</a>"
@@ -38,17 +48,57 @@
                     ]
                 },
                 {
+                    "name": "red text",
+                    "snippet": [
+                        "<p style='color:red'>..........</p>"
+                    ]
+                },                
+                {
                     "name": "plot zoom",
                     "snippet": [
                         "plt.xlim(lowerX, upperX)",
                         "plt.ylim(lowerY, upperY)"
                     ]
-                }                
+                },
+                {
+                    "name": "show navbar ",
+                    "snippet": [
+                        "%%javascript",
+                        "var rto = 120;",
+                        "console.log('NB: Increase require timeout to ' + rto + ' seconds');",                        
+                        "window.requirejs.config({waitSeconds: rto});"                                            ]
+                },     
+                {
+                    "name": "LaTeX",
+                    "snippet": [
+                        "from IPython.display import Math",
+                        "Math(r'F(k) = \\int_{-\\infty}^{\\infty} f(x) e^{2\\pi i k} dx')",
+                        "To write greek letters, type \\ and the letter name, careful with upper and lowercase",
+                        "$$\\Pi, \\pi, \\alpha, \\Alpha, \\omega = 2\\pif, \\lambda_0=\theta^2+\\delta",
+                        "$\\prod_{j=1}^k A_{\\alpha_j}$",
+                        "\\Delta\\lambda = \frac{1}{\\lambda^2}",
+                        "$$ e^{i \\pi} + 1 = 0 $$",
+                        "\\frac ifadesi ile kesirler: \\frac{arg 1}{arg 2}",
+                        "for power : ^{value}, for roots \\sqrt[n]{arg}",
+                        "_ karakteri ile indis(subscript)",                        
+                        "\\pi, \\sum, \bar ve \\hat gibi özel ifadeler",
+                        "$$\\sum p(n)$$",
+                        "$$y_i, \\bar{y}_i, \\hat{y}_i$$",
+                        "$$TSS=\\sum_{i=1}^n(y_i-\\bar{y}_i)^2$$",
+                        "$$P(c|x)=\frac {P(x|c).P(c)}{P(x)}$$",
+                        "$$ e^x  = \\sum_{k=0}^{n}\\, \frac{x^k}{k!} + o(x^n) $$",
+                        "$$\\begin{bmatrix} 1 & 2 & 1 \\ 3 & 0 & 1 \\ 0 & 2 & 4 \\end{bmatrix}$$",
+                        "$$\\left( \frac{p}{q} \right)$$",
+                        "for enlarging \\[1em]",
+                        "https://towardsdatascience.com/write-markdown-latex-in-the-jupyter-notebook-10985edb91fd"
+                        
+                    ]
+                }                 
             ]
         },
         {
             "name": "DA&DS&ML imports",
-            "sub-menu": [                                
+            "sub-menu": [                                            
                 {
                     "name": "import EDA",
                     "snippet": [
@@ -56,8 +106,8 @@
                         "import pandas as pd",
                         "import matplotlib.pyplot as plt",
                         "import seaborn as sns",
-                        "from mypyext import mymagics",
                         "from mypyext import pythonutility as pu",
+                        "from mypyext.pythonutility import printy",
                         "from mypyext import dataanalysis as da",
                         "from dataprep.eda import plot, plot_correlation, plot_missing, create_report",
                         "import sweetviz as sv"
@@ -168,76 +218,223 @@
         },
         {
             "name": "Pipeline & Gridsearch",
-            "sub-menu": [
+            "sub-menu": [  
                 {
-                    "name": "Basic Pipeline",
+                    "name": "Ultimate Pipeline - Classification",
                     "snippet": [
-                        "pipeline = Pipeline(steps =[",
-                                "\t('ss', StandardScaler()),",                                
-                                "\t('clf', LogisticRegression())",
-                                "])"
-
+                        "from sklearn.compose import ColumnTransformer",
+                        "from sklearn.pipeline import Pipeline",
+                        "from sklearn.base import BaseEstimator, TransformerMixin",
+                        "from sklearn.experimental import enable_halving_search_cv, enable_iterative_imputer",
+                        "from sklearn.model_selection import GridSearchCV,RandomizedSearchCV,HalvingRandomSearchCV,HalvingGridSearchCV,RepeatedKFold,train_test_split",
+                        "from sklearn.linear_model import LogisticRegression",
+                        "from sklearn.tree import DecisionTreeRegressor",
+                        "from xgboost import XGBClassifier",
+                        "from sklearn.ensemble import RandomForestClassifier",
+                        "from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler,FunctionTransformer, OneHotEncoder, OrdinalEncoder",
+                        "from sklearn.impute import SimpleImputer, IterativeImputer",
+                        "from sklearn.feature_selection import SelectKBest,mutual_info_classif",
+                        "",
+                        "noms=[];cats=[];ords=[]",
+                        "class DummyTransformer(TransformerMixin,BaseEstimator):",
+                        "    #for alternative transformes like MinMaxScaler and StandartScaler",
+                        "    def fit(self,X,y=None): pass",
+                        "    def transform(self,X,y=None): pass",
+                        "",
+                        "class DummyEstimator(BaseEstimator):",
+                        "    #for alternative estimators like LogReg and DT",
+                        "    def fit(self,X,y=None): pass",
+                        "    def score(self,X,y=None): pass   ",
+                        "",
+                        "",
+                        "class OutlierHandler(BaseEstimator, TransformerMixin):",
+                        "    #custom transformer with a class so as to prevent data leakage",
+                        "    def __init__(self, featureindices):",
+                        "        self.featureindices = featureindices",
+                        "",
+                        "    def fit(self, X:np.array, y = None):        ",
+                        "        Q1s = np.quantile(X[:,self.featureindices],0.25,axis=0)",
+                        "        Q3s = np.quantile(X[:,self.featureindices],0.75,axis=0)",
+                        "        IQRs = Q3s-Q1s",
+                        "        self.top=(Q3s + 1.5 * IQRs)",
+                        "        self.bottom=(Q1s - 1.5 * IQRs)",
+                        "        return self ",
+                        "",
+                        "    def transform(self, X:np.array, y = None ):",
+                        "        X[:,self.featureindices]=np.where(X[:,self.featureindices]>self.top,self.top,X[:,self.featureindices])",
+                        "        X[:,self.featureindices]=np.where(X[:,self.featureindices]<self.bottom,self.bottom,X[:,self.featureindices])",
+                        "        return X    ",
+                        "",
+                        "def myCustomFunc(X):",
+                        "    #custom trasnformer with a func, as there won't be any transforming on X_test, that may lead to a data leakage",
+                        "    return X",
+                        "",
+                        "",
+                        "#sub-pipelines",
+                        "cat_pipe=Pipeline([ ",
+                        "                   ('csi', DummyTransformer()), #for imputation",
+                        "                   ('ohe', OneHotEncoder(drop='first',handle_unknown='ignore'))     ",
+                        "                  ])",
+                        "",
+                        "num_pipe=Pipeline([  ",
+                        "                   ('nsi', DummyTransformer()), #for imputation",
+                        "                   ('ouh', DummyTransformer()), #for outlier handling",
+                        "                   ('scl', DummyTransformer())  #for scaling",
+                        "                  ])",
+                        "",
+                        "coltrans = ColumnTransformer([",
+                        "                                ('nominals',  cat_pipe, noms),",
+                        "                                ('ordinals',  OrdinalEncoder(categories=[['v1','v2']]), ['ChestPain']), ",
+                        "                                ('numerics',  num_pipe, nums)",
+                        "                                 ],n_jobs=-1,remainder='passthrough')",
+                        "",
+                        "#main pipeline",
+                        "pipe = Pipeline(steps=[('ct', coltrans),",
+                        "                       ('fs', SelectKBest(score_func=mutual_info_classif,k=10)), ",
+                        "                       ('clf', DummyEstimator()) ",
+                        "                       ])",
+                        "np.random.seed(42) #for randomize search",
+                        "",
+                        "params = [      ",
+                        "        {",
+                        "         'clf'              : [LogisticRegression(C=1,max_iter=1000,random_state=42)],",
+                        "         'clf__C'           : np.logspace(2,-2, num=5), #np.logspace(4,-5, num=10) if randomized",
+                        "         'clf__penalty'     : ['l1'], ",
+                        "         'clf__solver'      : ['liblinear'],",
+                        "         'ct__nominals__csi': [SimpleImputer(strategy='most_frequent'), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__nsi': [FunctionTransformer(myCustomFunc), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__ouh': [OutlierHandler(featureindices=[1]),None], # way of saying do and don't",
+                        "         'ct__numerics__scl': [StandardScaler(),RobustScaler()] # try different scalers",
+                        "        } ,",
+                        "    ",
+                        "        {",
+                        "         'clf'              : [LogisticRegression(C=1,max_iter=1000,random_state=42)],",
+                        "         'clf__C'           : np.logspace(2,-2, num=5), #np.logspace(4,-5, num=10) if randomized",
+                        "         'clf__penalty'     : ['l2'], ",
+                        "         'clf__solver'      : ['newton-cg', 'lbfgs'],",
+                        "         'ct__nominals__csi': [SimpleImputer(strategy='most_frequent'), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__nsi': [FunctionTransformer(myCustomFunc), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__ouh': [OutlierHandler(featureindices=[1]),None], # way of saying do and don't",
+                        "         'ct__numerics__scl': [StandardScaler(),RobustScaler()] # try different scalers",
+                        "        } ,",
+                        "    ",
+                        "        {",
+                        "         'clf'              : [RandomForestClassifier(random_state=42)],",
+                        "         'clf__n_estimators': np.random.randint(80,200,2), #increase the size if randomized",
+                        "         'clf__criterion'   : ['gini', 'entropy'],",
+                        "         'clf__max_depth'   : [2, 3],",
+                        "         'clf__max_features': [1, 2, 3, 4],",
+                        "         'clf__min_samples_leaf': [1, 2, 3, 4, 5, 6, 7], ",
+                        "         'clf__min_samples_split':[1, 2, 3, 4],",
+                        "         'ct__nominals__csi': [SimpleImputer(strategy='most_frequent'), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__nsi': [FunctionTransformer(myCustomFunc), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],           ",
+                        "         'ct__numerics__ouh': [None], #no need in tree based, but we still need to pass these parameters, as None",
+                        "         'ct__numerics__scl': [None] #no need in tree based, but we still need to pass these parameters, as None",
+                        "        } ,",
+                        "    ",
+                        "        {",
+                        "         'clf'                  : [XGBClassifier(objective='binary:logistic', eval_metric = 'logloss', use_label_encoder=False, seed=42)],",
+                        "         'clf__learning_rate'   : [0.03, 0.05, 0.07], #np.linspace(0.01,0.1,10) if randomized",
+                        "         'clf__n_estimators'    : np.random.randint(80,200,5), #increase the size if randomized",
+                        "         'clf__max_depth'       : [4, 5, 6],",
+                        "         'clf__min_child_weight': [3, 4, 5, 6],",
+                        "         'clf__subsample'       : [0.8, 0.9, 1],",
+                        "         'clf__colsample_bytree': [0.8, 0.9, 1],",
+                        "         'clf__gamma'           : [0, 0.05, 0.1, 0.5, 1],",
+                        "         'clf__reg_alpha'       : [0, 0.1, 1],",
+                        "         'clf__reg_lambda'      : [0, 0.1, 1],",
+                        "         'ct__nominals__csi'    : [SimpleImputer(strategy='most_frequent'), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],",
+                        "         'ct__numerics__nsi'    : [FunctionTransformer(myCustomFunc), IterativeImputer(estimator=DecisionTreeRegressor(random_state=42))],           ",
+                        "         'ct__numerics__ouh'    : [None], #we still need to pass these parameters, as None",
+                        "         'ct__numerics__scl'    : [None]",
+                        "        }      ",
+                        "       ]",
+                        "",
+                        "",
+                        "mycv = RepeatedKFold(n_splits=5, n_repeats=10, random_state=42)",
+                        "",
+                        "gs = GridSearchCV(estimator = pipe, param_grid = params, cv = mycv, n_jobs=-1, verbose = 1, scoring = 'accuracy',",
+                        "                  error_score='raise') ",
+                        "rs = RandomizedSearchCV(estimator = pipe, param_distributions = params, cv = mycv, n_jobs=-1, verbose = 1, ",
+                        "                        scoring = 'accuracy',n_iter = 20, random_state=42)",
+                        "                  ",
+                        "hgs = HalvingGridSearchCV(estimator = pipe, param_grid = params, cv = mycv, n_jobs=-1, verbose = 1, scoring = 'accuracy') ",
+                        "",
+                        "hrs = HalvingRandomSearchCV(estimator = pipe, param_distributions = params, cv = mycv, n_jobs=-1, verbose = 1, ",
+                        "                            scoring = 'accuracy', random_state=42) ",
+                        "#https://towardsdatascience.com/11-times-faster-hyperparameter-tuning-with-halvinggridsearch-232ed0160155"
                     ]
                 },
                 {
-                    "name": "ColTrans + Pipeline",
-                    "snippet": [
-                        "def customFunc(df,param):",                            
-                            "\t#.....",
-                            "\treturn 0\n",
-                        "coltrans = ColumnTransformer([",
-                            "\t('c1',OneHotEncoder(),[1,2,3]),",
-                            "\t('c2',FunctionTransformer(customFunc,kw_args=dict(param=cats)),[e for e,v in enumerate(X.columns) if v in catspipe])",
-                            "],remainder = 'passthrough')\n",
-                        "pipeline = Pipeline(steps =[",
-                                "\t('ct', coltrans),",                                
-                                "\t('clf', LogisticRegression())",
-                                "])"
-
-                    ]
-                },
-                {
-                    "name": "SubPipeline + ColTrans + MainPipeline",
-                    "snippet": [
-                        "def customFunc(df,param):",                            
-                            "\t#.....",
-                            "\treturn 0\n",
-                        "num_pipe=Pipeline([",
-                            "\t'p1', IterativeImputer(estimator=DecisionTreeRegressor(random_state=0))),",
-                            "\t('p2', FunctionTransformer(cap_outliers))",
-                            "])\n",     
-                        "cat_pipe=Pipeline([",
-                            "\t('p1', IterativeImputer(estimator=DecisionTreeRegressor(random_state=0))),",
-                            "\t('p2', FunctionTransformer(cap_outliers))",
-                            "])\n",
-                        "coltrans = ColumnTransformer([",
-                            "\t('c1',num_pipe,[e for e,v in enumerate(X.columns) if v in nums]),",
-                            "\t('c2',FunctionTransformer(categoricImputer,kw_args=dict(param=cats)),[e for e,v in enumerate(X.columns) if v in catspipe])",
-                            "],remainder = 'passthrough')\n",
-                        "pipeline = Pipeline(steps =[",
-                                "\t('ct', coltrans),",                                
-                                "\t('clf', LogisticRegression())",
-                                "])\n"
-                    ]
-                },               
-                {
-                    "name": "Params & Gridsearch",
+                    "name": "ExtraTree ParamGrid",
                     "snippet": [
                         "params = [",
-                            "\t{",
-                              "\t\t'tf1__p1__ii__max_iter':[5,10,15],",
-                              "\t\t'tf1__p1__ii__base_estimator__max_features':['log2','sqrt'],",
-                            "\t}",
-                            "\t,",
-                            "\t{",
-                              "\t\t'tf1__p1__ii__max_iter':[5,10,15],",
-                              "\t\t'tf1__p1__ii__base_estimator__max_features':['log2','sqrt'],",
-                            "\t}",                            
-                           "]\n",
-                           "gs = GridSearchCV(pipeline, params, cv=cv, scoring='scorename',n_jobs=-1,verbose=1)",
-                           "gs.fit(X, y)",
-                           "gs.best_params_",
-                           "gs.best_score_"
+                        ".....",
+                        "]"
+                        
+                    ]
+                },
+                {
+                    "name": "AdaBoost ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                    ]
+                },
+                {
+                    "name": "GBM ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                    ]
+                },
+                
+                {
+                    "name": "LightGBM ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                           
+                    ]
+                },
+                
+                {
+                    "name": "SVM ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                           
+                    ]
+                },
+                {
+                    "name": "LinReg ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                           
+                    ]
+                },
+                {
+                    "name": "KNN ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                           
+                    ]
+                },
+                {
+                    "name": "..... ParamGrid",
+                    "snippet": [
+                        "params = [",
+                        ".....",
+                        "]"
+                           
                     ]
                 }
             ]
