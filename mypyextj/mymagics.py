@@ -67,7 +67,7 @@ def mgc_beep(line, cell=None):
     # winsound.Beep(1000, 100)    
 
 @register_line_magic  
-def mgc_nbsinppet(line):
+def mgc_nbsnippet(line):
     """
         Converts a cell content,which was assigned to a string variable, into a nbextensions snippet-menu-compatible format.
     """
@@ -76,8 +76,20 @@ def mgc_nbsinppet(line):
         rep=x.replace("\"","'")
         temp.append("\""+rep+"\"")
 
-    print(",\n".join(temp))    
+    final=",\n".join(temp)
+    print(final)    
 
+
+@register_line_magic  
+def mgc_nbsnippet_revert(line):
+    """
+    Provide the string as json value, this will return th version without " signs.
+    """
+    temp=[x for x in eval(line).split("\n")]
+    final="\n".join(temp)
+    print(final)  
+
+   
 @register_cell_magic
 def showMemoryUsage(line=None,cell=None):
     dict_={}
