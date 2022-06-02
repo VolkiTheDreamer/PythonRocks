@@ -788,3 +788,14 @@ def linear_model_feature_importance(estimator,preprocessor,feature_selector=None
     importance=est[clfreg_name].coef_[0]
     plt.bar(final_features, importance)
     plt.xticks(rotation= 45,horizontalalignment="right");    
+
+
+
+def gridsearch_to_df(searcher):
+    """
+    searcher: any of grid/randomized searcher objects or their halving versions
+    """
+    cvresultdf = pd.DataFrame(searcher.cv_results_)
+    cvresultdf = cvresultdf.sort_values("mean_test_score", ascending=False)
+    cols=[x for x in searcher.cv_results_.keys() if "param_" in x]+["mean_test_score","std_test_score"]
+    return cvresultdf[cols].head()    
