@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 from sklearn.metrics import silhouette_samples, silhouette_score
-from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score,roc_auc_score,roc_curve,precision_recall_curve
+from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score
+from sklearn.metrics import roc_curve, precision_recall_curve, auc
 from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
@@ -20,6 +21,9 @@ from scipy.spatial import distance
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.model_selection import learning_curve
 import networkx as nx
+from sklearn.experimental import enable_halving_search_cv 
+from sklearn.model_selection import RandomizedSearchCV,GridSearchCV,HalvingGridSearchCV,HalvingRandomSearchCV
+import warnings
 
 def adjustedr2(R_sq,y,y_pred,x):
     return 1 - (1-R_sq)*(len(y)-1)/(len(y_pred)-x.shape[1]-1)
@@ -345,7 +349,7 @@ def plot_confusion_matrix(cm, classes,
     plt.yticks(tick_marks, classes)
 
     if normalize:
-        cm = np.round(cm.astype('float') / cm.sum(axis=1)[:, np.newaxis],4)
+        cm = np.round(cm.astype('float')*100 / cm.sum(axis=1)[:, np.newaxis],2)
 
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -582,7 +586,7 @@ def plot_learning_curve(
     axes[2].set_ylabel("Score")
     axes[2].set_title("Performance of the model")
 
-    return plt
+    plt.show()
 
 
 def drawNeuralNetwork(layers,figsize=(10,8)):
@@ -623,30 +627,30 @@ def drawNeuralNetwork(layers,figsize=(10,8)):
 def plotROC(y_test,X_test,estimator,pos_label=1,figsize=(6,6)):
     cm = confusion_matrix(y_test, estimator.predict(X_test))    
     fpr, tpr, _ = roc_curve(y_test, estimator.predict_proba(X_test)[:,1],pos_label=pos_label)
-    roc_auc = auc(fpr, tpr)
+    roc_auc = auc(fpr, tpr) #or roc_auc_score(y_test, y_scores)
     plt.figure(figsize=figsize)
-    plt.plot(fpr, tpr, label='LR (ROC-AUC = %0.2f)' % roc_auc)
+    plt.plot(fpr, tpr, label='(ROC-AUC = %0.2f)' % roc_auc)
     plt.plot([0, 1], [0, 1], 'k--')
     tn, fp, fn, tp = [i for i in cm.ravel()]
-    plt.plot(fp/(fp+tn), tp/(tp+fn), 'ro', markersize=8, label='Decision Point')
+    plt.plot(fp/(fp+tn), tp/(tp+fn), 'ro', markersize=8, label='Decision Point(Optimal threshold)')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
+    plt.xlabel('False Positive Rate(1-sepecifity)')
+    plt.ylabel('True Positive Rate(Recall/Sensitivity)')
     plt.title('ROC Curve (TPR vs FPR at each probability threshold)')
     plt.legend(loc="lower right")
     plt.show();
 
-def plot_precision_recall_curve(y_test_encoded,X_test,estimator,thresholds=np.linspace(0.0, 0.98, 40),figsize=(16,6)):
+def plot_precision_recall_curve(y_test_encoded,X_test,estimator,threshs=np.linspace(0.0, 0.98, 40),figsize=(16,6)):
     """
         y_test should be labelencoded.
     """
-    pred_prob = estimator.predict_proba(X_test)
+    pred_prob = estimator.predict_proba(X_test)    
     precision, recall, thresholds = precision_recall_curve(y_test_encoded, pred_prob[:,1])
-    pr_auc = auc(recall, precision)
+    pr_auc = auc(recall, precision)    
 
     Xt = [] ; Yp = [] ; Yr = [] 
-    for thresh in thresholds:
+    for thresh in threshs:
         y_pred = binarize(pred_prob, threshold=thresh)[:,1]
         Xt.append(thresh)
         Yp.append(precision_score(y_test_encoded, y_pred))
@@ -673,31 +677,38 @@ def plot_precision_recall_curve(y_test_encoded,X_test,estimator,thresholds=np.li
     plt.legend(loc="upper right")
     plt.show();
 
-def find_best_cutoff_for_classification(y_test_le, y_pred, X_test, costlist):    
+
+def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist):    
     """
     y_test should be labelencoded as y_test_le
     costlist=cost list for TN, TP, FN, FP
     """
-    y_pred_prob = gs4.predict_proba(X_test)
+    y_pred_prob = estimator.predict_proba(X_test)
+    y_pred = estimator.predict(X_test)
     Xp = [] ; Yp = [] # initialization
 
     print("Cutoff\t Cost/Instance\t Accuracy\t FN\t FP\t TP\t TN\t Recall\t Precision F1-score")
     for cutoff in np.linspace(0., 0.98, 20):
-        y_pred = binarize(y_pred_prob, threshold=cutoff)[:,1]
-        cm = confusion_matrix(y_test_le, y_pred)
-        TP = cm[1,1]
-        TN = cm[0,0]
-        FP = cm[0,1]
-        FN = cm[1,0]
-        cost = costlist[0]*TN + costlist[1]*TP + costlist[2]*FN + costlist[3]*FP
-        cost_per_instance = cost/len(y_test_le)
-        Xp.append(cutoff)
-        Yp.append(cost_per_instance)
-        acc=accuracy_score(y_test_le, y_pred)
-        rec = cm[1,1]/(cm[1,1]+cm[1,0])
-        pre = cm[1,1]/(cm[1,1]+cm[0,1])
-        f1  = 2*pre*rec/(pre+rec)
-        print(f"{cutoff:.2f}\t {cost_per_instance:.2f}\t\t {acc:.3f}\t\t {FN}\t {FP}\t {TP}\t {TN}\t {rec:.3f}\t {pre:.3f}\t   {f1:.3f}")
+        with warnings.catch_warnings():
+            warnings.filterwarnings("error")
+            try:
+                y_pred = binarize(y_pred_prob, threshold=cutoff)[:,1]
+                cm = confusion_matrix(y_test_le, y_pred)
+                TP = cm[1,1]
+                TN = cm[0,0]
+                FP = cm[0,1]
+                FN = cm[1,0]
+                cost = costlist[0]*TN + costlist[1]*TP + costlist[2]*FN + costlist[3]*FP
+                cost_per_instance = cost/len(y_test_le)
+                Xp.append(cutoff)
+                Yp.append(cost_per_instance)
+                acc=accuracy_score(y_test_le, y_pred)
+                rec = cm[1,1]/(cm[1,1]+cm[1,0])
+                pre = cm[1,1]/(cm[1,1]+cm[0,1])
+                f1  = 2*pre*rec/(pre+rec)
+                print(f"{cutoff:.2f}\t {cost_per_instance:.2f}\t\t {acc:.3f}\t\t {FN}\t {FP}\t {TP}\t {TN}\t {rec:.3f}\t {pre:.3f}\t   {f1:.3f}")
+            except Warning as e:
+                print(f"{cutoff:.2f}\t {cost_per_instance:.2f}\t\t {acc:.3f}\t\t {FN}\t {FP}\t {TP}\t {TN}\t error might have happened from here anywhere")
 
     plt.figure(figsize=(10,6))
     plt.plot(Xp, Yp)
@@ -705,3 +716,75 @@ def find_best_cutoff_for_classification(y_test_le, y_pred, X_test, costlist):
     plt.ylabel('Cost per instance')
     plt.axhline(y=min(Yp), xmin=0., xmax=1., linewidth=1, color = 'r')
     plt.show();
+
+
+def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes"):
+    """    
+        prints the gain and lift values and plots the charts.    
+    """
+    prob_df=pd.DataFrame({"Prob":estimator.predict_proba(X_test)[:,1]})
+    prob_df["label"]=np.where(y_test.values==pos_label,1,0)
+    prob_df = prob_df.sort_values(by="Prob",ascending=False)
+    prob_df['Decile'] = pd.qcut(prob_df['Prob'], 10, labels=list(range(1,11))[::-1])
+
+    #Calculate the actual churn in each decile
+    res = pd.crosstab(prob_df['Decile'], prob_df['label'])[1].reset_index().rename(columns = {1: 'Number of Responses'})
+    lg = prob_df['Decile'].value_counts(sort = False).reset_index().rename(columns = {'Decile': 'Number of Cases', 'index': 'Decile'})
+    lg = pd.merge(lg, res, on = 'Decile').sort_values(by = 'Decile', ascending = False).reset_index(drop = True)
+    #Calculate the cumulative
+    lg['Cumulative Responses'] = lg['Number of Responses'].cumsum()
+    #Calculate the percentage of positive in each decile compared to the total nu
+    lg['% of Events'] = np.round(((lg['Number of Responses']/lg['Number of Responses'].sum())*100),2)
+    #Calculate the Gain in each decile
+    lg['Gain'] = lg['% of Events'].cumsum()
+    lg['Decile'] = lg['Decile'].astype('int')
+    lg['lift'] = np.round((lg['Gain']/(lg['Decile']*10)),2)
+    display(lg)
+    
+    plt.plot(lg["Decile"],lg["lift"],label="Model")
+    plt.plot(lg["Decile"],[1 for i in range(10)],label="Random")
+    plt.title("Lift Chart")
+    plt.legend()
+    plt.xlabel("Decile")
+    plt.ylabel("Lift")
+    plt.show();
+    
+    plt.plot(lg["Decile"],lg["Gain"],label="Model")
+    plt.plot(lg["Decile"],[10*(i+1) for i in range(10)],label="Random")
+    plt.title("Gain Chart")
+    plt.legend()
+    plt.xlabel("Decile")
+    plt.ylabel("Gain")
+    plt.xlim(0,11)
+    plt.ylim(0,110)
+    plt.show();    
+
+
+def linear_model_feature_importance(estimator,preprocessor,feature_selector=None,clfreg_name="clf"):
+    """
+    plots the feature importance, namely coefficients for linear models.
+    args:
+        estimator:either pipeline or gridsearch/randomizedsearch object
+        preprocessor:variable name of the preprocessor, which is a columtransformer
+        feature_selector:if there is a feature selector step, its name.
+        clfreg_name:name of the linear model, usually clf for a classifier, reg for a regressor        
+    """
+                
+    if feature_selector is not None:
+        if isinstance(estimator,GridSearchCV) or isinstance(estimator,RandomizedSearchCV)\
+         or isinstance(estimator,HalvingGridSearchCV) or isinstance(estimator,HalvingRandomSearchCV):
+            est=estimator.best_estimator_
+        elif isinstance(estimator,Pipeline):
+            est=estimator
+        else:
+            print("Either pipeline or gridsearch/randomsearch should be passes for estimator")
+            return
+        
+        selecteds=est[feature_selector].get_support()
+        final_features=[x for e,x in enumerate(get_feature_names_from_columntransformer(preprocessor)) if e in np.argwhere(selecteds==True).ravel()]
+    else:
+        final_features=get_feature_names_from_columntransformer(preprocessor)
+
+    importance=est[clfreg_name].coef_[0]
+    plt.bar(final_features, importance)
+    plt.xticks(rotation= 45,horizontalalignment="right");    
