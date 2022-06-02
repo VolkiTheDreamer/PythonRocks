@@ -9,16 +9,16 @@ from IPython.display import Audio
 from playsound import playsound
 import winsound
 import inspect
-from __future__ import print_function
+# from __future__ import print_function
 import inspect
 import functools
 import time
 import subprocess
 
-try:
-    import __builtin__
-except ImportError:
-    import builtins as __builtin__
+# try:
+#     import __builtin__
+# except ImportError:
+#     import builtins as __builtin__
 
 #1-this file is executed on startup as it is in C:\Users\username\.ipython\profile_default\startup
 
@@ -85,29 +85,17 @@ def mgc_nbsnippet_revert(line):
     """
     Provide the string as json value, this will return th version without " signs.
     """
-    temp=[x for x in eval(line).split("\n")]
+    temp=[x[1:-2] for x in eval(line).split("\n")]
     final="\n".join(temp)
     print(final)  
 
-   
-@register_cell_magic
-def showMemoryUsage(line=None,cell=None):
-    dict_={}
-    global_vars = list(globals().items())
-    for var, obj in global_vars:
-        if not var.startswith('_'):
-            dict_[var]=sys.getsizeof(obj)
-            
-    final={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1],reverse=True)}    
-    print(final)
-    
 @register_line_magic    
-def read_filecontent(line,enc='cp1254'):
+def mgc_read_filecontent(line,enc='cp1254'):
     with open(line, "r", encoding=enc) as f:
         return f.read()
 
 @register_line_magic  
-def isLatestVersion(line):
+def mgc_isLatestVersion(line):
     """
         Provides the packagename without quotation marks and import the package in advance
     """   
@@ -138,18 +126,18 @@ def isLatestVersion(line):
 #*****************************NON-MAGICS************************************
 #THESE WILL BE READY AS SOON AS JUPYTER LAUNCHES AS THIS FILE IS IN STARTUP PATH
 # 
-def printy(*args, **kwargs):
-    """
-        prints the results along with the line number in a cell containing  multiple print statement to prevent confusions.
-    """
-    def lineno():
-        previous_frame = inspect.currentframe().f_back.f_back
-        (filename, line_number, function_name, lines, index) = inspect.getframeinfo(previous_frame)
-        return (line_number, lines[0][:-1])
+# def printy(*args, **kwargs):
+#     """
+#         prints the results along with the line number in a cell containing  multiple print statement to prevent confusions.
+#     """
+#     def lineno():
+#         previous_frame = inspect.currentframe().f_back.f_back
+#         (filename, line_number, function_name, lines, index) = inspect.getframeinfo(previous_frame)
+#         return (line_number, lines[0][:-1])
 
-    print(lineno(), "\n----------")
-    print(*args, **kwargs)
-    print(" ",end="\n")
+#     print(lineno(), "\n----------")
+#     print(*args, **kwargs)
+#     print(" ",end="\n")
 
 
 def timeElapse(func):
