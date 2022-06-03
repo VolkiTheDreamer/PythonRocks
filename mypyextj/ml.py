@@ -791,11 +791,11 @@ def linear_model_feature_importance(estimator,preprocessor,feature_selector=None
 
 
 
-def gridsearch_to_df(searcher):
+def gridsearch_to_df(searcher,topN=5):
     """
     searcher: any of grid/randomized searcher objects or their halving versions
     """
     cvresultdf = pd.DataFrame(searcher.cv_results_)
     cvresultdf = cvresultdf.sort_values("mean_test_score", ascending=False)
     cols=[x for x in searcher.cv_results_.keys() if "param_" in x]+["mean_test_score","std_test_score"]
-    return cvresultdf[cols].head()    
+    return cvresultdf[cols].head(topN)    
