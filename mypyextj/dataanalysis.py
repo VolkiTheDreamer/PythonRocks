@@ -569,7 +569,7 @@ def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10, 
         .mul(100)
         .rename('percent')
         .reset_index()
-        .pipe((sns.histplot,'data'), x=target, weights='percent', hue=cat, multiple = 'stack', shrink = 0.7))
+        .pipe((sns.histplot,'data'), x=target, weights='percent', hue=cat, multiple = 'stack', shrink = shrink, bins=bins))
         plt.xticks(rotation= 45,horizontalalignment="right")
         plt.title(cat) 
         
