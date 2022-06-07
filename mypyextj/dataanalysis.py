@@ -553,7 +553,7 @@ def plotTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
     plt.show();
     
     
-def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
+def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10, pos_label="Yes"):
     """
     args:
         cats: categoric features
@@ -563,7 +563,7 @@ def plotPositiveTargetByCats(df, cats, target, subplot_tpl, shrink=0.9,bins=10):
     r,c=subplot_tpl
     for e,cat in enumerate([x for x in cats if x!=target]):
         plt.subplot(r,c,e+1)
-        (df[df[target]=="Yes"]
+        (df[df[target]==pos_label]
         .groupby(target)[cat]
         .value_counts(normalize=True)
         .mul(100)
@@ -589,3 +589,4 @@ def plotCategoricForNumTargetPairs(df,nums,cats,target,height,aspect):
         for cat in [x for x in cats if x!=target]:
             g=sns.catplot(x=cat,y=num, data=df, col=target, kind="bar", height=height, aspect=aspect)        
             plt.show();
+
