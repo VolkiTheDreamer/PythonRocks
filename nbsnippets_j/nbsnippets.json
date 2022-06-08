@@ -10,8 +10,7 @@
                         "from pprint import pprint",
                         "import os",
                         "import sys",
-                        "import itertools",
-                        "from mypyext.pythonutility import printy"                        
+                        "import itertools"
                     ]
                 },
                 {
@@ -74,7 +73,7 @@
                         "from IPython.display import Math",
                         "Math(r'F(k) = \\int_{-\\infty}^{\\infty} f(x) e^{2\\pi i k} dx')",
                         "To write greek letters, type \\ and the letter name, careful with upper and lowercase",
-                        "$$\\Pi, \\pi, \\alpha, \\Alpha, \\omega = 2\\pif, \\lambda_0=\theta^2+\\delta",
+                        "$$\\Pi, \\pi, \\alpha, \\Alpha, \\omega = 2\\pif, \\lambda_0=\theta^2+\\delta$$",
                         "$\\prod_{j=1}^k A_{\\alpha_j}$",
                         "\\Delta\\lambda = \frac{1}{\\lambda^2}",
                         "$$ e^{i \\pi} + 1 = 0 $$",
@@ -106,16 +105,15 @@
                         "import pandas as pd",
                         "import matplotlib.pyplot as plt",
                         "import seaborn as sns",
-                        "from mypyext import pythonutility as pu",
-                        "from mypyext.pythonutility import printy",
                         "from mypyext import dataanalysis as da",
                         "from dataprep.eda import plot, plot_correlation, plot_missing, create_report",
                         "import sweetviz as sv"
                     ]
                 },
                 {
-                    "name": "import ML",
+                    "name": "import ML-Preprocessing",
                     "snippet": [
+                        "#preprocessors",
                         "from mypyext import ml",
                         "from sklearn.model_selection import train_test_split,cross_val_score,cross_val_predict,StratifiedKFold,RepeatedKFold,RepeatedStratifiedKFold",
                         "from sklearn.experimental import enable_iterative_imputer",
