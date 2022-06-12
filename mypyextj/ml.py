@@ -337,29 +337,9 @@ def plot_confusion_matrix(cm, classes,
                           title='Confusion matrix',
                           cmap=plt.cm.Blues):
     """
-    This function prints and plots the confusion matrix.
-    Normalization(as percentage) can be applied by setting `normalize=True`.
-    classes should be written in proper order
+    Depreceated. use 'sklearn.metrics.ConfusionMatrixDisplay(cm).plot();'
     """
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes, rotation=45)
-    plt.yticks(tick_marks, classes)
-
-    if normalize:
-        cm = np.round(cm.astype('float')*100 / cm.sum(axis=1)[:, np.newaxis],2)
-
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
-
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')        
+    warning.warn("use 'sklearn.metrics.ConfusionMatrixDisplay(cm).plot();'")      
     
 def CheckForClusteringTendencyWithHopkins(X,random_state=42):    
     """
@@ -651,10 +631,16 @@ def plot_precision_recall_curve(y_test_encoded,X_test,estimator,threshs=np.linsp
 
     Xt = [] ; Yp = [] ; Yr = [] 
     for thresh in threshs:
-        y_pred = binarize(pred_prob, threshold=thresh)[:,1]
-        Xt.append(thresh)
-        Yp.append(precision_score(y_test_encoded, y_pred))
-        Yr.append(recall_score(y_test_encoded, y_pred))
+        with warnings.catch_warnings():
+            warnings.filterwarnings("error")
+            try:
+                y_pred = binarize(pred_prob, threshold=thresh)[:,1]
+                Xt.append(thresh)
+                Yp.append(precision_score(y_test_encoded, y_pred))
+                Yr.append(recall_score(y_test_encoded, y_pred))
+            except Warning as e:
+                print(f"{thresh:.2f}, error , probably division by zero")
+
         
     plt.figure(figsize=figsize)
     plt.subplot(121)
@@ -678,7 +664,7 @@ def plot_precision_recall_curve(y_test_encoded,X_test,estimator,threshs=np.linsp
     plt.show();
 
 
-def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist):    
+def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist,threshs=np.linspace(0., 0.98, 20)):    
     """
     y_test should be labelencoded as y_test_le
     costlist=cost list for TN, TP, FN, FP
@@ -688,7 +674,7 @@ def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist):
     Xp = [] ; Yp = [] # initialization
 
     print("Cutoff\t Cost/Instance\t Accuracy\t FN\t FP\t TP\t TN\t Recall\t Precision F1-score")
-    for cutoff in np.linspace(0., 0.98, 20):
+    for cutoff in threshs:
         with warnings.catch_warnings():
             warnings.filterwarnings("error")
             try:
@@ -720,10 +706,55 @@ def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist):
 
 def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes"):
     """    
+        y_test as numpy array
         prints the gain and lift values and plots the charts.    
     """
     prob_df=pd.DataFrame({"Prob":estimator.predict_proba(X_test)[:,1]})
-    prob_df["label"]=np.where(y_test.values==pos_label,1,0)
+    prob_df["label"]=np.where(y_test==pos_label,1,0)
+    prob_df = prob_df.sort_values(by="Prob",ascending=False)
+    prob_df['Decile'] = pd.qcut(prob_df['Prob'], 10, labels=list(range(1,11))[::-1])
+
+    #Calculate the actual churn in each decile
+    res = pd.crosstab(prob_df['Decile'], prob_df['label'])[1].reset_index().rename(columns = {1: 'Number of Responses'})
+    lg = prob_df['Decile'].value_counts(sort = False).reset_index().rename(columns = {'Decile': 'Number of Cases', 'index': 'Decile'})
+    lg = pd.merge(lg, res, on = 'Decile').sort_values(by = 'Decile', ascending = False).reset_index(drop = True)
+    #Calculate the cumulative
+    lg['Cumulative Responses'] = lg['Number of Responses'].cumsum()
+    #Calculate the percentage of positive in each decile compared to the total nu
+    lg['% of Events'] = np.round(((lg['Number of Responses']/lg['Number of Responses'].sum())*100),2)
+    #Calculate the Gain in each decile
+    lg['Gain'] = lg['% of Events'].cumsum()
+    lg['Decile'] = lg['Decile'].astype('int')
+    lg['lift'] = np.round((lg['Gain']/(lg['Decile']*10)),2)
+    display(lg)
+
+    plt.subplot(121)
+    plt.plot(lg["Decile"],lg["lift"],label="Model")
+    plt.plot(lg["Decile"],[1 for i in range(10)],label="Random")
+    plt.title("Lift Chart")
+    plt.legend()
+    plt.xlabel("Decile")
+    plt.ylabel("Lift")
+    plt.show();
+    
+    plt.subplot(122)
+    plt.plot(lg["Decile"],lg["Gain"],label="Model")
+    plt.plot(lg["Decile"],[10*(i+1) for i in range(10)],label="Random")
+    plt.title("Gain Chart")
+    plt.legend()
+    plt.xlabel("Decile")
+    plt.ylabel("Gain")
+    plt.xlim(0,11)
+    plt.ylim(0,110)
+    plt.show();    
+
+def plot_gain_and_lift_orj(estimator,X_test,y_test,pos_label="Yes"):
+    """    
+        y_test as numpy array
+        prints the gain and lift values and plots the charts.    
+    """
+    prob_df=pd.DataFrame({"Prob":estimator.predict_proba(X_test)[:,1]})
+    prob_df["label"]=np.where(y_test==pos_label,1,0)
     prob_df = prob_df.sort_values(by="Prob",ascending=False)
     prob_df['Decile'] = pd.qcut(prob_df['Prob'], 10, labels=list(range(1,11))[::-1])
 
@@ -758,7 +789,6 @@ def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes"):
     plt.xlim(0,11)
     plt.ylim(0,110)
     plt.show();    
-
 
 def linear_model_feature_importance(estimator,preprocessor,feature_selector=None,clfreg_name="clf"):
     """
@@ -798,4 +828,13 @@ def gridsearch_to_df(searcher,topN=5):
     cvresultdf = pd.DataFrame(searcher.cv_results_)
     cvresultdf = cvresultdf.sort_values("mean_test_score", ascending=False)
     cols=[x for x in searcher.cv_results_.keys() if "param_" in x]+["mean_test_score","std_test_score"]
-    return cvresultdf[cols].head(topN)    
+    return cvresultdf[cols].head(topN)   
+
+
+def getAnotherEstimatorFromGridSearch(gs_object,estimator):
+    cvres = gs_object.cv_results_
+    cv_results = pd.DataFrame(cvres)
+    cv_results["param_clf"]=cv_results["param_clf"].apply(lambda x:str(x).split('(')[0])
+
+    dtc=cv_results[cv_results["param_clf"]==estimator]
+    return dtc.getRowOnAggregation("mean_test_score","max")["params"].values 

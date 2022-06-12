@@ -164,7 +164,7 @@ def argwhere_(df,column,value):
     return df[df[column]==value].index[0]
 
 @register_dataframe_method        
-def getRowOnAggregation(df,col,agg_):
+def getRowOnAggregation_(df,col,agg_):
     """
     Returns the row where the relevant column has the max/min value.
     First, pandas_flavor must be installed via https://pypi.org/project/pandas_flavor/  
