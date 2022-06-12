@@ -704,7 +704,7 @@ def find_best_cutoff_for_classification(estimator, y_test_le, X_test, costlist,t
     plt.show();
 
 
-def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes"):
+def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes",figsize=(16,6)):
     """    
         y_test as numpy array
         prints the gain and lift values and plots the charts.    
@@ -728,14 +728,14 @@ def plot_gain_and_lift(estimator,X_test,y_test,pos_label="Yes"):
     lg['lift'] = np.round((lg['Gain']/(lg['Decile']*10)),2)
     display(lg)
 
+    plt.figure(figsize=figsize)
     plt.subplot(121)
     plt.plot(lg["Decile"],lg["lift"],label="Model")
     plt.plot(lg["Decile"],[1 for i in range(10)],label="Random")
     plt.title("Lift Chart")
     plt.legend()
     plt.xlabel("Decile")
-    plt.ylabel("Lift")
-    plt.show();
+    plt.ylabel("Lift")    
     
     plt.subplot(122)
     plt.plot(lg["Decile"],lg["Gain"],label="Model")
@@ -837,4 +837,4 @@ def getAnotherEstimatorFromGridSearch(gs_object,estimator):
     cv_results["param_clf"]=cv_results["param_clf"].apply(lambda x:str(x).split('(')[0])
 
     dtc=cv_results[cv_results["param_clf"]==estimator]
-    return dtc.getRowOnAggregation("mean_test_score","max")["params"].values 
+    return dtc.getRowOnAggregation_("mean_test_score","max")["params"].values 
