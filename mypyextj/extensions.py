@@ -13,7 +13,7 @@ def contains_(self,lookup):
     """
     same as "xx in a-string"
     """
-    return lookup in self
+    return lookup in self    
 
 curse(str, "contains_", contains_)    
 
@@ -72,7 +72,7 @@ def removeItemsFromList_(self,list2,inplace=True):
         Extension method for list type. Deprecated. use removeItems_.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
     """    
-    warning.warn("Deprecated. use removeItems_.") 
+    warnings.warn("Deprecated. use removeItems_.") 
     
 curse(list, "removeItemsFromList_", removeItemsFromList_)
 

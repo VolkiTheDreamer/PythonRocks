@@ -35,10 +35,10 @@ except:
     pass    
 
 def SuperInfo(df):
-    warnings.warn("Warning...SuperInfo is depreciated. Use super_info extension method of dataframe object. this method is located in extensions.py file")
+    warnings.warn("Warning...SuperInfo is deprecated. Use super_info extension method of dataframe object. this method is located in extensions.py file")
 
 def printUniques(df):
-    warnings.warn("Warning...printUniques is depreciated. Use getColumnsInLowCardinality instead")
+    warnings.warn("Warning...printUniques is deprecated. Use getColumnsInLowCardinality instead")
 
 def printmd(string):
     """
@@ -172,7 +172,7 @@ def sortAndPrintMaxMinNValues(df,columns,n=1,removeNull=True):
         print(e)
 
 def addStdMeanMedian(df):
-    warnings.warn("Warning...addStdMeanMedian is depreciated. Use addCoefOfVarianceToDescribe")
+    warnings.warn("Warning...addStdMeanMedian is deprecated. Use addCoefOfVarianceToDescribe")
 
 def addCoefOfVarianceToDescribe(df):
     """

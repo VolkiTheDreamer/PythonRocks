@@ -339,7 +339,7 @@ def plot_confusion_matrix(cm, classes,
     """
     Depreceated. use 'sklearn.metrics.ConfusionMatrixDisplay(cm).plot();'
     """
-    warning.warn("use 'sklearn.metrics.ConfusionMatrixDisplay(cm).plot();'")      
+    warnings.warn("use 'sklearn.metrics.ConfusionMatrixDisplay(cm).plot();'")      
     
 def CheckForClusteringTendencyWithHopkins(X,random_state=42):    
     """
