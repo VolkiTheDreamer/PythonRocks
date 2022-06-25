@@ -125,20 +125,6 @@ def mgc_isLatestVersion(line):
 
 #*****************************NON-MAGICS************************************
 #THESE WILL BE READY AS SOON AS JUPYTER LAUNCHES AS THIS FILE IS IN STARTUP PATH
-# 
-# def printy(*args, **kwargs):
-#     """
-#         prints the results along with the line number in a cell containing  multiple print statement to prevent confusions.
-#     """
-#     def lineno():
-#         previous_frame = inspect.currentframe().f_back.f_back
-#         (filename, line_number, function_name, lines, index) = inspect.getframeinfo(previous_frame)
-#         return (line_number, lines[0][:-1])
-
-#     print(lineno(), "\n----------")
-#     print(*args, **kwargs)
-#     print(" ",end="\n")
-
 
 def timeElapse(func):
     """
@@ -171,4 +157,18 @@ def showMemoryUsage():
             
     final={k: v for k, v in sorted(dict_.items(), key=lambda item: item[1],reverse=True)}    
     print(final)
-    
+
+
+
+# def printy(*args, **kwargs):
+#     """
+#         prints the results along with the line number in a cell containing  multiple print statement to prevent confusions.
+#     """
+#     def lineno():
+#         previous_frame = inspect.currentframe().f_back.f_back
+#         (filename, line_number, function_name, lines, index) = inspect.getframeinfo(previous_frame)
+#         return (line_number, lines[0][:-1])
+
+#     print(lineno(), "\n----------")
+#     print(*args, **kwargs)
+#     print(" ",end="\n")

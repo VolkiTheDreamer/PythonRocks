@@ -78,7 +78,9 @@ def printValueCount(df,i=10):
                     
 def getColumnsInLowCardinality(df,i=10,isprint=True):
     """
-    prints unique values in a dataframe whose nunique value <= 10 
+    prints unique values in a dataframe whose nunique value <= 10.
+    Used to find out what columns are in low cardinality(but >1). This shouldn't be used to decide what columns to read as categoric.
+    Use this as an input to manual rule finder since there may be too many combinations. Otherwise use 'columnsFromObjToCategory'.
     """     
     try:
         dict_=dict(df.nunique())
@@ -94,6 +96,17 @@ def getColumnsInLowCardinality(df,i=10,isprint=True):
         return list_
     except Exception as e: 
         print(e)
+
+def columnsFromObjToCategory(df,n=2):
+    """
+    Used in order to decide the data type(cateogric or object) when reading data. If you just want to see the low cardinality columns, use 'getColumnsInLowCardinality'. Object columns are checked even if you pass the whole dataset.
+    n: At what degree you espect the cardinality. Generally accepted rule is that number of unique values must be the half of the total instance at most. If the column is like Name/Surname/Address, it should stay as object, rest should be category.
+    """
+    dt=pd.DataFrame(df.dtypes, columns=["Type"])    
+    dn=pd.DataFrame(df.nunique(), columns=["Nunique(Excl.Nulls)"])
+    d=pd.concat([dt,dn],axis=1).sort_index()
+    objtocat=d[(d["Nunique(Excl.Nulls)"]<(len(df)/n)) & (d["Type"]=="object")].index.tolist()
+    return objtocat
 
 def multicountplot(df,i=5,fig=(4,5),r=45, colsize=2,hue=None):  
     """
@@ -346,7 +359,13 @@ def findNullLikeValues(df,listofvalues=[[-1,-999],["-","na","yok","tanımsız","
                       first item in this list are the numeric ones, second one contains strings,
                       default values:[[-1,-999],["na","yok","tanımsız","bilinmiyor","?"]
     """
+
+    if len(listofvalues)<2:
+        warnings.warn("The Length of second argument must be 2, first for numerics, second for categoricals")
+        return
+
     t=0
+    finallistforobjects=listofvalues[1]+[" "*x for x in range(1,25)]
     values_n=[]
     values_o=[]
     for f in df.select_dtypes("number").columns:
@@ -362,7 +381,7 @@ def findNullLikeValues(df,listofvalues=[[-1,-999],["-","na","yok","tanımsız","
             print(f"{x} null-like values,which are '{','.join(set(values_n))}', in {f}")
     for f in df.select_dtypes("object"):
         x=0
-        for i in listofvalues[1]:
+        for i in finallistforobjects:
             try: #in case of nulls
                 r=len(df[df[f]==i])
                 if r>0:                
@@ -375,6 +394,10 @@ def findNullLikeValues(df,listofvalues=[[-1,-999],["-","na","yok","tanımsız","
             print(f"{x} null-like values,which are '{','.join(set(values_o))}', in {f}")
     if t==0:
         print("There are no null-like values")
+    else:
+        print("You may want to replace these values with NaN")
+    print("Don't forget to check for 0's manually")    
+
 
 
 def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sort=False,hueCol=None):      
@@ -419,7 +442,8 @@ def plotNumericsBasedOnCategorical(df,cats,nums,fig=(15,15),r=45,aggf='mean',sor
 
     
 def nullPlot(df):
-    sns.heatmap(df.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+    warnings.warn("Warning...nullPlot is depreciated. Use missingno's matrix method instead.")
+    # sns.heatmap(df.isnull(),yticklabels=False,cbar=False,cmap='viridis')
 
 
 def prepareListOfCombinationsForRelationFinder(df,i=5):
@@ -467,8 +491,7 @@ def getListOfRelationsParallel(df):
         return list_
           
     
-def topNValExcluded(serie, n):
-    return serie[~serie.isin(serie.nlargest(10).values)]
+
 
 def getHighestPairsOfCorrelation(dfcorr,target=None,topN_or_threshold=5):
     if target is None:
@@ -487,12 +510,90 @@ def getHighestPairsOfCorrelation(dfcorr,target=None,topN_or_threshold=5):
         else:
             return seri[seri.index!=target].sort_values(ascending=False)[seri>topN_or_threshold]    
 
+#***************************************COMPARISONS*******************************************
 def areContentsOfFeaturesSame(df,features):
     combs=list(combinations(features,2))
     for c in combs:
         if np.all(np.where(df[c[0]] == df[c[1]], True, False)):
             print(f"The content of the features of {c[0]} and {c[1]} are the same")
             
+def isFirstAlwaysCompareSecond(df,features,comp,exceptionvalue,sublist=None):
+    combs=list(combinations(features,2))
+    if sublist is not None:
+        combs = [x for x in combs if x[0] in sublist or x[1] in sublist]
+    if exceptionvalue is None:
+        for c in combs:
+            if comp=="equal":
+                if np.all(np.where(df[c[0]] == df[c[1]], True, False)):
+                    print(f"The content of the features of {c[0]} and {c[1]} are the same")
+            elif comp=="lte":
+                if np.all(np.where(df[c[0]] <= df[c[1]], True, False)):
+                    print(f"The content of the features of {c[0]} is always less than or equal to {c[1]}")
+            elif comp=="gte":
+                if np.all(np.where(df[c[0]] >= df[c[1]], True, False)):
+                    print(f"The content of the features of {c[0]} is always greater than or equal to {c[1]}")
+            else:
+                print("wrong argument gor comp")
+                raise                    
+    else:
+        for c in combs:
+            if comp=="equal":
+                if np.all(np.where(np.logical_and(df[c[0]] == df[c[1]],df[c[0]]==exceptionvalue), True, False)):
+                    print(f"The content of the features of {c[0]} and {c[1]} are always the same")
+            elif comp=="lte":
+                if np.all(np.where(np.logical_and(df[c[0]] <= df[c[1]],df[c[0]]==exceptionvalue), True, False)):
+                    print(f"The content of the features of {c[0]} is always less than or equal to {c[1]}")
+            elif comp=="gte":
+                if np.all(np.where(np.logical_and(df[c[0]] >= df[c[1]],df[c[0]]==exceptionvalue), True, False)):
+                    print(f"The content of the features of {c[0]} is always greater than or equal to {c[1]}")
+            else:
+                print("wrong argument gor comp")
+                raise              
+
+                
+def isComparisonValidOverSpecificRatio(df,features,comp,thresh_ratio=0.99,sublist=None):
+    """
+        comp=equal,lte,gte. %100 not included, as it is queried above.
+    """
+    combs=list(combinations(features,2))
+    if sublist is not None:
+        combs = [x for x in combs if x[0] in sublist or x[1] in sublist]    
+    for c in combs:
+        if comp=="equal":
+            comparison=np.where(df[c[0]] == df[c[1]], True, False)
+        elif comp=="lte":
+            comparison=np.where(df[c[0]] <= df[c[1]], True, False)
+        elif comp=="gte":
+            comparison=np.where(df[c[0]] >= df[c[1]], True, False)
+        else:
+            print("wrong argument gor comp")
+            raise
+        adet=len(comparison[comparison==True])
+        oran=adet/len(df)
+        if oran>thresh_ratio and oran<1:
+            print(f"The content of the features of {c[0]} and {c[1]} are %{100*oran:.6f} {comp}")  
+            
+def whatPercentageOfTheTwoFeatureIsComparable(df,features,comp="equal",sublist=None):
+    """
+        comp=equal,lte,gte
+    """
+    combs=list(combinations(features,2))
+    if sublist is not None:
+        combs = [x for x in combs if x[0] in sublist or x[1] in sublist]  
+    for c in combs:
+        if comp=="equal":
+            comparison=np.where(df[c[0]] == df[c[1]], True, False)
+        elif comp=="lte":
+            comparison=np.where(df[c[0]] <= df[c[1]], True, False)
+        elif comp=="gte":
+            comparison=np.where(df[c[0]] >= df[c[1]], True, False)
+        else:
+            print("wrong argument gor comp")
+            raise
+        adet=len(comparison[comparison==True])
+        oran=adet/len(df)
+        print(f"The content of the features of {c[0]} and {c[1]} are %{100*oran:.6f} {comp}")  
+#***************************************END OF COMPARISONS***************************************
                     
 def GetOnlyOneTriangleInCorr(df,target,diagonal=True,heatmap=False):
     """
@@ -589,4 +690,93 @@ def plotCategoricForNumTargetPairs(df,nums,cats,target,height,aspect):
         for cat in [x for x in cats if x!=target]:
             g=sns.catplot(x=cat,y=num, data=df, col=target, kind="bar", height=height, aspect=aspect)        
             plt.show();
+
+
+def plotCategoricsByNumericTargetBoxplot(df, numeric_target, categoric_features,col_wrap=2,height=5):
+    """
+        For regression:
+
+    """
+    f = pd.melt(df, id_vars = numeric_target, value_vars = categoric_features)
+    g = sns.FacetGrid(f, col = "variable",  col_wrap = col_wrap, sharex = False, sharey = False, height = height)
+    plt.axhline(df[numeric_target].mean(), color='r', linestyle='dashed', linewidth=2)
+    g.map(sns.boxplot, 'value', numeric_target, palette = 'viridis')
+
+
+def find_features_for_reading(minmaxdf,sampledf,inversecardinalty=2,droplist=[]):
+    """    
+    args:
+        minmaxdf:dataframe that was read from DB with min and max values of numeric columns
+        sampledf:dataframe that was read from DB with a small sample.
+        inversecardinalty:boundary for inverse-logic cardinality. Ex:2 means at least 1/2 of the data is unique
+        
+    Returns returns read_as_float16,read_as_int8,read_as_int16,read_as_int32,read_as_categoric in the given order.
+    Use it in sample data and read the whole table from database using the knowledge obtained here, by chunking and converting at every step.        
+    """ 
+    dict_={}
+    #from sampledf    
+    read_as_categoric=columnsFromObjToCategory(sampledf.select_dtypes('O'),inversecardinalty)
+    read_as_categoric=list(set(read_as_categoric).difference(set(droplist)))
+    dict_["cat"]=read_as_categoric
+    read_as_date=list(sampledf.select_dtypes(np.datetime64).columns)
+    dict_["date"]=read_as_date
+    
+    #from minmaxdf
+    read_as_float16=list(set(minmaxdf[np.logical_and(minmaxdf["Max"]<=127, minmaxdf["Min"]>-128)].index).difference(set(minmaxdf[minmaxdf["Max"].map(lambda x:x==int(x)).values==True].index))) #float8 yok. küçük rakamlarda küsur önemli
+    dict_["f16"]=read_as_float16
+    read_as_int8=set(minmaxdf[np.logical_and(minmaxdf["Max"]<=127,minmaxdf["Min"]>-128)].index).intersection(set(minmaxdf[minmaxdf["Max"].map(lambda x:x==int(x)).values==True].index)) #0,1 tam binaryler ile -1,1 gibi kısmi binaryler burda, -999,0 gibi kısmi binaryler ise int16
+    read_as_int8=list(set(read_as_int8).difference(set(droplist)))
+    dict_["i8"]=read_as_int8
+    read_as_int16=minmaxdf[np.logical_and(minmaxdf["Max"]<=32767,minmaxdf["Min"]>-32767)].index
+    read_as_int16=list(set(read_as_int16).difference(set(read_as_int8)).difference(set(read_as_float16)).difference(set(droplist)))
+    dict_["i16"]=read_as_int16
+    read_as_int32=minmaxdf[np.logical_and(minmaxdf["Max"]<=2147483647,minmaxdf["Min"]>-2147483647)].index
+    read_as_int32=list(set(read_as_int32).difference(set(read_as_int16)).difference(set(read_as_int8)).difference(set(read_as_float16)).difference(set(droplist)))
+    dict_["i32"]=read_as_int32
+    
+    return dict_
+
+def memory_usage(df,istotal):    
+    """
+        hem pandas hem pyspark df için
+        istotal: True ise toplamı, False ise kolon bazında
+    """
+    if isinstance(df,pyspark.sql.dataframe.DataFrame):
+        dfson = df.sample(fraction=0.01).toPandas()
+        carpan = 100
+    else:
+        dfson = df
+        carpan=1
+    print("printing memoryusage deep")
+    if istotal:
+        mem=dfson.memory_usage(index=False,deep=True).sum()*carpan/(1024**2)
+        print(f"{mem:.2f} MB")
+    else:        
+        print(dfson.memory_usage(index=False,deep=True)*carpan/(1024**2))
+    
+    print("\nprinting sys.getsizeof")
+    print(f"{sys.getsizeof(dfson)/(1024**2)*carpan:.2f} MB")
+    del dfson
+
+def discretize_numerics(df,numerics,droporjinalcolumns=False):
+    """
+    args:
+        numerics:numeric type features
+    returns additional features with the suffix '_sign'
+    """
+    for c in numerics:
+        df[c+"_sign"]=np.sign(df[c])   
+    if droporjinalcolumns:
+        df.drop(numerics,axis=1,inplace=True)
+        
+def discretize_dates(df,dates,droporjinalcolumns=False):
+    """
+    args:
+        numerics:numeric type features
+    returns additional features with the suffix '_isnull'
+    """    
+    for t in dates:
+        df[t+"_isnull"]=np.where(np.isnan(df[t]),1,0)
+    if droporjinalcolumns:
+        df.drop(dates,axis=1,inplace=True)
 

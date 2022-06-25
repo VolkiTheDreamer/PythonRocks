@@ -1,9 +1,12 @@
+from logging import warning
 from forbiddenfruit import curse
 from pandas_flavor import register_dataframe_method,register_series_method
 import numpy as np
 import pandas as pd
+import warnings
 
-# I chosed to create the pandas extension with pandas_flavor. We can use forbidden_fruit, though. But since its syntax is simpler i prefer the former.
+# I chose to create the pandas extension with pandas_flavor. We can use forbidden_fruit, though. 
+# But since its syntax is simpler i prefer the former.
 
 #*************************************string**************************************
 def contains_(self,lookup):
@@ -15,6 +18,44 @@ def contains_(self,lookup):
 curse(str, "contains_", contains_)    
 
 #**************************************list*******************************************
+def intersect(self,list2,inplace=True):
+    """
+        Extension method for list type. It works like sets' counterpart.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    if inplace:
+        return list(set(self).intersection(set(list2)))
+    else:
+        temp=self.copy()
+        return list(set(temp).intersection(set(list2)))
+curse(list, "intersect", intersect)
+
+def difference(self,list2,inplace=True):
+    """
+        Extension method for list type. It works like sets' counterpart
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """ 
+    if inplace:
+        return list(set(self).difference(set(list2)))
+    else:
+        temp=self.copy()
+        return list(set(temp).difference(set(list2)))
+curse(list, "difference", difference)
+
+
+def union(self,list2,inplace=True):
+    """
+        Extension method for list type. It works like sets' counterpart.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """        
+    if inplace:
+        return list(set(self).union(set(list2)))
+    else:
+        temp=self.copy()
+        return list(set(temp).union(set(list2)))
+curse(list, "union", union)
+
+
 def getLongestInnerList_(self):
     """
         Extension method for list type. Returns longest inner list, its length and its index.
@@ -26,8 +67,16 @@ def getLongestInnerList_(self):
 
 curse(list, "getLongestInnerList_", getLongestInnerList_)
 
-
 def removeItemsFromList_(self,list2,inplace=True):    
+    """
+        Extension method for list type. Deprecated. use removeItems_.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    warning.warn("Deprecated. use removeItems_.") 
+    
+curse(list, "removeItemsFromList_", removeItemsFromList_)
+
+def removeItems_(self,list2,inplace=True):    
     """
         Extension method for list type. Removes items from list2 from list1.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -42,12 +91,12 @@ def removeItemsFromList_(self,list2,inplace=True):
             temp.remove(x)
         return temp
     
-curse(list, "removeItemsFromList_", removeItemsFromList_)
+curse(list, "removeItems_", removeItems_)
 
 
 def containsLike_(self,what):    
     """
-        Extension method for list type. Returns items containing some substrings.
+        Extension method for list type. Returns True if at least 1 item contains some substrings.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
     """    
     for item in set(self):
@@ -58,8 +107,37 @@ def containsLike_(self,what):
     
 curse(list, "containsLike_", containsLike_)
 
+def getItemsContainingLike_(self,what):    
+    """
+        Extension method for list type. Returns items containing some substrings.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    for item in set(self):
+        if what in str(item):
+            return True
+    else:
+        return False    
+    
+curse(list, "getItemsContainingLike", getItemsContainingLike)
 
 
+def getMultipleItems_(self,indices):    
+    """
+        Extension method for list type. Returns items with specified indices.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    return [self[i] for i in indices]
+    
+curse(list, "getMultipleItems_", getMultipleItems_)
+
+def getIndicesOfItem_(self,item):    
+    """
+        Extension method for list type. Returns (multiple) indices of an item.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+    """    
+    return [e for e,v in enumerate(self) if v==item]
+    
+curse(list, "getIndicesOfItem_", getIndicesOfItem_)
 
 #**************************************dict*******************************************
 
@@ -104,7 +182,7 @@ curse(np.ndarray, "valuecounts_", valuecounts_)
 
 
 #********************************
-#Extensions for Pandas DataFrames
+#Extensions for Pandas DataFrames/Series
 #********************************
 
 @register_dataframe_method
@@ -173,3 +251,11 @@ def getRowOnAggregation_(df,col,agg_):
         agg_:min or max
     """
     return df[df[col]==df[col].agg(agg_)]    
+
+@register_series_method
+def topNValExcluded(serie, n):
+    return serie[~serie.isin(serie.nlargest(n).values)]    
+
+@register_dataframe_method 
+def duplicateColumnsCount(df):
+    return df.columns.duplicated().sum()
