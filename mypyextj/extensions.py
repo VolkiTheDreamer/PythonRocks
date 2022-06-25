@@ -18,7 +18,7 @@ def contains_(self,lookup):
 curse(str, "contains_", contains_)    
 
 #**************************************list*******************************************
-def intersect(self,list2,inplace=True):
+def intersect_(self,list2,inplace=True):
     """
         Extension method for list type. It works like sets' counterpart.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -30,7 +30,7 @@ def intersect(self,list2,inplace=True):
         return list(set(temp).intersection(set(list2)))
 curse(list, "intersect", intersect)
 
-def difference(self,list2,inplace=True):
+def difference_(self,list2,inplace=True):
     """
         Extension method for list type. It works like sets' counterpart
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -43,7 +43,7 @@ def difference(self,list2,inplace=True):
 curse(list, "difference", difference)
 
 
-def union(self,list2,inplace=True):
+def union_(self,list2,inplace=True):
     """
         Extension method for list type. It works like sets' counterpart.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
@@ -253,9 +253,9 @@ def getRowOnAggregation_(df,col,agg_):
     return df[df[col]==df[col].agg(agg_)]    
 
 @register_series_method
-def topNValExcluded(serie, n):
+def topNValExcluded_(serie, n):
     return serie[~serie.isin(serie.nlargest(n).values)]    
 
 @register_dataframe_method 
-def duplicateColumnsCount(df):
+def duplicateColumnsCount_(df):
     return df.columns.duplicated().sum()
