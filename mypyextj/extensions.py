@@ -28,7 +28,7 @@ def intersect_(self,list2,inplace=True):
     else:
         temp=self.copy()
         return list(set(temp).intersection(set(list2)))
-curse(list, "intersect", intersect)
+curse(list, "intersect_", intersect_)
 
 def difference_(self,list2,inplace=True):
     """
@@ -40,7 +40,7 @@ def difference_(self,list2,inplace=True):
     else:
         temp=self.copy()
         return list(set(temp).difference(set(list2)))
-curse(list, "difference", difference)
+curse(list, "difference_", difference_)
 
 
 def union_(self,list2,inplace=True):
@@ -53,7 +53,7 @@ def union_(self,list2,inplace=True):
     else:
         temp=self.copy()
         return list(set(temp).union(set(list2)))
-curse(list, "union", union)
+curse(list, "union_", union_)
 
 
 def getLongestInnerList_(self):
@@ -118,7 +118,7 @@ def getItemsContainingLike_(self,what):
     else:
         return False    
     
-curse(list, "getItemsContainingLike", getItemsContainingLike)
+curse(list, "getItemsContainingLike_", getItemsContainingLike_)
 
 
 def getMultipleItems_(self,indices):    
