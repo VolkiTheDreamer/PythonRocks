@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import warnings
 
+
 # I chose to create the pandas extension with pandas_flavor. We can use forbidden_fruit, though. 
 # But since its syntax is simpler i prefer the former.
 
@@ -112,11 +113,11 @@ def getItemsContainingLike_(self,what):
         Extension method for list type. Returns items containing some substrings.
         First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
     """    
+    temp=[]
     for item in set(self):
         if what in str(item):
-            return True
-    else:
-        return False    
+            temp.append(item)
+    return temp    
     
 curse(list, "getItemsContainingLike_", getItemsContainingLike_)
 
@@ -177,7 +178,19 @@ def valuecounts_(self):
 curse(np.ndarray, "valuecounts_", valuecounts_)
 
 
+def getSepecificColumns_(self,x,incl_or_excl="excl"):
+    """
+        Extension method for numpy array type. Returns specified columns from 2D array.
+        First, forbiddenfruit must be installed via https://pypi.org/project/forbiddenfruit/
+        if incl_or_excl="incl" x must be an array, otherwise an integer
+    """
+    if incl_or_excl=="incl":
+        idx=x #x is array here
+    else:
+        idx=[i for i in range(self.shape[1]) if i!=x] # x is integer here
+    return self[:,idx]
 
+curse(np.ndarray, "getSepecificColumns_", getSepecificColumns_)
 
 
 
@@ -214,7 +227,7 @@ def head_and_tail_(df,n=5):
     """ 
     h=df.head(n)
     t=df.tail(n)
-    return pd.concat([h,t],axis=1)
+    return pd.concat([h,t],axis=0)
 
        
 @register_dataframe_method        
@@ -229,8 +242,8 @@ def super_info_(df, dropna=False):
     dn=pd.DataFrame(df.nunique(dropna=dropna), columns=["Nunique"])    
     nonnull=pd.DataFrame(df.isnull().sum(), columns=["#of Missing"])
     firstT=df.head(1).T.rename(columns={0:"First"})
-    MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] for x in df.columns], columns=["MostFreqItem"],index=df.columns)
-    MostFreqC=pd.DataFrame([df[x].value_counts().head(1).values[0] for x in df.columns], columns=["MostFreqCount"],index=df.columns)
+    MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] if not df[x].isnull().all() else None for x in df.columns], columns=["MostFreqItem"],index=df.columns)
+    MostFreqC=pd.DataFrame([df[x].value_counts().head(1).values[0] if not df[x].isnull().all() else None for x in df.columns], columns=["MostFreqCount"],index=df.columns)
     return pd.concat([dt,dn,nonnull,MostFreqI,MostFreqC,firstT],axis=1)
         
 @register_dataframe_method        

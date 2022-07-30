@@ -24,6 +24,9 @@ import networkx as nx
 from sklearn.experimental import enable_halving_search_cv 
 from sklearn.model_selection import RandomizedSearchCV,GridSearchCV,HalvingGridSearchCV,HalvingRandomSearchCV
 import warnings
+import statsmodels.api as sm
+import statsmodels.stats.api as sms
+import statsmodels.formula.api as smf
 
 def adjustedr2(R_sq,y,y_pred,x):
     return 1 - (1-R_sq)*(len(y)-1)/(len(y_pred)-x.shape[1]-1)
@@ -184,7 +187,8 @@ def draw_sihoutte(range_n_clusters,data,isbasic=True,printScores=True,random_sta
 def drawEpsilonDecider(data,n):
     """
     for DBSCAN
-    n: # of neighbours
+    n: # of neighbours(in the nearest neighbour calculation, the point itself will appear as the first nearest neighbour. so, this should be
+    given as min_samples+1.
     data:numpy array
     """
     neigh = NearestNeighbors(n_neighbors=n)
@@ -193,6 +197,7 @@ def drawEpsilonDecider(data,n):
     distances = np.sort(distances, axis=0)
     distances = distances[:,1]
     plt.ylabel("eps")
+    plt.xlabel("number of data points")
     plt.plot(distances)
     
 def draw_elbow(ks,data):
@@ -232,18 +237,7 @@ def biplot(score,coeff,y,variance,labels=None):
     plt.grid()
 
     
-
-def PCAChart(X_pca,alpha=0.2):
-    n=X_pca.shape[1] #second dimension is the number of colums which is the number of components
-    if n==2:
-        plt.scatter(X_pca[:,0], X_pca[:,1],alpha=alpha);
-    elif n==3:
-        fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
-        Axes3D.scatter(ax,xs=X_pca[:,0], ys=X_pca[:,1],zs=X_pca[:,2],alpha=alpha)
-    else:
-        print("n should be either 2 or 3")
-        
+       
 
 def get_feature_names_from_columntransformer(ct):
     """
@@ -838,3 +832,20 @@ def getAnotherEstimatorFromGridSearch(gs_object,estimator):
 
     dtc=cv_results[cv_results["param_clf"]==estimator]
     return dtc.getRowOnAggregation_("mean_test_score","max")["params"].values 
+
+def cooksdistance(X,y,figsize=(8,6),ylim=0.5):    
+    model = sm.OLS(y,X)
+    fitted = model.fit()
+    # Cook's distance
+    pr=X.shape[1]
+    CD = 4.0/(X.shape[0]-pr-1)
+    influence = fitted.get_influence()
+    #c is the distance and p is p-value
+    (c, p) = influence.cooks_distance
+    plt.figure(figsize=figsize)
+    plt.stem(np.arange(len(c)), c, markerfmt=",")
+    plt.axhline(y=CD, color='r')
+    plt.ylabel('Cook\'s D')
+    plt.xlabel('Observation Number')
+    plt.ylim(0,ylim)
+    plt.show();

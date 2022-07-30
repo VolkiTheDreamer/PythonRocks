@@ -350,7 +350,15 @@ def plotHistWithoutOutliers(df,fig=(12,8),thresh=0.25,imputestrategy="median",ou
         axes[r,c].set_title(f)
         plt.tight_layout(rect=[0, 0.03, 1, 0.95])
         fc=fc+1
-       
+
+def capOutliers(df,feature,quantile=0.25):
+    Q1 = df[feature].quantile(quantile)
+    Q3 = df[feature].quantile(1-quantile)
+    IQR = Q3-Q1
+    top=(Q3 + 1.5 * IQR)
+    bottom=(Q1 - 1.5 * IQR)
+    df[feature]=np.where(df[feature]>top,top,df[feature])
+    df[feature]=np.where(df[feature]<bottom,bottom,df[feature])       
     
 def findNullLikeValues(df,listofvalues=[[-1,-999],["-","na","yok","tanımsız","bilinmiyor","?"]]): 
     """
@@ -595,16 +603,23 @@ def whatPercentageOfTheTwoFeatureIsComparable(df,features,comp="equal",sublist=N
         print(f"The content of the features of {c[0]} and {c[1]} are %{100*oran:.6f} {comp}")  
 #***************************************END OF COMPARISONS***************************************
                     
-def GetOnlyOneTriangleInCorr(df,target,diagonal=True,heatmap=False):
+def GetOnlyOneTriangleInCorr(df,target=None,diagonal=True,heatmap=False,figsize=(12,10)):
     """
     returns the lower part of the correlation matrix. if preffered, heatmap could be plotted.
     args:
+        df:dataframe itsel, not the df.corr() result
         diagonal:if False, the values at the diagonal to be made null
     """
-    sortedcorr=df.corr().sort_index().sort_index(axis=1)        
-    cols = [col for col in sortedcorr if col != target] + [target]
+    sortedcorr=df.corr().sort_index().sort_index(axis=1)    
+    if target is None:
+        cols = [col for col in sortedcorr]
+    else:
+        cols = [col for col in sortedcorr if col != target] + [target]
     sortedcorr = sortedcorr[cols]
-    new_index = [i for i in sortedcorr.index if i != target] + [target]
+    if target is None:
+        new_index = sortedcorr.index
+    else:
+        new_index = [i for i in sortedcorr.index if i != target] + [target]
     sortedcorr=sortedcorr.reindex(new_index)
     for i in range(len(sortedcorr)):
         for c in range(len(sortedcorr.columns)):            
@@ -615,9 +630,12 @@ def GetOnlyOneTriangleInCorr(df,target,diagonal=True,heatmap=False):
                 if i<=c:                
                     sortedcorr.iloc[i,c]=np.nan 
     
-    sortedcorr.rename(columns={target: "*"+target+"*"},inplace=True)
-    sortedcorr.rename(index={target: "*"+target+"*"},inplace=True)
+    if target is not None:
+        sortedcorr.rename(columns={target: "*"+target+"*"},inplace=True)
+        sortedcorr.rename(index={target: "*"+target+"*"},inplace=True)
+        
     if heatmap:
+        plt.figure(figsize=figsize)
         sns.heatmap(sortedcorr,annot=True)        
     else:
         return sortedcorr       
@@ -780,3 +798,15 @@ def discretize_dates(df,dates,droporjinalcolumns=False):
     if droporjinalcolumns:
         df.drop(dates,axis=1,inplace=True)
 
+def plotRange(df_desc,figsize=(16,3)):
+    """
+    plots the description data of a dataframe using min, max and median; whether to decide scaling is needed or nor
+    """
+    plt.figure(figsize=figsize)
+    plt.subplot(131)
+    df_desc.loc["min"].plot(kind="bar")
+    plt.subplot(132)
+    df_desc.loc["50%"].plot(kind="bar")
+    plt.subplot(133)
+    df_desc.loc["max"].plot(kind="bar")
+    plt.show();
