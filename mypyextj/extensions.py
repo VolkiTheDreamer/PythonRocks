@@ -239,7 +239,7 @@ def super_info_(df, dropna=False):
     """
     
     dt=pd.DataFrame(df.dtypes, columns=["Type"])
-    dn=pd.DataFrame(df.nunique(dropna=dropna), columns=["Nunique"])    
+    dn=pd.DataFrame(df.nunique(dropna=dropna), columns=["Nunique(Excl.Nulls)"])    
     nonnull=pd.DataFrame(df.isnull().sum(), columns=["#of Missing"])
     firstT=df.head(1).T.rename(columns={0:"First"})
     MostFreqI=pd.DataFrame([df[x].value_counts().head(1).index[0] if not df[x].isnull().all() else None for x in df.columns], columns=["MostFreqItem"],index=df.columns)
