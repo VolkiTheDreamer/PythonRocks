@@ -1,0 +1,661 @@
+Artist-Song,danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,id,time_signature,playlist
+Jubël-Dancing In The Moonlight (feat. NEIMY),0.659,0.615,11,-5.865,0,0.0644,0.27,0.0,0.187,0.193,119.843,4GSDkZt7GcmzBWmsMcpaVO,4,
+Camila Cabello-Bam Bam (feat. Ed Sheeran),0.756,0.697,8,-6.377,1,0.0401,0.182,0.0,0.333,0.956,94.996,3lDSWvR0FXWGXo7mhDUs3v,4,
+Sia-1+1,0.862,0.641,0,-4.109,1,0.0442,0.12,1.04e-05,0.336,0.674,109.998,71Taskl2O73XfpQtJciJCD,4,
+Jabbar-Aldatıldık,0.767,0.658,9,-8.873,0,0.0557,0.511,0.0027,0.108,0.713,95.001,5E1gxNXvUGvpvUECz54xXm,4,
+Sia-Unstoppable,0.468,0.779,9,-4.839,1,0.0779,0.112,0.000373,0.101,0.26,173.799,1yvMUkIOTeUNtNWlWRgANS,4,
+Aşkın Nur Yengi-Başka Birşey,0.651,0.637,4,-16.587,0,0.0494,0.273,4.08e-06,0.304,0.679,116.467,3VqvJMQ5UERJBxXhIFEpmL,4,
+INNA-UP,0.811,0.678,0,-6.129,0,0.0402,0.0382,0.0,0.132,0.884,98.044,3ajgQFhKuWa4Hz6VgkThuO,4,
+Pinhani-Dünyadan Uzak,0.583,0.542,11,-8.366,0,0.0291,0.029,2.14e-06,0.0824,0.354,102.94,4KhTyJ1cJeHaY4ZS2u3e6A,4,
+Angèle-Balance ton quoi,0.703,0.442,0,-10.383,1,0.0823,0.594,2.39e-05,0.276,0.381,115.932,2jX5c5RFp0A9E1GDsvGxIa,4,
+Angèle-Bruxelles je t’aime,0.74,0.567,0,-8.025,1,0.036,0.104,0.0,0.237,0.497,107.998,4sOjKbpa7RLZVRNxcO26eb,4,
+Saint-Preux-Concerto Pour Une Voix,0.312,0.282,1,-13.271,1,0.0354,0.952,0.943,0.112,0.113,82.862,1SjiIBN3rMsB3xj1fmqBqN,4,
+Gheorghe Zamfir-Time to Say Goodbye,0.152,0.437,7,-7.828,1,0.0421,0.947,0.828,0.125,0.187,52.983,5HESkS62OTenqqpnZYH5T9,4,
+Sarah Brightman-Time To Say Goodbye,0.252,0.5,5,-7.453,1,0.0364,0.624,0.0,0.127,0.203,106.774,4AVheZ1qz3ZyrnojNIDjo2,4,
+Leo Rojas-El Condor Pasa,0.485,0.703,9,-6.631,0,0.035,0.168,0.00371,0.942,0.41,80.982,14JOxJDf2bKZqZfNgovhv8,4,
+Tarlan Gazanferoğlu-Silk Road,0.235,0.389,7,-6.691,1,0.035,0.893,0.00895,0.0704,0.368,138.507,5opofY10bNpBsLu3Hw0GLh,4,
+Céline Dion-The Power of Love,0.546,0.519,8,-9.072,1,0.0291,0.36,0.00046,0.24,0.247,140.054,5kK1Iru9ogP3Iy1zsANU1n,4,
+Céline Dion-Pour que tu m'aimes encore,0.537,0.602,2,-8.937,1,0.07,0.326,0.000115,0.0548,0.509,180.077,6qlpXtA29VcxCNgLWR5IWx,4,
+Zeynep Bastık-Marlon Brando,0.757,0.696,11,-9.406,0,0.161,0.0925,0.00551,0.129,0.526,93.003,7ii8zZXL1SvOzQCf0FHGow,4,
+Emilíana Torrini-Sounds of silence,0.579,0.515,0,-8.079,1,0.0235,0.572,3.28e-06,0.227,0.209,92.033,2bipqJi9vbB3M9vSUc8GDF,4,
+2CELLOS-The Sound of Silence,0.187,0.132,2,-17.579,0,0.0416,0.828,0.822,0.111,0.243,147.614,0kZxpw48qjCriQKQCpTOaY,4,
+Lofi Fruits Music-Faded,0.558,0.391,1,-11.015,0,0.0531,0.946,0.893,0.114,0.295,74.995,0e03VH9EFeGSAsR3iL4ofV,4,
+Lofi Fruits Music-Bad Romance,0.512,0.298,9,-13.376,0,0.0261,0.458,0.866,0.133,0.0799,77.984,6p6AfhYqNnUxcii8XD7Bsz,4,
+Lofi Fruits Music-Swan Lake,0.568,0.0587,9,-21.865,0,0.0278,0.899,0.906,0.104,0.0459,90.01,6abmYJhEtUogGUox5YiURB,4,
+Lofi Fruits Music-Gangsta's Paradise,0.644,0.381,0,-7.425,0,0.0333,0.497,0.898,0.11,0.184,150.029,2aLmZdasaFf9F3AIM2kM2a,4,
+Lofi Fruits Music-Pastel Reflections,0.628,0.108,11,-21.562,1,0.0378,0.931,0.913,0.181,0.169,114.049,50CgiV7HlLATvzoy7kPDrL,4,
+Lofi Fruits Music-Yesterday,0.696,0.301,5,-12.424,1,0.0379,0.893,0.923,0.108,0.469,79.991,5Gl78MG2BzmdfGsuuTuNms,4,
+Lofi Fruits Music-Hotel California,0.654,0.341,0,-16.431,1,0.0323,0.921,0.891,0.118,0.0916,123.777,2tER9kineP2AA76qwmhyQI,4,
+Badem-Sen Ağlama,0.586,0.656,1,-5.694,0,0.0252,0.0969,0.000379,0.124,0.333,131.912,6vbgHYlDD0fwSU54D2bD6o,4,
+Sam Brown-Stop,0.326,0.3,9,-13.671,1,0.0454,0.443,0.0,0.139,0.391,185.63,2IWYi4NJyJvhpJVjVs2pm8,3,
+Yann Tiersen-La valse des vieux os,0.482,0.249,3,-11.357,0,0.0376,0.932,0.0311,0.225,0.445,121.657,0g9YiZ3HeQH7wefjmLsgDr,3,
+Yann Tiersen-La valse d'Amélie - Version orchestre,0.195,0.335,9,-8.681,0,0.0312,0.852,0.131,0.117,0.252,63.152,4vWtCyrOWS9YYjrAmxxman,4,
+Yann Tiersen-Les jours tristes - Instrumental,0.734,0.339,7,-8.123,0,0.0325,0.807,0.186,0.0801,0.952,100.104,6TEJLtS6YmWmJv1JrI1Spo,3,
+Yann Tiersen-La valse d'Amélie - Version piano,0.194,0.179,9,-16.836,0,0.0413,0.988,0.86,0.0819,0.179,177.667,22hn3x8Xdx26IywaZT685b,3,
+Yann Tiersen-La valse d'Amélie,0.433,0.564,9,-8.917,0,0.0405,0.713,0.275,0.117,0.855,192.073,01Q55Xv60Gr56abx5ad5vK,3,
+BELLSAINT-Losing My Religion,0.297,0.644,7,-7.175,0,0.0494,0.00951,0.0364,0.138,0.0604,121.308,72jF227qW5KQvTUBEqM0Vf,4,
+Passenger-Losing My Religion (Cover),0.755,0.643,9,-9.097,0,0.0268,0.0264,3.52e-05,0.267,0.471,126.035,1wJNpWv8GbyEVAxoxlf3gT,4,
+Chill Fruits Music-I've Never Been There,0.668,0.233,1,-18.672,0,0.0337,0.937,0.934,0.0901,0.336,121.211,7B7phblRjOtqZY5ExpkAAO,4,
+MFÖ-Ele Güne Karşı,0.507,0.731,4,-11.031,0,0.0923,0.0822,4.24e-05,0.277,0.757,147.687,25ob2KzCI93CWLUzmrxJg5,3,Vivid - Soft
+Ava Max-Take You To Hell,0.501,0.682,0,-4.664,0,0.0684,0.135,0.0,0.145,0.503,173.926,0TxOB9JSgYXjPVR6uWAyfM,4,
+Ava Max-So Am I,0.681,0.657,6,-4.671,1,0.0432,0.0748,0.0,0.353,0.628,130.089,2Xnv3GntqbBH1juvUYSpHG,4,
+Deniz Tekin-Beni Vur - Akustik,0.474,0.238,1,-9.514,0,0.0448,0.932,9.87e-05,0.115,0.391,94.496,3oHKg5COeAxdGOU9TByS2X,4,
+Basshunter-Boten Anna - Radio edit,0.464,0.971,9,-5.546,0,0.26,0.0635,0.000108,0.073,0.265,140.179,2QDS27DBdYE5XO1he56J0P,4,
+Selda Bağcan-Gesi Bağları,0.406,0.261,5,-12.098,0,0.0356,0.987,0.422,0.111,0.426,124.094,0yJ8TbTxicFhMDcTDvaHbf,4,Özgün soft
+Atomic Kitten-Eternal Flame,0.581,0.59,2,-6.836,1,0.0321,0.0664,0.00302,0.0537,0.397,83.302,7f8ghanV3NPAwbiSfI4aNU,4,
+Lofi Fruits Music-Asgore,0.704,0.374,1,-11.518,0,0.0257,0.858,0.925,0.111,0.285,89.995,524Fphz5eV4i4ZHpraJfbA,4,
+Lofi Fruits Music-Evil Morty,0.602,0.347,0,-9.793,0,0.0272,0.9,0.944,0.386,0.173,139.974,23HgGcPG0NZkhvdfM1cPvS,4,
+Lofi Fruits Music-Memories,0.723,0.32,11,-12.83,1,0.0507,0.96,0.933,0.106,0.464,75.005,3h7MglwsSVs2ogIYIdoDjE,4,
+Lofi Fruits Music-Bella Ciao,0.703,0.339,8,-12.575,0,0.0343,0.508,0.851,0.102,0.37,84.024,42Bwtlkriz2aW2K4HOPuFk,4,
+Lofi Fruits Music-Shallow,0.541,0.367,7,-16.679,1,0.0565,0.198,0.847,0.142,0.31,173.983,7lRRiZN5U8UB6nHFP7SJNI,4,
+Lofi Fruits Music-Bubbly,0.671,0.265,9,-14.558,1,0.0464,0.951,0.899,0.116,0.296,119.972,7adm52zdhetYpIpNzJBVHO,4,
+Lofi Fruits Music-Yesterday,0.69,0.288,5,-12.372,1,0.0398,0.892,0.901,0.109,0.466,79.974,01TcDiyykkezbkm6TMyd3o,4,
+Lofi Fruits Music-Faded,0.558,0.387,1,-11.095,0,0.0468,0.948,0.893,0.113,0.29,74.972,04zi2kPeY41uQsFHZ3NMxj,4,
+Lofi Fruits Music-Over the rainbow,0.704,0.191,0,-15.343,1,0.0491,0.907,0.912,0.0699,0.297,79.971,0MapNHMWTAIM2ya9ajtC6E,4,
+Lofi Fruits Music-Chandelier,0.56,0.527,1,-10.628,1,0.0443,0.776,0.867,0.131,0.231,159.862,0GCM5KftJbqql849j3bMVV,4,
+Lofi Fruits Music-Dancing in the Moonlight,0.605,0.336,9,-13.519,1,0.0332,0.953,0.936,0.101,0.468,180.102,6SmW9DFyCEsAUpRCtbxD7h,4,
+Lofi Fruits Music-Can't Help Falling in Love,0.273,0.316,0,-15.904,1,0.0323,0.887,0.873,0.113,0.0981,80.72,2oobUoYNbLLnFHJzQ5ZB8Z,3,
+Mark Davies-Take on Me,0.578,0.62,9,-7.66,1,0.0407,0.729,0.858,0.149,0.595,162.115,14CivXdwZwH6uE4sgjA989,4,
+Ely Bruna-Take On Me,0.638,0.391,7,-9.463,1,0.0259,0.829,0.000605,0.128,0.179,110.056,2uV7d2DuVTAxv9LSylhkSq,4,
+Andre Fenrir-Take on Me (The Last of Us Part 2),0.607,0.0991,11,-18.999,1,0.0362,0.857,2.47e-05,0.14,0.223,116.33,4edUVwxu3W2si2VbxlCWsI,4,
+The Cranberries-Promises,0.501,0.864,4,-3.231,0,0.0502,0.0628,0.0,0.169,0.247,130.061,15Trb1S2FDZSMLDzWfnlbg,4,
+Gökçe Kılınçer-Yalan,0.31,0.576,3,-7.245,0,0.0412,0.00688,7.42e-06,0.249,0.228,132.04,7Hs3p0KRcoQ4pqqjPXu5Y5,4,
+Yeliz-Yalan,0.425,0.678,9,-3.655,1,0.0376,0.322,0.0,0.112,0.407,129.352,1gIkCa1dk6RHhCP7PAD8XE,4,
+Seha Okuş-Hasretinle Yandı Gönlüm,0.434,0.265,5,-9.166,0,0.0304,0.981,0.000332,0.11,0.492,87.304,2kLhPnYXXTMp6mJghX6Zp4,4,
+Özge Öz-Hasretinle Yandı Gönlüm,0.339,0.231,4,-11.274,0,0.0428,0.987,0.00423,0.113,0.457,159.282,5NM3HswM95MrbEuTaL5USL,4,
+Cihat Aşkın-Hasretinle Yandı Gönlüm,0.275,0.286,2,-13.389,0,0.0358,0.983,0.898,0.107,0.256,108.083,3cB5uMqhnNzylK3swFTe1R,4,
+Bumerang-Sensiz Yıllarda,0.659,0.925,1,-7.863,1,0.0463,0.203,0.000277,0.204,0.791,129.815,0g04r5oJYbGTkrs51AXXQh,4,
+İnan Tat-Polyushka Polye,0.574,0.73,7,-10.455,0,0.0356,0.663,0.947,0.158,0.585,106.964,5XW3qdWDtuRGd5j7rGD5fC,4,
+Efkan Şeşen-Polyushka Polye,0.454,0.546,9,-9.748,0,0.0985,0.179,0.886,0.107,0.287,124.842,01DVEGshjQykHQlgGFJidF,4,
+Joaquín Rodrigo-Rodrigo: Concierto de Aranjuez: II. Adagio,0.253,0.098,11,-19.878,0,0.0437,0.93,0.862,0.122,0.062,84.865,0k6P9cdEA9K3k0ASde2Kof,4,
+Pinhani-Derdim Dostum Benim,0.35,0.258,9,-10.287,0,0.0334,0.875,0.0,0.13,0.403,88.025,6JgT0ld0Xuw5dXwTwGLDv2,4,
+Beyoncé-Drunk in Love (feat. Jay-Z),0.583,0.621,5,-6.902,0,0.0479,0.00972,0.00106,0.181,0.399,140.036,6jG2YzhxptolDzLHTGLt7S,4,
+Ava Max-H.E.A.V.E.N,0.592,0.643,9,-6.928,0,0.0505,0.296,0.0801,0.186,0.621,119.971,7t8USC1fzFdBC9ffsEgHqI,4,
+"Luigi Boccherini-String Quintet in E Major, Op. 13, No. 5: III. Minuetto",0.498,0.0789,9,-22.491,1,0.0323,0.926,0.514,0.236,0.613,99.211,5EkbgoNhM0lhIxweM8QwNq,4,
+Charles Gounod-Ave Maria: Arr. From Bach's Prelude No.1 BWV 846,0.113,0.147,0,-19.134,1,0.0428,0.992,0.875,0.0808,0.0648,85.957,0hVVeBDD1Ya94PujxvStdS,3,
+"Antonín Dvořák-4 Romantic Pieces, Op. 75, B. 150: I. Allegro moderato (Arr. Soltani For Solo Cello and Cello Ensemble)",0.207,0.0591,10,-27.056,1,0.0504,0.786,0.911,0.119,0.171,115.151,49kyncllMLrLONQi8pCLSU,4,
+2CELLOS-Shape of My Heart,0.26,0.274,2,-12.868,0,0.0445,0.886,0.897,0.101,0.237,158.919,6hTiVypuHR8yWIiktqktgS,4,
+2CELLOS-Despacito,0.629,0.403,2,-9.124,1,0.0567,0.836,0.776,0.313,0.557,91.094,6OIFsi2ov9nSjRrnJWVZIM,4,
+2CELLOS-Imagine,0.356,0.0823,0,-21.044,1,0.0381,0.843,0.861,0.094,0.456,127.13,4OfGCb2LOxde2xNiVOdq8H,4,
+2CELLOS-Moon River,0.178,0.248,7,-14.361,1,0.044,0.964,0.929,0.109,0.0778,78.247,1y2VTYeE7Glc4UQF9kvuzj,3,
+2CELLOS-May it Be,0.17,0.274,7,-14.759,1,0.046,0.924,0.882,0.113,0.0394,78.858,6KOBMsYaTl9ehUTF3NcX3c,4,
+2CELLOS-Game of Thrones Medley,0.119,0.594,5,-9.736,0,0.0565,0.934,0.91,0.105,0.147,84.566,4jeh9ZloYVCqvQw17Dg1Mh,4,
+Silience-I Don't Wanna Know,0.749,0.728,11,-8.029,0,0.0503,0.235,0.0125,0.39,0.538,119.995,33VTOL8M86sq1qJOL6rNIm,4,
+Mario Winans-I Don't Wanna Know (feat. Enya & P. Diddy) - 2016 Remaster,0.833,0.515,11,-5.0,0,0.0462,0.347,0.00156,0.116,0.4,97.007,2yr2HnFYl7XvqJk4fXoQBt,4,
+Sean Finn-Infinity 2018,0.657,0.813,7,-4.096,0,0.0477,0.03,0.103,0.334,0.142,128.012,3jaFTrMgWgrY5wZQqJwMKN,4,
+Lost Frequencies-Sun is Shining,0.619,0.852,1,-7.096,1,0.0341,0.00681,0.021,0.108,0.209,121.985,5ucCPnp8gVYluxSXiy4J5d,4,
+Ava Max-Who's Laughing Now,0.648,0.641,7,-5.521,1,0.0389,0.00565,3.63e-06,0.109,0.505,184.021,6RJF5GBgevDvwDMzE9DOSY,4,
+Ava Max-Salt,0.693,0.835,6,-3.242,1,0.0623,0.131,0.0,0.073,0.743,128.057,7vgv8KZBSo0TPzyIWG9yzV,4,
+Ava Max-OMG What's Happening,0.698,0.854,9,-3.84,0,0.0451,0.101,0.0,0.107,0.931,124.042,6T7NPX0BWpaapcp0Jn7OK9,4,
+Grup Vitamin-İstanbul'da,0.531,0.521,6,-10.215,0,0.0319,0.546,0.0,0.402,0.486,154.178,2eRIdZugaT0tc8d9nSSxab,4,
+Sting-Shape Of My Heart,0.537,0.373,6,-10.081,0,0.0331,0.691,0.000915,0.083,0.244,83.936,2vdId18EePzFhwfp4ryqFq,4,
+Mr. Big-Wild World - 2009 Remastered Version,0.573,0.722,5,-6.518,1,0.0295,0.182,0.0,0.29,0.59,144.209,2kj5f1eRhUFhW6K0qUwoD8,4,
+Deniz Arcak-Vurur,0.621,0.468,5,-14.004,0,0.0281,0.178,9.26e-05,0.0679,0.536,99.721,13FfQzzunkRJQlv2qBaHmr,4,
+Metin Özülkü-Seninle Olmak Var Ya (Dayanamam Sana Ben),0.623,0.334,7,-12.091,0,0.0389,0.823,0.0,0.207,0.548,76.993,14KR2eATqHZFOFC3xJvF2c,4,
+Bora Öztoprak-Başıma Belamısın,0.667,0.568,0,-9.659,0,0.0417,0.332,0.0,0.102,0.641,88.996,1UAzEPDLA2vPemsP0y1AiN,4,
+"Athena-Senden, Benden, Bizden",0.858,0.501,2,-8.946,0,0.0646,0.206,1.46e-05,0.045,0.916,112.134,7BGAsqmzVtq0Ms8o0MegsQ,4,
+Aşkın Nur Yengi-Bir Zaman Hatası,0.714,0.632,0,-7.014,1,0.0504,0.396,2.81e-06,0.0584,0.746,91.978,6ksbfu15LDFMGr63c1yGQn,4,
+Nilüfer-Haram Geceler,0.574,0.215,2,-16.316,0,0.0327,0.866,1.3e-06,0.127,0.294,95.742,24hElAjgX4PX0XMJfHbF4D,4,
+Bora Öztoprak-Seni Seviyorum,0.475,0.343,7,-14.213,0,0.0299,0.189,0.0,0.367,0.384,80.038,3ShpooIC9O00sS8ra0AAJP,4,
+Evgeny Grinko-Field,0.191,0.0859,9,-21.876,0,0.0389,0.988,0.902,0.115,0.292,161.21,3zWfjRtvm3gFEAjqeWScEl,4,
+"Alan Walker-Alone, Pt. II",0.67,0.668,3,-4.306,0,0.0422,0.536,0.0,0.133,0.608,88.033,0bMbDctzMmTyK2j74j3nF3,4,
+Pedro Capó-Calma - Remix,0.826,0.773,11,-4.218,0,0.0524,0.323,0.0,0.143,0.761,126.899,5iwz1NiezX7WWjnCgY5TH4,4,
+Queen-We Are The Champions - Live Aid,0.316,0.86,7,-5.038,0,0.0661,0.175,4.92e-05,0.902,0.195,100.888,4XaG9IpCXklOcuau1sIrUX,3,
+Queen-We Are The Champions - Remastered 2011,0.268,0.459,10,-6.94,1,0.0346,0.378,0.0,0.118,0.175,64.177,1lCRw5FEZ1gPDNPzy1K4zW,4,
+The Beatles-Yesterday - Remastered 2009,0.332,0.179,5,-11.83,1,0.0326,0.879,0.0,0.0886,0.315,96.529,3BQHpFgAp4l80e1XslIjNI,4,
+The Beatles-Here Comes The Sun - Remastered 2009,0.557,0.54,9,-10.484,1,0.0347,0.0339,0.00248,0.179,0.394,129.171,6dGnYIeXmHdcikdzNNDMm2,4,
+The Beatles-Let It Be - Remastered 2009,0.443,0.403,0,-8.339,1,0.0322,0.631,0.0,0.111,0.41,143.462,7iN1s7xHE4ifF5povM6A48,4,
+Queen-I Want To Break Free - Single Remix,0.795,0.435,4,-8.927,1,0.0324,0.0841,0.00026,0.0763,0.596,108.95,2AkmdLbVKS1steeZdy8H1l,4,
+Queen-Bohemian Rhapsody,0.39,0.397,0,-9.963,0,0.0513,0.287,0.0,0.207,0.246,144.031,3z8h0TU7ReDPLIbEnYhWZb,4,
+Queen-Radio Ga Ga - Remastered 2011,0.744,0.502,5,-7.719,1,0.0359,0.183,0.000228,0.189,0.66,112.344,1nQRg9q9uwALGzouOX5OyQ,4,
+Queen-The Show Must Go On - Remastered 2011,0.426,0.687,11,-6.926,0,0.0329,0.409,0.0,0.112,0.189,84.141,5n6RDaGFSN88oRWuGtYAIN,4,
+Queen-Love Of My Life - Remastered 2011,0.329,0.179,5,-11.589,1,0.0299,0.933,5.04e-06,0.115,0.255,154.175,4YJUTdZ0Pgl0ZeNyHYXeLd,4,
+Antonio De Lucena-La Isla Bonita,0.708,0.511,2,-12.362,0,0.0343,0.626,0.929,0.081,0.891,100.33,2IbRwCqPK3YjKMkN2YrfI7,4,
+Master Guitar-La Isla Bonita,0.551,0.502,2,-17.543,0,0.0258,0.525,0.8,0.101,0.798,100.321,5qIRIuigEksJxF98U4ASHo,4,
+Aventura-Obsesion,0.804,0.56,1,-6.912,0,0.0397,0.416,0.0,0.0608,0.768,133.682,65H6t1WQBim6q93yM8fEwn,4,
+Akon-Lonely,0.624,0.572,5,-7.531,0,0.0352,0.322,0.0,0.314,0.57,90.067,4mNGNMcsoMS6F9SGycmHWM,4,
+Surf Mesa-ily (i love you baby) (feat. Emilee),0.674,0.774,11,-7.567,0,0.0892,0.0686,0.00188,0.393,0.33,112.05,62aP9fBQKYKxi7PDXwcUAS,4,
+Ava Max-So Am I,0.682,0.656,6,-4.67,1,0.0435,0.0737,0.0,0.353,0.607,130.089,0uUNN1nSoUx1A4fkDCWDQ7,4,
+Lana Del Rey-Young And Beautiful,0.324,0.416,11,-8.92,0,0.0368,0.262,3.69e-05,0.11,0.151,113.986,2nMeu6UenVvwUktBCpLMK9,4,
+Arnon-G Paradise,0.596,0.857,2,-4.331,0,0.0564,0.0315,0.0,0.177,0.167,126.203,06PDOk4ykG753jJlXQQmBL,4,
+Deniz Tekin-Bende Bir Problem Var - Akustik,0.562,0.203,8,-9.343,0,0.0374,0.893,4.77e-05,0.0959,0.351,167.81,3BJRuwnU57wgldfinamdUD,4,
+Deniz Tekin-Bende Bir Problem Var,0.695,0.554,7,-6.69,0,0.0259,0.731,0.00954,0.147,0.236,95.008,5dRN3UToofUByy58fJF2N6,4,
+Deniz Tekin-Beni Vur - Akustik,0.474,0.238,1,-9.514,0,0.0448,0.932,9.87e-05,0.115,0.391,94.496,3CPBzUohQI0fVoFFMSZouO,4,
+Cirque du Soleil-Alegria,0.567,0.585,2,-10.265,0,0.025,0.191,3.1e-05,0.241,0.383,83.931,3NBwVbWQgGaeitzznzWiyI,4,
+Pet Shop Boys-Go West - 2003 Remaster,0.535,0.951,7,-5.859,1,0.0373,0.0174,9.61e-06,0.345,0.444,120.72,5Klo65Y9uouLjNVDV3pqh7,4,Vivid - Soft
+DJ BoBo-Everybody,0.701,0.875,10,-4.475,0,0.0475,0.294,0.0,0.0793,0.794,99.993,29jPmPUIHfd8CoPEOOJ8Gg,4,
+The Beatles-Hey Jude,0.462,0.632,5,-7.438,1,0.0248,0.091,0.0,0.397,0.585,74.268,1eT2CjXwFXNx6oY5ydvzKU,4,
+Feridun Düzağaç-Buralardan Gitme,0.576,0.835,1,-7.434,0,0.0276,0.0778,0.000817,0.0972,0.491,132.079,6gwmaGD8fYUMMPaBagJPv1,4,
+Feridun Düzağaç-Beni Bırakma,0.705,0.493,3,-7.775,0,0.028,0.704,0.000319,0.122,0.38,127.97,2qthUvg6mSwaVB8yyxhUsa,4,
+Feridun Düzağaç-Düşler Sokağı,0.601,0.482,10,-13.147,1,0.0299,0.118,3.68e-05,0.902,0.671,99.555,5jUvJC1FyQkkzFsfBNYMHo,4,
+Feridun Düzağaç-Alev Alev,0.548,0.532,1,-8.758,0,0.0264,0.115,1.42e-05,0.125,0.369,124.053,3fCJpdK2u4PnZ3tBondozd,4,
+Düş Sokağı Sakinleri-Gayret Et Guzelim,0.562,0.336,6,-11.111,0,0.031,0.79,4.13e-06,0.0892,0.381,143.944,5dFPCRUQshokzpmq1RNzMm,4,
+Düş Sokağı Sakinleri-Sevdan Bir Ates,0.561,0.473,6,-7.478,0,0.0272,0.602,3.79e-06,0.0978,0.375,123.892,5zBxblyGEOp8IKw6u6oRWR,4,
+Teoman-Aşk Kırıntıları,0.257,0.679,5,-4.673,0,0.0314,0.0515,0.000619,0.208,0.378,171.721,0TgRYYcqA37NfHVd7DWsng,3,
+Irene Cara-What A Feeling,0.532,0.729,10,-6.84,1,0.0474,0.382,0.0,0.366,0.595,121.97,0aAR5HogGoT68EWFbyRFqx,4,
+The Everly Brothers-Bye Bye Love,0.547,0.523,9,-9.176,1,0.0572,0.724,0.0,0.103,0.89,169.598,0xK34uEDBKa9ZzJ6kelLJE,4,
+The Ronettes-Be My Baby,0.511,0.769,4,-7.032,1,0.042,0.181,0.0,0.0921,0.818,129.657,2G2YzndIA6jeWFPBXhUjh5,4,
+Otis Redding-Stand by Me,0.883,0.464,10,-11.251,1,0.0591,0.279,1.51e-05,0.0744,0.925,111.548,1aj4GXfmEYXfdVZohCpNKu,4,
+Petula Clark-Downtown,0.498,0.552,4,-9.37,1,0.0399,0.731,0.0,0.134,0.554,118.427,0X04tUv7mLsFM11MTaVeQ3,4,
+Marc Almond-Something's Gotten Hold of My Heart,0.565,0.492,4,-12.548,1,0.0254,0.148,0.0,0.0684,0.364,98.247,68O1r5xQADu0JjvBibg9zN,4,
+Yusuf / Cat Stevens-Wild World,0.484,0.508,0,-9.308,1,0.0364,0.376,0.000791,0.0961,0.554,151.867,6Xz7FeyE8HTP90HecgHV57,4,
+John Lennon-Woman - Remastered 2010,0.588,0.656,3,-6.373,1,0.0224,0.378,0.00227,0.042,0.746,79.701,0GGxVTb0UwDwdaKNjBdCn3,4,
+Bob Dylan-Mr. Tambourine Man,0.39,0.31,5,-14.545,1,0.0676,0.794,0.0,0.379,0.584,177.515,3RkQ3UwOyPqpIiIvGVewuU,4,
+The Moody Blues-Nights In White Satin - Single Version / Mono,0.195,0.483,4,-4.991,0,0.03,0.465,0.497,0.0686,0.173,84.71,6L5BZEcZmD6RBJnimzlyKr,4,
+Boney M.-Daddy Cool,0.763,0.777,5,-6.932,0,0.0364,0.281,0.79,0.134,0.929,124.431,3WMbD1OyfKuwWDWMNbPQ4g,4,
+Khaled-Aicha - Version Mixte,0.592,0.657,7,-8.013,0,0.167,0.22,5.85e-06,0.0912,0.484,170.164,1ZzVMvmf2SFSoR6C2TgJMb,4,
+Farid Bang-Maghreb Gang (feat. French Montana & Khaled),0.738,0.568,8,-5.341,1,0.186,0.0246,0.0,0.146,0.399,99.933,1IBUPdwV9TvaipSODdt8QY,4,
+MaxRiven-Astronomia,0.801,0.705,7,-7.398,0,0.0338,0.4,0.698,0.0811,0.206,125.014,3HAd3yWMyAVSbkdUXEm6Q9,4,
+MaxRiven-Moonlight Shadow,0.736,0.793,11,-3.382,0,0.0283,0.0712,0.853,0.208,0.416,127.998,1PcP99n4DAZ5APjkjWBJwK,4,
+Groove Coverage-Moonlight Shadow - Alternate Radio Version,0.516,0.876,9,-5.231,1,0.0852,0.243,0.0,0.101,0.466,140.045,0UNLcHrz8XAgOaIX7DNcrH,4,
+Alan Walker-On My Way,0.509,0.689,1,-4.929,0,0.102,0.0209,0.0,0.301,0.297,170.087,4n7jnSxVLd8QioibtTDBDq,4,
+"Neil Diamond-Girl, You'll Be A Woman Soon",0.515,0.641,5,-5.573,1,0.0272,0.567,0.0642,0.322,0.655,109.558,1BmVQ5RGqqtF5cnsv6cQYu,4,
+Dakota Lynne-Rain ~ Priscilla Ahn (cover by Dakota Lynne),0.634,0.0197,0,-18.491,1,0.0389,0.955,0.0,0.117,0.241,93.782,2PZpI67CgPKHMBtuVd2u7p,4,
+Priscilla Ahn-Wallflower,0.449,0.348,1,-9.662,1,0.0328,0.299,1.59e-06,0.117,0.168,71.133,2x1aXvtpye0t7P20upwlFc,4,
+Ramin Djawadi-Mako (feat. Priscilla Ahn),0.131,0.0901,0,-17.15,0,0.0357,0.971,0.98,0.094,0.0341,61.467,5P1rzArjuZI3h5LkU1p2Lf,3,
+Priscilla Ahn-Deep Inside My Heart,0.583,0.246,8,-13.088,1,0.0306,0.889,0.00172,0.106,0.308,116.95,7tgjj32giZoZUf7QMP8WaO,4,
+Priscilla Ahn-Marnie,0.203,0.0516,9,-19.448,0,0.0407,0.964,0.277,0.0861,0.0976,78.189,3FRuPxshzgnPoOzsmFap7b,3,
+Priscilla Ahn-I See You,0.452,0.2,10,-12.74,1,0.0293,0.846,0.000444,0.116,0.227,144.698,1teZxQMiVKDhB7VCiOthBo,4,
+Priscilla Ahn-Find My Way Back Home,0.685,0.0925,11,-13.518,1,0.0441,0.964,2.08e-06,0.106,0.413,113.837,5wY85J5Ao45CF5wwd0uUf6,4,
+Priscilla Ahn-I Am Not Alone,0.568,0.18,7,-11.707,1,0.0284,0.758,6.17e-05,0.111,0.228,112.033,6DwgZO7AMYelPFwr8WPhpg,4,
+Priscilla Ahn-Fine On The Outside,0.495,0.185,9,-13.824,1,0.0288,0.692,0.00403,0.109,0.196,101.89,0muntSMuAZzcwYBBMZj6sf,4,
+"Frédéric Chopin-Nocturnes, Op. 9: No. 1 in B-Flat Minor",0.346,0.0098,1,-32.212,1,0.0438,0.99,0.909,0.0746,0.0394,119.992,0IlmPZGIQb1j1eOV0q3RZ9,3,
+Erik Satie-Gnossienne No. 1,0.376,0.00579,5,-31.615,0,0.0576,0.996,0.944,0.0882,0.0369,71.827,5fdp9rXfEixCGLM1Og4EN1,4,
+Tomaso Albinoni-Adagio in G Minor,0.099,0.279,7,-12.939,0,0.0346,0.743,0.903,0.114,0.0464,89.755,2AjyreHCD6PKAtRGV2qsK5,1,
+Erasure-Always - 2009 Remastered Version,0.574,0.844,5,-6.673,1,0.0276,0.22,2.05e-06,0.225,0.204,103.031,48db6qWQkeH09aI62pTKWP,4,
+Erasure-Love to Hate You,0.622,0.712,6,-11.585,0,0.0407,0.0183,0.0184,0.403,0.87,119.955,1CBAT4X5dra5qqHc3JRVmk,4,
+Benassi Bros.-Every Single Day - Club Version,0.598,0.6,5,-3.106,1,0.0702,0.142,8.35e-05,0.0827,0.348,130.007,6dmaSeJPyusPU9VY3gmadE,4,
+Benassi Bros.-Every Single Day - Radio Edit,0.68,0.793,0,-2.827,1,0.163,0.165,0.0,0.238,0.614,130.038,6E3YyDZzMJFE8PW3fSVML1,4,
+Hasret Gültekin-Derman Sendedir,0.616,0.577,9,-11.834,1,0.0386,0.763,0.128,0.131,0.742,156.543,2bFnbVXEcYjCVhtBqomEjY,3,
+Yavuz Bingöl-Akşam Olur Karanlığa,0.533,0.338,6,-9.142,0,0.0337,0.879,0.0,0.0696,0.335,99.978,34w2lO7bC3UkWpx9jYnAZD,3,
+Musa Eroğlu-Halil İbrahim,0.728,0.324,0,-14.867,0,0.0335,0.824,1.35e-05,0.497,0.538,112.921,6DEysdLbzoEt2R0MHNiQCO,4,
+"Ramin Djawadi-Main Title - From The ""Game Of Thrones"" Soundtrack",0.197,0.603,5,-16.116,0,0.0454,0.302,0.794,0.106,0.232,169.881,2q6fxAvSpqXR4jx9Ne7RGz,3,
+James Horner-For The Love Of A Princess,0.187,0.0602,9,-25.767,0,0.0464,0.408,0.922,0.122,0.0362,68.751,22yxHt6UqZpH7tP6W4PooI,4,
+Sacred Spirit-Yeha Noha (Wishes Of Happiness And Prosperity),0.576,0.384,3,-16.737,1,0.0335,0.31,0.0267,0.113,0.513,94.015,6pfdfnkhql0kR3x5cRZhQI,4,
+David Arkenstone-Call Of The Sea,0.475,0.563,4,-13.009,0,0.0355,0.0115,0.777,0.0541,0.368,179.655,19eQWCG7R2ue0tdkXoW1zN,4,
+Enya-May It Be,0.129,0.179,9,-17.081,1,0.0459,0.98,0.013,0.134,0.0735,59.407,1wIQ2Nm0raqOapHK4bCD3J,4,
+Karl Jenkins-Adiemus,0.295,0.408,4,-16.632,0,0.0693,0.804,0.148,0.165,0.164,150.454,54CAG8n70kKVbFV6l1zF4G,3,
+ERA-Divano,0.657,0.572,8,-7.303,1,0.0244,0.536,0.0241,0.0782,0.0917,102.779,0rmg0BnI951Unz2OjbGnli,4,
+Can Gox-Ah Be Ah,0.671,0.622,9,-6.995,0,0.0424,0.298,1.62e-05,0.088,0.576,105.022,2AHkZcjMubtUmk3Q44RZHh,4,
+"Urge Overkill-Girl, You'll Be a Woman Soon",0.514,0.584,5,-13.049,1,0.042,0.0698,0.000183,0.205,0.558,114.142,5u6Woby9oKAF8LhhuxykH1,4,
+Simon & Garfunkel-The Boxer,0.439,0.488,11,-14.464,1,0.0615,0.702,0.000339,0.16,0.629,93.017,76TZCvJ8GitQ2FA1q5dKu0,4,
+Grup Abdal-Ervah-ı Ezelde,0.548,0.369,6,-7.226,0,0.027,0.676,0.0,0.108,0.382,79.879,6YCkQmT5b1xLMm9dOtJNbM,4,
+Cem Karaca-Çok Yorgunum,0.28,0.295,9,-10.871,0,0.0303,0.971,0.0279,0.0929,0.0683,97.299,2PoMglwLhpEZ05VJ1b7dP6,4,
+Hasret Gültekin-Eklemedir Koca Kavak,0.576,0.418,4,-12.114,0,0.0383,0.72,0.0,0.0793,0.493,90.318,772R9JYfzjG3JwnS1fbwGK,4,
+"Jean-Laurent Ducroiset-Now We Are Free (From ""Gladiator"")",0.201,0.416,7,-6.701,0,0.0311,0.741,0.474,0.145,0.186,149.307,32JiN904tnbjRMuETXnnL8,4,
+Lisa Gerrard-Now We Are Free - Maximus Mix,0.51,0.792,9,-10.726,1,0.044,0.0329,0.3,0.102,0.357,138.012,2rBUT42i2t1wsfCmkn1TYA,4,
+Lisa Gerrard-Not Yet,0.0947,0.0123,4,-31.129,0,0.0478,0.962,0.319,0.102,0.0366,86.902,5kZ2naG4j0WcsTJSkSRfQd,3,
+Marc Streitenfeld-Max-a-million,0.391,0.135,0,-20.708,1,0.0356,0.781,0.778,0.0973,0.222,100.029,3kmmn3GlWkSkkHC7LqVqHE,4,
+Makali-Sur Les Chemins,0.891,0.393,5,-10.567,0,0.045,0.162,0.00263,0.116,0.561,124.024,55HDE29Wf5igEhBjJptyFS,4,
+Alizée-Moi... Lolita,0.628,0.888,11,-3.74,0,0.0277,0.0519,0.000191,0.233,0.577,107.958,6e0LjNPkRqxIAlmmdjWSV8,4,
+"André Rieu-Memory - From ""Cats""",0.0638,0.312,10,-12.236,1,0.0402,0.444,0.727,0.102,0.0369,59.425,3CgcUlwAlu5AK084KfUMNH,4,
+"Johann Sebastian Bach-J.S. Bach: Orchestral Suite No. 3 in D Major, BWV 1068: 2. Air",0.213,0.222,2,-17.821,1,0.037,0.924,0.818,0.17,0.0823,65.83,7r8gP4eqFObYfEA5BWfZKb,4,
+Giovanni-Nabuco,0.421,0.172,2,-13.361,1,0.0435,0.956,0.947,0.141,0.244,131.538,32x0IrYMsjCimiMeDPOZYM,4,
+Mireille Mathieu-Un dernier mot d'amour,0.374,0.256,4,-9.269,0,0.0379,0.963,8.26e-06,0.114,0.256,123.257,7KZ5nvRIgNwOBaaO9MMflp,3,
+José María Cano-Hijo de la Luna,0.23,0.537,5,-7.003,0,0.0449,0.917,0.0515,0.0822,0.129,169.411,2t61oD144eUTAKoiCfHe7a,3,
+James Farrelli-It's a Sin,0.658,0.246,11,-13.133,0,0.0297,0.673,1.44e-06,0.113,0.267,110.057,5tqjXqatzjb25QqXgKirzy,4,
+Anni B Sweet-Take on Me,0.708,0.288,11,-11.82,1,0.0332,0.866,0.00525,0.133,0.433,119.988,4GkELkyI3VJstSugqnP39K,4,
+UNDRESSD-Forever Young,0.594,0.725,8,-7.225,0,0.0293,0.0375,1.06e-05,0.237,0.572,122.983,1J2EmhjTmHQxLShYQK7Xti,4,
+Graziella Schazad-Take on Me,0.684,0.366,11,-9.161,1,0.0305,0.75,1.55e-06,0.103,0.409,119.974,5ZfDiAV0UFjWv6j1dAX5tp,4,
+Piano Bar-Take on Me - Piano Version,0.561,0.0807,9,-23.839,1,0.0652,0.987,0.895,0.101,0.366,144.055,1m5IbzUUHd11S0fvKKVslT,4,
+Mustafa Sandal-Mod,0.649,0.844,2,-5.349,0,0.0688,0.482,0.000307,0.16,0.928,165.951,0xNW1WrxJP3USOL2r0gqHE,4,
+"Roxette-It Must Have Been Love - From the Film ""Pretty Woman""",0.52,0.652,5,-6.655,1,0.0274,0.34,5.49e-05,0.256,0.722,80.609,6kvoHl80mfCVTv7XnZkjQn,4,
+The Rolling Stones-Angie,0.429,0.554,9,-6.128,0,0.0291,0.67,0.000152,0.105,0.407,136.302,1GcVa4jFySlun4jLSuMhiq,4,
+Guns N' Roses-November Rain,0.294,0.641,11,-9.316,1,0.0291,0.0163,0.22,0.112,0.226,79.759,3YRCqOhFifThpSRFJ1VWFM,4,
+Guns N' Roses-Don't Cry (Original),0.456,0.59,11,-8.638,1,0.0327,0.00182,0.00379,0.104,0.243,124.635,2N2yrmodOnVF10mKvItC9P,4,
+Fiona Apple-Across the Universe,0.578,0.481,4,-10.545,1,0.0317,0.431,0.00299,0.0951,0.548,129.881,6ZQgooEk8PvsLxedYaT6Oa,4,Chillout - MorningCoffee
+Cem Adrian-Sarı Gelin (Konser Kaydı),0.378,0.337,4,-6.932,0,0.0299,0.967,0.0,0.741,0.0916,93.846,4DV6Buzz9KnY2Ol7B34gGt,4,
+Grup Yorum-Berivan,0.589,0.353,2,-15.527,0,0.0468,0.602,3.03e-05,0.174,0.356,127.318,2FidNwSjo9YFTdyFEzHGhE,4,
+Multitap-Ben Anlarım,0.654,0.655,4,-6.543,0,0.0318,0.206,0.0,0.655,0.634,115.931,7n9ciL1pgmA62kq42S4MuU,4,
+Güler Duman-Türkülerle Gömün Beni,0.519,0.476,5,-9.35,0,0.0308,0.588,3.92e-06,0.431,0.564,77.08,6725PIXBHUiNMu6xjc2kSD,4,
+Ahmet Aslan-Minnet Eylemem,0.453,0.222,1,-10.649,0,0.0407,0.951,0.00312,0.112,0.12,92.417,6tR3guUSh0V3sz5IcZsUrw,4,TürküDeyiş
+Emre Sertkaya-Minnet Eylemem,0.256,0.324,4,-13.145,0,0.0377,0.911,0.00445,0.118,0.316,150.81,7jp59b0DQbGwZ2nSZJuTL4,1,TürküDeyiş
+MFÖ-Güllerin İçinden,0.514,0.227,2,-14.423,0,0.03,0.685,6.72e-05,0.0727,0.387,139.155,5T8AtyZDptAPhEs8fWg9fr,4,Slowish PopRock
+Craig David-Walking Away,0.596,0.688,9,-6.367,0,0.0345,0.196,0.0,0.121,0.817,172.837,3R7fjB38qajI6JR69y5k4e,4,Slowish PopRock
+Blackmore's Night-Home Again,0.532,0.626,7,-5.314,0,0.029,0.257,0.0,0.807,0.268,116.953,1Y3YNFcYtkcSdmf033b4UT,4,
+Blackmore's Night-Greensleeves,0.473,0.55,9,-8.551,0,0.0253,0.271,0.0466,0.0925,0.302,165.031,3I3zVeeFGBPC5s8nWVI6dR,4,
+Blackmore's Night-Under a Violet Moon,0.601,0.676,0,-7.933,0,0.0266,0.469,2.43e-05,0.105,0.661,85.455,2WpmMlS6Tr01C7UNFjQI3U,4,
+Amy Macdonald-This Is The Life,0.628,0.882,1,-5.024,0,0.0323,0.259,0.0,0.065,0.853,95.083,2T3jgoAMbBXiMMD8pSc6QL,4,
+Secret Garden-Adagio,0.115,0.328,7,-11.154,0,0.0416,0.911,0.771,0.101,0.0611,51.096,4qqXbRF8ZWBLP9wwL8QtzB,4,Chillout - Instrumental
+ABBA-Fernando,0.354,0.535,9,-8.876,1,0.0303,0.627,2.9e-06,0.0808,0.434,110.821,4BM8yJ0PzBi2ZewpMTOxtx,4,Slowish PopRock
+ABBA-One Of Us,0.652,0.397,7,-15.245,1,0.0385,0.478,0.000946,0.0679,0.858,82.235,40IHflbrHcOuC8ZcYxUSAC,4,
+ABBA-Super Trouper,0.764,0.626,0,-8.274,1,0.0288,0.457,6.35e-06,0.201,0.961,118.34,0J2p4KYdr6Mg4ET6JPlbe1,4,
+ABBA-The Winner Takes It All,0.454,0.788,6,-6.748,1,0.0371,0.574,0.000766,0.0859,0.52,126.15,3oEkrIfXfSh9zGnE7eBzSV,4,Slow pure
+ABBA-Dancing Queen,0.543,0.87,9,-6.514,1,0.0428,0.358,0.000939,0.792,0.754,100.804,0GjEhVFGZW8afUYGChu3Rr,4,
+a-ha-Take on Me,0.573,0.902,6,-7.638,0,0.054,0.018,0.00125,0.0928,0.876,84.412,2WfaOiMkCvy7F5fcp2zZ8L,4,
+Indila-Boite En Argent,0.445,0.302,7,-11.87,0,0.0373,0.704,0.0,0.122,0.267,133.507,5RCr7J4rZgwTJAYOxSXVo5,4,
+Indila-Love Story,0.375,0.255,10,-12.279,0,0.0376,0.815,0.0,0.0845,0.331,95.978,6nGeLlakfzlBcFdZXteDq7,3,
+Indila-S.O.S,0.531,0.587,6,-6.995,1,0.0328,0.271,0.0,0.228,0.208,93.023,7FE0ThVWVTIHYKv14xlMVr,4,
+Indila-Dernière danse,0.669,0.449,0,-7.658,0,0.0489,0.184,0.0,0.0729,0.327,114.926,65uoaqX5qcjXZRheAj1qQT,4,
+Indila-Tourner Dans Le Vide,0.594,0.698,6,-8.645,0,0.0428,0.103,0.0,0.173,0.376,119.991,1MqzIgGsHP4cNjPboevsfq,4,
+Infernal-Self Control,0.65,0.975,6,-3.998,0,0.0632,0.129,0.0,0.291,0.584,124.01,4lZktVLW9IcnGXdSJGxJTf,4,
+Infernal-Self Control,0.598,0.994,6,-2.844,0,0.0478,0.108,0.00654,0.328,0.594,140.024,72SBHObTfEsXOoZgyp74Oq,4,
+INNA-INNdiA (feat. Play & Win),0.695,0.714,2,-3.7,0,0.0754,0.0997,0.000107,0.269,0.69,156.045,3ehTNgXUzlu6SKwGBL5TVU,4,
+INNA-Caliente,0.852,0.728,9,-4.697,0,0.0536,0.0393,0.00267,0.0644,0.816,129.973,7tOz0okzyH9a8c58tUAEH6,4,
+INNA-Cola Song (feat. J Balvin),0.793,0.896,7,-3.072,1,0.0417,0.0136,1.08e-05,0.105,0.842,125.063,2ZAOEPkOeZTGsjGHWyCThc,4,
+Israel Kamakawiwo'ole-What A Wonderful World,0.536,0.279,0,-10.786,1,0.0269,0.873,0.000816,0.118,0.372,79.998,1Fzm9s6Fh1Eumj5tU4q20m,4,Slowish PopRock
+Israel Kamakawiwo'ole-Over the Rainbow,0.671,0.153,0,-13.569,1,0.0404,0.912,5.53e-05,0.0771,0.658,85.6,3oQomOPRNQ5NVFUmLJHbAV,4,Özgün soft
+Jason Donovan-Sealed with a Kiss,0.532,0.542,4,-7.961,0,0.0247,0.503,0.0,0.173,0.539,95.97,2PYP9kcLqqNfRUXHCheYmn,4,Slowish PopRock
+John Lennon-Imagine - Remastered 2010,0.547,0.257,0,-12.358,1,0.0252,0.907,0.183,0.0935,0.169,75.752,7pKfPomDEeI4TPT6EOYjn9,4,Chillout - MorningCoffee
+Sezen Aksu-Kalbim Ege'de Kaldı,0.445,0.121,6,-18.745,0,0.134,0.539,0.0,0.0978,0.291,162.926,7iTZD4M4zMyJhDKk7JQSun,3,Özgün soft
+Kalwi & Remi-Explosion,0.605,0.882,9,-3.028,0,0.029,3.13e-05,0.614,0.135,0.418,140.026,5Vh4cFonbm0XdIyJIyrlPO,4,
+Kargo-Öyle Sarhoş Olsam ki,0.683,0.59,0,-6.575,1,0.029,0.64,3.59e-06,0.148,0.643,119.969,1aURmMu3iX7EnzkMbJfnEO,4,Slowish PopRock
+Kargo-Yıllar Sonra,0.517,0.44,0,-8.549,1,0.0266,0.452,4.73e-05,0.235,0.382,132.246,2mmOB7BVeBQvPIKG6Pweld,4,Slowish PopRock
+Kayahan-Esmer Günler,0.368,0.396,9,-14.057,0,0.101,0.889,0.0,0.287,0.367,171.652,3yZG6brIfLaBgvCBdjMhpd,3,Slowish PopRock
+The Oak Ridge Boys-Thank God For Kids,0.508,0.434,2,-8.292,1,0.0323,0.701,0.0,0.133,0.332,139.121,5EOpPiBG8Q3h4WgejENOtv,4,Slowish PopRock
+Gheorghe Zamfir-The Lonely Shepherd,0.434,0.304,2,-10.799,0,0.0473,0.841,0.792,0.1,0.108,66.486,3OQEVjVEQ6CvfAJ6XhTs6c,4,Chillout - Instrumental
+"Ashik Mahsuni Serif, Musa Eroglu-Çesmi Siyahim",0.578,0.288,4,-19.713,1,0.0358,0.878,3.58e-05,0.383,0.505,124.829,7t4GAdmC1YPyZC1eoahEeb,4,TürküDeyiş
+Selda Bağcan-Minnet Eylemem,0.451,0.199,8,-11.153,1,0.0376,0.969,6.04e-05,0.175,0.307,87.866,2Zw8oQUJCaxYdxA4vQ2ryz,4,TürküDeyiş
+Lady Gaga-Alejandro,0.626,0.799,11,-6.612,0,0.046,0.000358,0.00155,0.36,0.369,98.992,3clsCV1f1E9u1Fge9ntulk,4,
+Lady Gaga-Bad Romance,0.696,0.921,0,-3.755,1,0.0363,0.00314,5.24e-05,0.0842,0.714,119.001,0SiywuOBRcynK0uKGWdCnn,4,
+Lasgo-Something,0.644,0.981,7,-6.644,0,0.0439,0.0271,9.67e-05,0.11,0.379,140.012,3e9L9HiHKcfYLAga28Vmcf,4,
+Madonna-American Pie,0.631,0.734,5,-7.48,0,0.036,0.348,0.0,0.135,0.591,124.036,1vo6TY0FyLRBTXohxvflhJ,4,
+Madonna-Like a Prayer,0.624,0.842,5,-5.285,1,0.0376,0.264,2.11e-05,0.181,0.257,111.037,1z3ugFmUKoCzGsI6jdY4Ci,4,
+Makis Ablianitis-Love Secret,0.6,0.635,2,-9.714,0,0.0327,0.839,0.859,0.743,0.673,138.021,5UYQixrXEf2UUJOnIcMdBg,4,Chillout - Instrumental
+Makis Ablianitis-Astro krifo,0.376,0.402,0,-10.327,1,0.0554,0.793,6.03e-06,0.097,0.411,185.699,7Bseei0GpTvAPPRacW497u,4,Chillout - Instrumental
+Makis Ablianitis-Sun Walk,0.757,0.589,4,-9.329,0,0.035,0.435,0.811,0.264,0.466,120.011,4NpdCPYWYvB6wLFiAFxKCD,4,Chillout - Instrumental
+Makis Ablianitis-Bahar,0.487,0.456,9,-12.057,0,0.0462,0.858,0.945,0.109,0.157,100.056,2WDjAjuInjn0EfEgZlJwvq,4,Chillout - Instrumental
+Makis Ablianitis-Uranos,0.666,0.648,5,-8.438,0,0.0334,0.693,0.392,0.496,0.511,159.964,5mvBtrmlPRgG23SdJpUkny,4,Chillout - Instrumental
+Makis Ablianitis-Love Secret,0.515,0.417,2,-9.845,0,0.0294,0.83,0.952,0.103,0.539,74.99,3WPtbZU88hUCWOYYuWFN9F,4,Chillout - Instrumental
+maNga-Dursun Zaman (feat. Göksel),0.406,0.901,2,-5.671,1,0.206,0.085,1.65e-05,0.0499,0.457,185.986,110lLYj8VghNryOewSj15h,4,
+Marc Anthony-You Sang To Me,0.578,0.894,10,-5.42,1,0.0296,0.0103,2.66e-06,0.216,0.741,165.98,2dwhMQsFeHr2S787WxqAqW,4,Slowish PopRock
+Black-Wonderful Life,0.72,0.521,7,-12.468,1,0.0302,0.705,0.36,0.214,0.823,106.055,0IWtEFQBwRHaMXZQtGEVcM,4,
+Mazhar Alanson-Ah Bu Ben,0.564,0.523,4,-8.087,0,0.0304,0.48,0.0,0.182,0.214,130.092,05X7vcI10qNE7WxTavmYNJ,4,Slowish PopRock
+Mazhar Alanson-Yandım,0.63,0.39,4,-8.771,0,0.033,0.581,3.76e-05,0.153,0.263,65.983,2bENCQdshCGZCoMjIzhzKb,3,Slowish PopRock
+Mecano-Hijo de la Luna,0.457,0.513,1,-7.961,0,0.0359,0.697,1.27e-06,0.0552,0.574,179.006,3yxeZZnFJDmw72ID4whKXR,3,Chillout - New Age
+Metallica-Mama Said,0.448,0.504,8,-7.749,0,0.0317,0.0171,0.000849,0.38,0.391,135.254,3dWNUqrgkQakv9fj5epwPK,4,Slowish PopRock
+"Maria McKee-Show Me Heaven - From ""Days Of Thunder""",0.5,0.455,8,-10.483,1,0.0261,0.136,0.00363,0.0646,0.563,155.935,1umFfZGw8bsBd1a0fLTQI3,4,Slow pure
+"Ludwig van Beethoven-Moonlight Sonata (First Movement from Piano Sonata No. 14, Op. 27 No. 2)",0.216,0.199,1,-20.583,0,0.044,0.991,0.916,0.095,0.339,178.876,7xfSCgVOkQJhVxnqzepATH,3,Chillout - Old Classic
+Michel Fugain & Le Big Bazar-Une belle histoire,0.395,0.578,9,-7.728,0,0.039,0.47,0.0,0.171,0.689,166.227,1GdtMDRiaF1EnG2LJpELme,4,
+Johann Pachelbel-Kanon und Gigue,0.354,0.23,2,-18.279,1,0.0434,0.8,0.0038,0.0854,0.52,152.102,2NpeOffr2aIpaoXNaXgdsV,4,Vivid - Classic
+"George Frideric Handel-Suite in B-Flat Major, HWV 434: IV. Menuet",0.406,0.00645,7,-32.739,0,0.0453,0.994,0.935,0.0895,0.111,59.156,6jZj45D2jdR6fMEb58TlSc,4,Chillout - Instrumental
+U2-Kite,0.431,0.658,4,-5.952,1,0.0334,0.0138,0.0864,0.657,0.2,134.035,4Wjaa3vx2BiLGF01AZMlHb,4,Slowish PopRock
+Mono-Life In Mono,0.489,0.775,4,-8.489,0,0.0349,0.00952,0.552,0.41,0.455,169.94,1VOnZafgOKntsHk7RvskL2,4,Slow pure
+The Byrds-Mr. Tambourine Man,0.456,0.47,2,-9.564,1,0.0294,0.513,3.76e-05,0.444,0.639,120.336,2HCaIYjkvWSZzaSKUoOh3d,4,
+Mustafa Sandal-Jest Oldu,0.714,0.784,10,-11.064,0,0.0471,0.578,0.000197,0.104,0.924,95.084,4LfPcUf3L22N1I95gR3vov,4,
+Nick Cave & The Bad Seeds-Where the Wild Roses Grow - 2011 - Remaster,0.336,0.47,7,-10.541,0,0.0319,0.378,0.00332,0.0953,0.163,154.649,3OwtuzRo8mc7lgsBau9MWk,3,Chillout - MorningCoffee
+Nil Özalp-Kalp Boş,0.625,0.856,6,-6.022,0,0.0416,0.0685,0.000531,0.0694,0.481,130.01,6tU6et6iD8PJwen5fhPhR8,4,
+Nilüfer-Esmer Günler,0.352,0.246,9,-12.178,0,0.052,0.608,0.0,0.0768,0.247,85.636,27pE3JVos4Fi4KIyfvjJm4,3,Slow pure
+No Doubt-Don't Speak,0.522,0.707,5,-7.113,0,0.0354,0.24,2.04e-05,0.156,0.572,76.05,7H8zey5My6uNdD2TxeCb9F,4,Vivid - Soft
+Israel Kamakawiwo'ole-Over the Rainbow,0.671,0.153,0,-13.569,1,0.0404,0.912,5.53e-05,0.0771,0.658,85.6,4yDjzVhXig9tfO7Zv46FE8,4,Chillout - MorningCoffee
+Duran Duran-Come Undone,0.542,0.793,8,-8.203,1,0.053,0.0423,3.95e-06,0.0814,0.708,173.931,0yfNXxlyXdmP0ue1iJijx1,4,Vivid - Soft
+Duran Duran-Ordinary World,0.472,0.652,1,-10.171,0,0.0305,0.0131,1.12e-05,0.14,0.401,140.124,0wokCRaKD0zPNhMRXAgVsr,4,Vivid - Soft
+Shirley Bassey-If You Go Away (Ne Me Quitte Pas),0.348,0.224,6,-12.275,0,0.077,0.798,0.0,0.171,0.164,173.498,5UPBpSqBxZzMFQmdMtYOee,4,Slow pure
+Frank Sinatra-If You Go Away,0.245,0.191,7,-13.659,0,0.0304,0.842,1.36e-05,0.131,0.164,83.532,6atwcwazzY6XxYXbVJo4TH,4,Slow pure
+Paul McCartney-Freedom - Studio Mix,0.43,0.86,7,-5.163,1,0.0375,0.0895,0.0,0.413,0.824,104.767,2gmjV6gyMMKOrwqsktfVlc,4,Vivid - Soft
+Pet Shop Boys-It's a Sin - 2001 Remaster,0.538,0.86,0,-5.916,0,0.0435,0.252,0.000527,0.247,0.291,127.153,6IDHh3FcwLVcG5NsmpQgg2,4,Vivid - Soft
+Pet Shop Boys-Always on My Mind,0.533,0.783,7,-10.61,1,0.0366,0.0116,0.0565,0.186,0.726,124.874,07ABETRdek3ACMpRPvQuaT,4,Vivid - Soft
+Petula Clark-Downtown,0.48,0.689,4,-7.921,1,0.0645,0.78,0.0,0.149,0.596,117.409,0ZQ6ckgerHYM5mOUxTl99Q,4,Vivid - Soft
+Diddy-I'll Be Missing You (feat. Faith Evans & 112) - 2014 Remaster,0.833,0.619,7,-5.595,1,0.0538,0.111,2.13e-05,0.159,0.901,109.92,1yy2DlSDtEt90d54rPDPXz,4,Vivid - Soft
+Procol Harum-A Whiter Shade of Pale - Original Single Version,0.249,0.66,0,-6.905,1,0.0342,0.504,0.0026,0.0891,0.435,149.813,78ZqE2tjAxbqEGGlvGnQfT,4,Slow pure
+R.E.M.-Everybody Hurts,0.254,0.383,2,-8.036,1,0.0282,0.614,0.0237,0.172,0.178,188.2,4tCWWnk3BXinf7FllmSyHW,3,Slowish PopRock
+Regina-Day by Day - Ghosts Radio Edit,0.682,0.809,0,-6.712,1,0.0285,0.0858,1.99e-06,0.176,0.805,130.191,2s08uLRdOpYnI7Uxzj17tl,4,
+Hans Zimmer-Cornfield Chase,0.33,0.229,9,-16.442,0,0.0375,0.948,0.973,0.0998,0.0593,96.158,18z7tK7u9DcDw85LYRR5Fe,4,Chillout - Instrumental
+Richard Marx-Right Here Waiting,0.395,0.252,0,-13.589,1,0.0301,0.8,0.0,0.101,0.126,177.679,4LFwNJWoj74Yd71fIr1W8x,4,Slow pure
+Rihanna-Hard,0.31,0.746,1,-3.599,1,0.111,0.0121,0.0,0.649,0.163,182.032,3YJkAQNEhmCZGLdmPsu6Ye,4,Vivid- RapHiphop
+Robert Miles-One & One (feat. Maria Nayler),0.644,0.69,2,-9.868,0,0.0283,0.0448,0.000582,0.113,0.791,120.065,5QkXjRlxeYGFBqpMuaO9xq,4,Vivid - Soft
+Rubén Del Rio-La Gallareta,0.773,0.856,10,-4.037,1,0.0504,0.359,3.36e-06,0.0746,0.821,82.392,3G90fSmKzAdS4gvj6wRaza,4,Vivid - Soft
+Roxette-Vulnerable,0.553,0.658,1,-5.862,1,0.0273,0.121,0.000244,0.0969,0.444,134.004,3f5r7wd7GdLHzDuCY9M0X6,4,Slowish PopRock
+Scarlet-Independent Love Song,0.452,0.298,10,-11.318,0,0.0283,0.432,0.0,0.0892,0.23,79.022,5OWngYysEOZ5V2j0bsSpps,4,
+"Done Again-Independent Love Song [In the Style of ""Scarlet""]",0.359,0.394,8,-13.173,1,0.03,0.38,1.91e-05,0.103,0.267,160.085,1AHLlb8lzKYOwDGOJhzhNO,4,Vivid - Soft
+Scorpions-Yellow Raven,0.42,0.283,8,-17.748,0,0.0401,0.161,0.0115,0.113,0.302,128.349,5yC0pfT6vfp3P3HJUSFaVb,4,Slowish PopRock
+Scorpions-White Dove - Studio Track,0.583,0.496,9,-7.654,0,0.0323,0.531,0.0,0.0622,0.236,136.002,7y9LuggOy2Jqi4d6wBdkjX,4,Slowish PopRock
+Scorpions-Send Me An Angel,0.153,0.417,1,-11.587,1,0.0318,0.434,0.000622,0.211,0.166,80.87,1bKQ48M9onID2kbSpRy8kK,3,Slowish PopRock
+Semiramis Pekkan-Bana Yalan Söylediler,0.309,0.606,3,-10.544,0,0.0771,0.728,0.00943,0.754,0.449,83.6,7Beeb1AZSs6YQuAeifdX0n,4,Vivid - Soft
+Sezen Aksu-Firuze,0.339,0.781,4,-5.469,0,0.0552,0.653,0.000118,0.27,0.528,79.27,7wy9gDTUipeY35NKn45ru5,4,Slow pure
+Sezen Aksu-Geri Dön,0.424,0.489,5,-7.11,0,0.0438,0.768,0.0,0.285,0.318,136.254,44xBxtfdZRhAXWvQD7I0x7,3,Slow pure
+Sezen Aksu-Zalim,0.65,0.723,4,-6.68,0,0.0477,0.221,0.0,0.213,0.889,109.994,3HrH0tLPJHsweeAlw3leQO,4,Vivid - Soft
+Sezen Aksu-Haydi Gel Benimle Ol,0.641,0.795,2,-6.605,1,0.182,0.609,0.0,0.302,0.52,119.75,6KBRNsL48BmRcQzUq1oSZq,4,Vivid - Soft
+Sezen Aksu-Her Şeyi Yak,0.57,0.366,2,-8.898,0,0.0333,0.824,1.57e-05,0.296,0.454,106.9,6JTrpXQBPdEII6C0SbXBYo,4,
+Sezen Aksu-Vazgeçtim,0.48,0.217,0,-11.52,0,0.038,0.784,0.000769,0.112,0.188,140.601,6Fov2wtS1YVTS3o4sqhgVM,4,Slow pure
+Steve Miller Band-Serenade,0.537,0.767,9,-11.76,0,0.0385,0.206,0.000797,0.0589,0.911,116.804,47dR6QIu5KfWhedEwnYhfE,4,Vivid - Soft
+Barbra Streisand-Memory,0.28,0.277,3,-11.608,1,0.0369,0.736,9.97e-06,0.12,0.109,108.656,5HmpVCza89KJc9cJA1T4sV,5,Slow pure
+Suede-Saturday Night,0.513,0.846,8,-6.567,1,0.0559,0.0586,0.000116,0.214,0.321,116.374,7rB0RovSa3rjGQmIdxqAH1,4,Slowish PopRock
+Tarkan-Dudu,0.707,0.864,4,-7.053,0,0.0463,0.0289,2.02e-05,0.0331,0.92,90.998,5yagW109ldFciQ3YAT6E75,4,Vivid - Soft
+Tasmin Archer-Sleeping Satellite,0.6,0.824,5,-9.864,0,0.027,0.171,0.000225,0.258,0.749,96.075,3WSyYBhLZRLbQo2tJgFvSR,4,Vivid - Soft
+t.A.T.u.-All About Us,0.492,0.888,7,-4.631,0,0.0343,0.426,2.56e-06,0.316,0.793,162.137,3PRGcLvFKBGcG5LMer7rn7,4,
+Teoman-O,0.449,0.513,7,-9.177,1,0.0285,0.314,0.000611,0.297,0.741,149.957,5X6w3HTzel2k1dDzrntIy9,4,Slowish PopRock
+Teoman-Ne Ekmek Ne De Su,0.528,0.571,10,-12.537,0,0.0336,0.385,0.000266,0.0575,0.672,79.985,3n1Pkq4SEStmueLE9I5VFO,4,Slowish PopRock
+Teoman-Kupa Kızı Ve Sinek Valesi,0.586,0.773,8,-5.724,0,0.0303,0.0187,0.0,0.314,0.369,94.83,0lX83giId8IqjzbZg2tP5B,4,Slowish PopRock
+Teoman-İstanbul'da Sonbahar,0.486,0.145,5,-16.369,0,0.0343,0.913,0.852,0.111,0.161,84.162,2vjStainSFSdC3XHBxZJRT,4,Chillout - MorningCoffee
+U2-Staring At The Sun,0.533,0.702,9,-8.504,0,0.0265,0.0549,0.0221,0.27,0.515,140.201,3fsTb3a8l5kJrtzpl04Ljr,4,Slowish PopRock
+U2-Beautiful Day,0.536,0.928,11,-6.492,0,0.0589,0.0154,0.00134,0.2,0.389,136.258,0gzqZ9d1jIKo9psEIthwXe,4,Vivid - Soft
+Whitney Houston-I Will Always Love You,0.332,0.214,4,-12.518,1,0.0349,0.845,5.62e-06,0.0839,0.11,67.531,4eHbdreAnSOrDDsFfc4Fpm,4,Slow pure
+Çelik-Öyle Bir Geçer Zamanki,0.596,0.521,5,-9.602,0,0.0288,0.338,2.6e-06,0.0921,0.848,130.116,6bqiiAZqfNxFgtpqvI86H7,4,Vivid - Soft
+Indila-Mini World,0.563,0.541,11,-8.458,0,0.0359,0.296,0.000352,0.104,0.165,131.947,6xJouIXcEu4BPRT4wGsf11,4,Vivid - Soft
+Metric-Eclipse (All Yours),0.451,0.325,11,-11.558,1,0.0327,0.764,4.25e-05,0.227,0.256,119.749,3gqFA8IMet7nSWtYPiVlS2,4,Slowish PopRock
+Nirvana-The Man Who Sold The World,0.483,0.753,1,-8.937,0,0.0832,0.425,0.000142,0.257,0.42,115.102,15VRO9CQwMpbqUYA7e6Hwg,4,Vivid - Soft
+Kenan Doğulu-Tutamıyorum Zamanı,0.701,0.637,10,-9.249,0,0.0304,0.197,0.0,0.0804,0.789,144.95,1tmqct37KhPwUYyoLf8QkH,4,Vivid - Soft
+Aaron Krause-Every Breath You Take (feat. Liza Anne),0.325,0.201,6,-11.595,0,0.0282,0.758,0.0,0.0977,0.172,81.869,65YDMuJmyF8cxTrk4Xogy0,4,Vivid - Soft
+Coldplay-Viva La Vida,0.486,0.617,5,-7.115,0,0.0287,0.0954,3.23e-06,0.109,0.417,138.015,1mea3bSkSGXuIRvnydlB5b,4,Vivid - Soft
+The Cardigans-Lovefool,0.704,0.636,9,-6.029,1,0.0252,0.0344,0.0,0.35,0.89,111.845,7aQjPecQdIuNd1sz3KCDhD,4,Vivid - Soft
+Shania Twain-Any Man Of Mine,0.592,0.725,8,-8.698,1,0.0412,0.207,0.0,0.148,0.784,78.235,0pdfN7nOHMYmKykzu1cyfm,4,Vivid - Soft
+Joan Osborne-One Of Us,0.316,0.499,9,-7.899,1,0.0298,0.0108,1.81e-05,0.126,0.403,174.782,1xNmF1Uep5OGutizZSbKvd,4,Vivid - Soft
+Alphaville-Forever Young,0.489,0.483,9,-9.466,0,0.0275,0.42,0.0028,0.236,0.333,136.822,4S1VYqwfkLit9mKVY3MXoo,4,Vivid - Soft
+The Beatles-Hey Jude - Remastered 2015,0.386,0.607,10,-7.7,1,0.0261,0.0112,1.38e-05,0.088,0.532,147.207,0aym2LBJBk9DAYuHHutrIl,4,Vivid - Soft
+Şebnem Ferah-Sigara,0.347,0.53,2,-7.928,0,0.0393,0.623,0.0,0.0666,0.325,171.281,4wl2ZAzq2sUfUMPhJnZDpb,4,Vivid - Soft
+Queen-Bohemian Rhapsody - Remastered 2011,0.414,0.404,0,-9.928,0,0.0499,0.271,0.0,0.3,0.224,71.105,4u7EnebtmKWzUH433cf5Qv,4,Vivid - Soft
+Eagles-Hotel California - 2013 Remaster,0.579,0.508,2,-9.484,1,0.027,0.00574,0.000494,0.0575,0.609,147.125,40riOy7x9W7GXjyGp4pjAv,4,Vivid - Soft
+Dido-White Flag,0.509,0.537,5,-6.834,1,0.0384,0.347,7.29e-06,0.0805,0.311,170.03,6si71supnBUhddjR2FJc2L,4,Vivid - Soft
+Shania Twain-You're Still The One,0.585,0.494,3,-8.751,1,0.0353,0.363,0.0,0.0886,0.634,133.822,1wb4P4F0sxAQ2KXrRvsx6n,4,Vivid - Soft
+Darren Hayes-Insatiable,0.67,0.847,0,-5.449,0,0.0545,0.0974,0.0,0.0842,0.852,143.872,4Q8yCpsxxJF0tRsjzu6Ytw,4,Vivid - Soft
+Demet Sağıroğlu-Arnavut Kaldırımı,0.717,0.678,5,-9.813,0,0.168,0.362,0.0,0.141,0.37,105.002,67dhDw256y1eiL00JGnKFC,4,Vivid - Soft
+Fools Garden-Lemon Tree,0.663,0.475,1,-8.834,1,0.0417,0.643,0.0,0.122,0.644,143.175,4fXGWiVhlOLdhwRDP6pIFG,4,Vivid - Soft
+Scorpions-Wind Of Change,0.452,0.524,0,-10.108,1,0.0351,0.315,0.0,0.103,0.246,151.505,3ovjw5HZZv43SxTwApooCM,4,Vivid - Soft
+Ezhel-Olay,0.878,0.44,8,-7.476,1,0.0955,0.0945,0.0,0.127,0.129,143.952,4EpPCQ7bqVUj65LoFydDj2,4,Vivid- RapHiphop
+Feride Hilal Akın-Yok Yok,0.698,0.422,0,-7.899,0,0.0598,0.66,0.0,0.142,0.142,75.803,4xUra9iCwTjPVhcu09fZS7,4,Vivid- RapHiphop
+Mert Şenel-Şaraplar ve Kadınlar,0.621,0.521,8,-9.526,0,0.256,0.568,0.0,0.133,0.466,78.45,1bDO55mh76e115OQmuqA17,4,Vivid- RapHiphop
+Murda-AYA,0.743,0.68,5,-4.344,0,0.103,0.113,0.123,0.183,0.694,180.059,4IJEw3fDvS6XF4sDc3bvjK,4,Vivid- RapHiphop
+Grup Yorum-Daglara Gel Daglara,0.597,0.566,11,-11.922,0,0.0286,0.174,0.0317,0.161,0.851,105.853,0DThnYbKoV9y16FPzdDL9h,4,Özgün coşku
+Grup Yorum-Uğurlama,0.625,0.357,7,-17.705,0,0.0388,0.572,1.36e-05,0.456,0.415,120.611,0urVvOV61Qv2oV4RPZKwtT,4,Özgün coşku
+Ahmet Kaya-Giderim,0.553,0.789,0,-5.202,0,0.0319,0.626,9.55e-06,0.131,0.43,104.978,0mxl0ty7Pe34G6FBh0zrcF,4,Özgün coşku
+Grup Yorum-Sibel Yalçın Destanı,0.436,0.339,4,-16.597,0,0.0653,0.593,0.000341,0.357,0.285,116.018,47UmGkLK5R0IQdc6Lbs32i,4,Özgün coşku
+Ahmet Kaya-Acılara Tutunmak,0.533,0.625,0,-10.425,0,0.0448,0.238,0.00846,0.536,0.393,97.978,5JCQV4gjM3t323V1CCiQv3,4,Özgün coşku
+Grup Yorum-Haziranda Ölmek Zor,0.419,0.275,10,-14.928,1,0.0386,0.81,0.0,0.0668,0.169,120.671,1NHQf1NhzM6cT03wHqhmJN,4,Özgün coşku
+Nilipek.-Koşuyolu,0.625,0.0645,7,-24.433,1,0.0406,0.898,0.00899,0.11,0.317,122.19,7nWMcuT0Ao3rH3hsLNv4Ob,4,Chillout - MorningCoffee
+The Robby Cool Orchestra-Forest Gump Main Theme,0.438,0.0871,7,-22.814,1,0.0339,0.976,0.978,0.0866,0.262,106.763,5JJ9OJIZIGRZlY9KIa5iUm,4,Chillout - Instrumental
+Soundtrack Orchestra-The Last of The Mohicans - Fender Guitar,0.356,0.36,2,-16.776,0,0.0372,0.748,0.026,0.142,0.772,90.821,25IPNe3qw62GpTOGU3hu21,4,Chillout - Instrumental
+Secret Garden-Nocturne,0.219,0.298,2,-11.52,0,0.0313,0.944,0.254,0.094,0.154,79.136,6bk11TH82XrT5QUC1gDw9A,3,Chillout - Instrumental
+Kitaro-Silk Road - Live,0.171,0.374,4,-12.375,0,0.0387,0.663,0.3,0.712,0.0548,134.726,7gIJn8QDMDNoE51UptcHUg,4,Chillout - Instrumental
+Yanni-One Man's Dream,0.363,0.115,0,-20.386,0,0.0352,0.984,0.975,0.135,0.188,122.598,53Lfqp8F0KCInwcFjabMJB,4,Chillout - Instrumental
+Kitaro-Caravansary,0.414,0.267,9,-13.142,0,0.0349,0.499,0.868,0.0609,0.108,121.87,6o56JEMxnUMPmO4qjWnjc9,4,Chillout - Instrumental
+Hans Zimmer-Chevaliers De Sangreal - From The Da Vinci Code Original Motion Picture Soundtrack,0.169,0.222,7,-15.954,0,0.0356,0.528,0.964,0.107,0.0397,110.877,64q5EfFKR9hYJ1FHqSClxe,4,Chillout - Instrumental
+Bryan Adams-Have You Ever Really Loved A Woman?,0.57,0.478,7,-10.185,1,0.0322,0.536,1.33e-05,0.0931,0.358,145.517,32Gf5A7Hr8RdgggXG0Fdks,3,Slowish PopRock
+Bryan Adams-(Everything I Do) I Do It For You,0.533,0.36,1,-12.633,1,0.0282,0.0805,1.03e-05,0.0631,0.299,131.229,1Eb90nmqTrxylKFhcUzW8P,4,Slowish PopRock
+Zeki Müren-Sorma Ne Haldeyim,0.407,0.473,0,-9.736,1,0.0508,0.869,2.38e-05,0.279,0.417,85.741,5wLdvuuDn3A9HgX5f0plCx,5,Slow pure
+Duran Duran-Perfect Day,0.349,0.544,10,-9.116,1,0.029,0.239,6.76e-05,0.5,0.218,144.133,0sRzDwpSHxPDhpB9yKlTaq,3,Slowish PopRock
+Vangelis-Conquest of Paradise,0.43,0.295,2,-14.255,1,0.0283,0.698,0.569,0.226,0.159,74.014,5avVpUakfMHD6qGpaH26CF,3,Chillout - Instrumental
+Westlife-Seasons in the Sun,0.597,0.558,6,-6.22,1,0.0226,0.197,2.98e-05,0.241,0.535,87.974,6D17ZfWe6kCi2BS563dMc7,4,Vivid - Soft
+Yanni-Prelude (Live),0.127,0.204,11,-14.33,0,0.042,0.968,0.455,0.243,0.0397,84.345,7Ij1B22a0APAMo972a9KH1,3,Chillout - Instrumental
+Yanni-In The Morning Light,0.343,0.131,9,-20.507,1,0.0319,0.981,0.903,0.07,0.177,104.798,2N6aUazlszu1DDPnSCGifu,4,Chillout - Instrumental
+Yanni-Until the Last Moment - Live,0.221,0.258,6,-16.305,0,0.0336,0.941,0.883,0.679,0.0486,96.001,7dRzKbKCOJWh2muFhoenmk,4,Chillout - Instrumental
+Yedi Karanfil-Yunus,0.579,0.563,0,-7.458,0,0.0266,0.183,0.00022,0.0633,0.453,117.919,0YLO2BTAhkOunlITRWymO9,4,Chillout - Instrumental
+Yedi Karanfil-Gözlerin,0.576,0.352,11,-13.563,0,0.0287,0.38,0.771,0.172,0.322,107.06,2JbWy8G7zyZhRWNAs9MPep,3,Chillout - Instrumental
+Yedi Karanfil-Devlerin Aşkı,0.621,0.49,9,-11.036,0,0.0288,0.675,0.577,0.107,0.282,134.012,7z8uvFKW2RrBHtlcTel2iE,4,Chillout - Instrumental
+Yedi Karanfil-Gesi Bağları - 1. Kısım,0.588,0.268,5,-11.194,0,0.033,0.709,1.11e-05,0.192,0.324,119.982,7yxLbRuB1fLOe6BDiH8ojn,4,TürküDeyiş
+Oya-Bana Bir Masal Anlat Baba,0.56,0.312,4,-14.399,0,0.0595,0.792,2.49e-05,0.0835,0.464,77.443,7buz6Rb4rewkkJtYFEcT1C,4,Özgün soft
+Yeni Türkü-Maskeli Balo,0.609,0.435,4,-10.651,0,0.0254,0.669,0.0,0.169,0.769,92.632,7AXfg4mqbx3YVl0boLIwo0,4,Vivid - Soft
+Yeni Türkü-Yağmurun Elleri,0.525,0.193,4,-18.782,0,0.0333,0.68,0.0,0.147,0.462,94.389,2i6OsKs0ZlS9whA56vbwva,3,Özgün soft
+Yeni Türkü-Olmasa Mektubun,0.546,0.192,11,-17.624,0,0.0304,0.483,0.0,0.111,0.264,107.118,0W7DXzIdAN0aC2oelsAM7X,4,Özgün soft
+Yeni Türkü-Fırtına,0.655,0.411,3,-14.631,0,0.032,0.276,5.7e-06,0.227,0.814,97.675,4hBKADcAFTDcgdinlBIGDu,4,Özgün soft
+Yeni Türkü-Karanfil,0.645,0.614,9,-8.265,0,0.0837,0.476,0.0,0.332,0.86,88.104,38bQUBxPGpNUnhe8hcRNMg,4,Özgün soft
+Simon & Garfunkel-El Condor Pasa (If I Could),0.33,0.214,4,-17.699,0,0.0311,0.836,0.0701,0.178,0.275,147.795,1eN42Q7IWRzRBq8eW2Y2TE,4,Chillout - MorningCoffee
+James Horner-A Gift Of A Thistle,0.0828,0.012,9,-36.045,0,0.0451,0.9,0.812,0.0875,0.0578,169.895,3Yvi5NkUrSppVwrMHYkB6u,3,Chillout - Instrumental
+Ennio Morricone-Once Upon a Time in the West - Main Theme,0.123,0.214,2,-10.946,1,0.037,0.836,0.676,0.13,0.0451,90.408,0c89GbbUO3degznx9eYrq0,4,Chillout - Instrumental
+Secret Garden-Song From A Secret Garden,0.226,0.303,0,-10.866,0,0.0374,0.897,0.878,0.162,0.094,66.727,5pSxOv6lbvdz2fddSUPdSA,4,Chillout - Instrumental
+Yüksek Sadakat-Belki Üstümüzden Bir Kuş Geçer,0.518,0.676,9,-5.382,0,0.0272,0.168,1.24e-06,0.436,0.6,100.056,3Ybp2oGEbdToSuFQtABbyE,4,Vivid - Soft
+Yusuf Güney-Aşkım Aşklarından Bulasın,0.739,0.794,9,-4.964,0,0.133,0.333,0.0,0.106,0.792,157.848,30nmgE4I2kp1rvfg0OLoHi,4,Vivid - Soft
+Zeki Müren-Gitme Sana Muhtacım,0.27,0.384,11,-14.961,1,0.0798,0.0639,0.000618,0.117,0.41,175.59,0rb2T3VwlC9jcA02UojwtE,4,Slow pure
+Neşet Ertaş-Allı Turnam,0.309,0.283,5,-9.423,1,0.0302,0.944,0.01,0.109,0.181,72.795,4B8kQ3pAA3zIQPizTW4Kfp,4,TürküDeyiş
+Ahmet Kaya-Ağladıkça,0.592,0.632,4,-9.577,0,0.0632,0.799,0.000176,0.261,0.59,127.964,776apKyslWaSaHXzQM69U7,4,Özgün coşku
+Ahmet Kaya-Başım Belada,0.685,0.371,11,-17.811,0,0.0552,0.72,1.9e-05,0.289,0.887,117.59,339cQHfGa9Bzv12KQEZSue,4,Özgün coşku
+Ahmet Kaya-Beni Vur,0.629,0.533,2,-10.212,0,0.0392,0.469,0.00142,0.104,0.614,92.045,1tLORE7MX4xLeh5KG3ACw0,4,Özgün coşku
+Zülfü Livaneli-Hoş Geldin Bebek,0.475,0.497,2,-9.194,0,0.0466,0.659,0.00275,0.316,0.272,142.394,0QJwiKqQaI30wsogQ8tSVx,4,Özgün soft
+Zülfü Livaneli-Böyledir Bizim Sevdamız,0.46,0.364,11,-10.824,0,0.0276,0.477,4.89e-05,0.209,0.124,78.419,33juZMbifB0egSK0Roc3Mo,3,Özgün coşku
+Zülfü Livaneli-Özgürlük - Live,0.407,0.744,11,-6.563,0,0.0757,0.631,0.0,0.93,0.499,137.92,180RRs2OspZxYUNBhS0AzC,4,Özgün soft
+Zülfü Livaneli-Yiğidim Aslanım - Live,0.455,0.754,0,-6.3,0,0.0482,0.583,5.29e-05,0.885,0.368,120.575,4s4aah9l0zG0MJvNJy5URX,4,Özgün soft
+Zülfü Livaneli-Gözlerin,0.496,0.465,11,-9.169,0,0.0275,0.125,0.0109,0.15,0.399,102.105,7DTx1sy8roG04BMg2huGOL,3,Özgün soft
+Ayten Alpman-Ben Böyleyim,0.405,0.409,5,-11.461,0,0.0376,0.945,0.162,0.113,0.563,114.922,2VZ59UciMplV9V34o4vIkl,3,Slow pure
+Ayla Dikmen-Anlamazdın,0.324,0.573,11,-7.224,0,0.0495,0.751,0.00127,0.548,0.433,116.735,1qwQ1P3FwFouG1zTIBkGXU,4,Slow pure
+Zülfü Livaneli-Güneş Topla Benim İçin,0.71,0.529,11,-10.07,1,0.0302,0.81,0.0044,0.0812,0.366,124.682,07CJtBzpZsSQeIoiN9jJhb,4,
+Cem Karaca-Deniz Üstü Köpürür,0.413,0.427,8,-12.972,1,0.0649,0.694,0.0961,0.154,0.231,101.426,4tC96bxgSFkA9tvPI0kCMb,3,
+Ahmet Kaya-Yollarına Baka Baka,0.424,0.416,9,-14.435,0,0.0486,0.6,1.85e-06,0.21,0.447,116.519,6INhCbVns9i4VR6CzdjBVf,4,Özgün coşku
+Cem Karaca-Islak Islak,0.652,0.567,5,-11.678,1,0.0325,0.11,0.0,0.0626,0.732,109.954,3U1930710e5U4pZB7MAEcr,4,
+Bülent Ortaçgil-Sensiz Olmaz,0.557,0.405,9,-13.414,1,0.0655,0.538,6.38e-05,0.959,0.324,127.098,6DDZH9XuIJZdfkM7dTbn0H,4,Özgün soft
+Fikret Kızılok-Yeter Ki,0.576,0.263,7,-17.049,1,0.0373,0.799,0.00702,0.118,0.617,82.46,2m8Hu0GbcH4PzYjzaD7v3U,4,Özgün soft
+Bülent Ortaçgil-Çiçekler Su İster,0.602,0.309,0,-19.201,1,0.0475,0.429,0.000127,0.126,0.506,156.159,5Oy590NUIZHt4Jsfn1u110,4,Özgün soft
+Ahmet Kaya-Acılara Tutunmak,0.477,0.478,1,-14.372,1,0.0553,0.607,0.000643,0.26,0.511,98.906,7BDSMnf6TyCoOOMObDCfhM,4,Özgün coşku
+Barış Manço-Gül Pembe,0.512,0.319,4,-10.944,0,0.0284,0.835,2.23e-06,0.109,0.256,75.027,6BXCGJlS4c33U4ayJdTH5q,4,Özgün soft
+Zülfü Livaneli-Karlı Kayın Ormanı,0.407,0.458,0,-9.276,1,0.0288,0.529,0.000206,0.173,0.28,109.708,7gmZSC6kk7TGscGMZ86sb4,4,Özgün soft
+Ahmet Kaya-Kum Gibi,0.667,0.571,0,-10.626,0,0.0359,0.589,0.000513,0.093,0.598,92.018,1vmzfiQsd8PHgt8Kgp7TgR,4,Özgün coşku
+Edip Akbayram-Hasretinle Yandı Gönlüm,0.231,0.645,10,-6.678,0,0.0651,0.24,5.07e-06,0.129,0.431,176.051,4aoMv517dci4RMXigkbwMJ,4,
+2CELLOS-Now We are Free,0.176,0.258,7,-14.569,1,0.0413,0.941,0.911,0.081,0.0529,137.383,6OLgebma3uuh5KDG5ZXjF5,4,Chillout - Instrumental
+All In One-The Last Mohican,0.695,0.71,7,-7.475,1,0.0838,0.0434,0.706,0.0908,0.506,145.002,3SU9e1Etqp82DmaGvSCabN,4,
+"Tina Guo-The Gael (From ""Last of the Mohicans"")",0.248,0.566,0,-9.432,1,0.0531,0.291,0.788,0.106,0.362,153.576,3MJILfKmB4dvs5SPINnZzJ,3,Vivid- Instrumental
+New World Orchestra-Last of the Mohicans,0.0671,0.284,2,-13.228,0,0.0339,0.617,0.852,0.055,0.0606,49.885,5XpLzPusPiPcC0LAZYrGm6,4,Vivid- Instrumental
+"Alban Fuam-The Last of the Mohicans (Main Theme) / Porthole of Kelp - From ""The Last of Mohicans""",0.329,0.445,0,-8.944,1,0.0403,0.802,0.794,0.1,0.29,107.906,4qqYcCzgUWP0JdAEsRPMCx,4,Vivid- Instrumental
+Trevor Jones-Promontory,0.366,0.214,0,-17.448,1,0.028,0.0865,0.967,0.0857,0.284,51.566,3HEJEGpnQfRuK7m6dKOhZa,4,Vivid- Instrumental
+VioDance-The Last Of The Mohicans,0.228,0.457,0,-10.821,1,0.048,0.604,0.778,0.104,0.197,94.181,1RB5pPzhRw5WvvrNppQpTr,4,Vivid- Instrumental
+Pat Boone-Speedy Gonzales,0.589,0.447,11,-12.912,1,0.0748,0.821,0.0,0.0999,0.789,146.845,3TmnUIbelFiDzrhZqavHU0,4,Vivid - Soft
+Yıldız Usmonova-Seni Severdim (feat. Yaşar ),0.591,0.662,5,-3.748,0,0.064,0.112,0.0,0.133,0.442,147.191,4wafsaGv4ofwEBmDyp4qsA,4,Vivid - Soft
+Laura Branigan-Self Control,0.814,0.686,6,-12.172,0,0.0342,0.219,0.00382,0.155,0.778,106.679,6JNJERZGJwDVgkmbohBw7u,4,Vivid - Soft
+The Police-Every Breath You Take,0.82,0.452,1,-9.796,1,0.0348,0.543,0.00294,0.0714,0.74,117.401,1JSTJqkT5qHq8MDJnJbRE1,4,Vivid - Soft
+The Cranberries-Animal Instinct,0.61,0.85,4,-5.411,0,0.0307,0.089,0.0,0.256,0.604,132.174,3J58Ccc5iTbCRnYx2xjo6d,4,Vivid - Soft
+Kaan Tangöze-Bekle Dedi Gitti - Çizik,0.593,0.288,4,-12.121,0,0.038,0.866,0.0,0.0866,0.447,128.302,4z05OycjpswjAgFdZyW6Po,4,Vivid - Soft
+LP-Forever for Now,0.547,0.341,4,-10.072,0,0.0305,0.904,0.00149,0.0953,0.0647,137.052,1wMpTjS9cNpdmxgJloFG30,3,Vivid - Soft
+Joanna Wang-Wild World - Acoustic Version,0.67,0.306,2,-11.032,1,0.0366,0.8,1.18e-06,0.0829,0.61,139.949,0ZWSpn7UgqAp4exbKEUD5g,4,Vivid - Soft
+Maroon 5-This Love,0.712,0.862,5,-4.612,0,0.0378,0.0525,0.0,0.093,0.809,95.051,6ECp64rv50XVz93WvxXMGF,4,Vivid - Soft
+Kalben-Haydi Söyle,0.475,0.318,4,-4.836,0,0.0302,0.8,0.0,0.168,0.317,81.05,3N5AZtKJALZZDHT4On8Ebx,4,Vivid - Soft
+Shania Twain-From This Moment On,0.305,0.323,7,-9.396,1,0.0284,0.483,0.0,0.107,0.103,135.803,0Q7Jp3aCwfYnSnbMDoXWyR,4,Vivid - Soft
+Müslüm Gürses-Affet,0.424,0.666,7,-6.683,0,0.0473,0.396,0.000169,0.12,0.275,160.079,0ikRchpmFlaqlzLRgu9qWk,4,Vivid - Soft
+The Mamas & The Papas-California Dreamin' - Single Version,0.552,0.608,1,-9.786,0,0.0345,0.352,0.0,0.0533,0.637,112.367,4s6LhHAV5SEsOV0lC2tjvJ,4,Vivid - Soft
+Canozan-Mutlu Olmak Zordur Derler (Akustik),0.525,0.272,11,-9.561,0,0.0334,0.792,4.87e-06,0.111,0.325,95.044,7ud7aoaVOnSGjPSX0WKbJC,4,Slowish PopRock
+Gripin-Böyle Kahpedir Dünya,0.59,0.857,3,-5.174,0,0.0399,0.0318,2.33e-05,0.0882,0.652,123.012,5VFasLYUqKVUymkLK6L6AG,4,Slowish PopRock
+Gripin-Sor Bana Sor,0.501,0.271,4,-12.777,0,0.0303,0.803,2.53e-06,0.119,0.241,149.702,0cYjegvUKw2vC3Q3d4Oc4s,4,Slowish PopRock
+Gripin-Beş,0.587,0.575,0,-6.628,0,0.0435,0.475,0.0,0.112,0.294,87.929,33YBWP7CVZujy6iXH55To8,4,Slowish PopRock
+Gripin-Aşk Nerden Nereye,0.594,0.588,4,-6.04,0,0.0318,0.535,0.0,0.165,0.408,139.979,5eKIwaGYnDnF1oAKpwnPSM,4,Slowish PopRock
+Gripin-Durma Yağmur Durma,0.58,0.567,6,-6.258,0,0.0299,0.426,0.0,0.0947,0.308,141.883,73jUiSSBWsnr6jGQFdqfYi,4,Slowish PopRock
+Beyoncé-Drunk in Love Remix (feat. Jay-Z & Kanye West),0.508,0.763,8,-3.58,1,0.0516,0.16,0.0,0.118,0.476,139.653,0FZmAvivvifvtN3pZScbw1,4,
+Khaled-C’est la vie,0.623,0.915,3,-5.349,1,0.0413,0.0167,0.0,0.361,0.838,129.961,6KGHsN5QI0qunsADx3e51i,4,
+Pitbull-Rain Over Me (feat. Marc Anthony),0.61,0.906,0,-2.117,1,0.0648,0.00416,0.0,0.758,0.294,127.916,2cZrrQMjB63c0iIugYH9zS,4,
+Amalya-Ella elle l'a,0.654,0.673,4,-9.75,0,0.0296,0.0374,0.0153,0.0962,0.639,99.987,6HCsAqPFK2SSiemjtQiSwE,4,
+Ed Sheeran-Shape of You,0.825,0.652,1,-3.183,0,0.0802,0.581,0.0,0.0931,0.931,95.977,7qiZfU4dY1lWllzX7mPBI3,4,Vivid - Soft
+Oasis-Don't Look Back in Anger - Remastered,0.327,0.938,0,-3.237,1,0.0645,0.0708,3.79e-06,0.148,0.326,162.937,0UvCh63URrLFcPkKt99hHd,4,
+Lady Gaga-Bad Romance,0.693,0.924,0,-3.711,1,0.0392,0.0034,4.4e-05,0.0926,0.715,118.983,5WFIK6GKHpNXfjlH3BSnep,4,
+INNA-Un Momento - Play & Win Radio Version,0.711,0.943,0,-3.785,1,0.148,0.115,0.00199,0.299,0.935,128.088,2MpSjNEXNMcQDvhvG6Fyub,4,
+R.E.M.-Losing My Religion,0.666,0.855,9,-5.051,0,0.0295,0.179,1.2e-06,0.0987,0.803,125.639,31AOj9sFz2gM0O3hMARRBx,4,
+Lady Gaga-Alejandro,0.626,0.799,11,-6.612,0,0.046,0.000358,0.00155,0.36,0.369,98.992,0iOu4s8w3pE9vbpb1SHXsL,4,
+Madonna-La Isla Bonita,0.724,0.822,1,-4.374,0,0.0333,0.304,1.38e-05,0.0553,0.964,99.9,6r8k1vznHrzlEKYxL4dZEe,4,
+"MIKA-Relax, Take It Easy",0.694,0.694,6,-8.21,0,0.0328,0.058,0.0126,0.129,0.608,121.876,0KM2y796j63t5RHhvRUxld,4,
+Don Omar-Danza Kuduro,0.699,0.917,0,-4.897,1,0.115,0.078,0.0,0.065,0.889,130.04,6DXLO8LndZMVOHM0wNbpzg,4,
+Neşet Ertaş-Neredesin Sen,0.458,0.324,4,-9.524,0,0.0481,0.929,0.0,0.0887,0.323,151.6,3jUhC1S0gWYOdzoCR1WY0m,4,TürküDeyiş
+Yaşar-Az Bana Gönder,0.548,0.537,9,-6.737,0,0.0391,0.761,0.000278,0.134,0.382,113.83,5A5hjk6dpVnwCTKMvS9pqn,5,Özgün soft
+Cengiz Özkan-Bir Ay Doğar,0.488,0.215,2,-13.636,0,0.0441,0.913,0.0,0.128,0.444,134.723,0duEGYv3O0qzgQzzuoykf6,5,TürküDeyiş
+Grup Yorum-Cemo,0.44,0.406,0,-15.91,0,0.0376,0.395,1.03e-05,0.261,0.606,73.76,1cxOTkZe2hdB3TXwMj6CoE,4,Özgün coşku
+Ömer Danış-Köyümün Yağmurları,0.475,0.35,8,-16.023,1,0.0353,0.528,0.000842,0.375,0.383,143.717,7eaZ5LEVpN63S2CzDM4sWY,4,Özgün soft
+Ali Ekber Çiçek-Haydar Haydar,0.375,0.673,9,-4.727,1,0.0315,0.802,0.0947,0.0706,0.421,125.96,3taipu8TQSPv1BsRQEfIQe,5,TürküDeyiş
+Zara-Dostum Dostum,0.687,0.433,1,-10.185,0,0.0314,0.821,0.0207,0.0987,0.643,127.97,2paLeDSt0hMOAlLGc4qHgO,4,TürküDeyiş
+Fikret Kızılok-Gönül,0.532,0.0561,7,-23.512,1,0.0523,0.85,0.00611,0.111,0.29,148.148,693B0Y6OGlRTpsWFkdVFeU,3,Özgün soft
+Eric Clapton-Wonderful Tonight,0.572,0.214,7,-15.625,1,0.0293,0.649,0.129,0.125,0.485,95.542,6zC0mpGYwbNTpk9SKwh08f,4,Slow pure
+"Eric Clapton-Tears in Heaven - Acoustic; Live at MTV Unplugged, Bray Film Studios, Windsor, England, UK, 1/16/1992; 2013 Remaster",0.695,0.336,9,-12.999,1,0.0313,0.8,0.00264,0.701,0.422,79.109,612VcBshQcy4mpB2utGc3H,4,Slow pure
+Reynmen-Ela,0.762,0.577,8,-6.768,0,0.0521,0.406,0.0,0.0936,0.533,130.08,2VUTPdW21gPVVTEmvdSwos,4,Vivid- RapHiphop
+Ufuk Beydemir-Ay Tenli Kadın,0.533,0.541,6,-7.854,1,0.0252,0.217,4.39e-06,0.11,0.335,144.135,5CaKpl8JB1FMCbsgh0sgO8,4,Slowish PopRock
+Deeperise-Uzun Uzun (feat. Jabbar),0.725,0.599,9,-8.966,0,0.0349,0.584,0.149,0.113,0.494,95.006,2lfIKSkxC1z8Q7JzTufWFo,4,Vivid - Soft
+Grup Yorum-Drama Köprüsü,0.577,0.392,0,-7.49,0,0.0253,0.7,0.0,0.17,0.469,110.126,1bFnC4lsGcp1w2JcoxE7Ha,5,Özgün coşku
+Madonna-Hung Up,0.649,0.647,9,-7.695,0,0.0452,0.0039,0.161,0.0686,0.405,125.02,3850dYVgOFIXJh5U4BFEWH,4,
+Ingrid St-Pierre-Les épousailles,0.577,0.346,0,-9.995,1,0.0509,0.849,0.0,0.0674,0.556,129.868,3YBtUOXgW8FwxkAzphFAzx,4,Chillout - MorningCoffee
+Les sœurs Boulay-La mort des étoiles,0.456,0.153,9,-16.021,1,0.0296,0.887,1.08e-05,0.118,0.314,92.342,43ScxV6zQAbwCZyPfPhRaI,4,Chillout - MorningCoffee
+Fikret Kızılok-Sevda Çiçeği,0.647,0.108,8,-21.204,1,0.062,0.886,0.47,0.112,0.417,121.499,4vmztiqUDwZGYHogu7RJ5e,4,Özgün soft
+Fikret Kızılok-Bu Kalp Seni Unutur mu,0.702,0.105,7,-22.333,1,0.0433,0.848,5.39e-05,0.306,0.563,109.289,4Q2t1wFBSwgaPlgV5GpqZp,4,Özgün soft
+Kenan Doğulu-Aşk Oyunu,0.489,0.331,2,-11.098,0,0.0384,0.645,0.0,0.225,0.509,137.396,4PPZVflVr66HSrjFxzj18H,4,Vivid - Soft
+Asya-Beni Aldattın,0.645,0.399,5,-15.384,0,0.114,0.433,0.0,0.189,0.544,80.072,3wPvDf9h1iJAW2c3581UZO,4,Vivid - Soft
+Tarkan-Salına Salına Sinsice,0.649,0.807,3,-9.757,0,0.135,0.0613,5.05e-06,0.0648,0.761,171.997,4PGsEvmwfJwNJJcsw9aaav,4,Vivid - Soft
+Fatih Erkoç-Ellerim Bomboş,0.683,0.418,2,-11.428,0,0.0484,0.369,0.0,0.617,0.747,163.965,0MXbcMLd1I7oQ9F5Ly3xxC,4,Slow pure
+Levent Yüksel-Yeter Ki Onursuz Olmasın Aşk,0.666,0.575,5,-12.247,0,0.0349,0.144,0.0,0.108,0.277,119.285,4oKJUmz45sF9iEyrOyVGW8,4,Vivid - Soft
+Levent Yüksel-Beni Bırakın,0.692,0.286,3,-14.219,1,0.0976,0.105,0.0,0.0786,0.687,176.431,57oWU54Tq5dh6dMkfx0j33,4,Vivid - Soft
+Tarkan-Kış Güneşi,0.652,0.706,11,-13.407,0,0.0436,0.0158,0.0,0.0843,0.892,91.024,1tiIKelgeYVi1KcylVnZdq,4,Vivid - Soft
+Mustafa Sandal-Gidenlerden,0.649,0.427,4,-16.206,0,0.107,0.479,0.000248,0.0954,0.788,180.015,4oTpyBkGdXVhgtpmeiJzWq,4,Vivid - Soft
+Nazan Öncel-Gitme Kal Bu Şehirde,0.444,0.324,11,-18.183,0,0.0482,0.194,0.0,0.0667,0.471,190.971,1xCcK7652L17CIr0K2Dzts,4,Slow pure
+Eric Clapton-Tears in Heaven,0.498,0.242,9,-12.238,1,0.0257,0.835,0.536,0.133,0.312,153.744,1kgdslQYmeTR4thk9whoRw,4,Slow pure
+Levent Yüksel-Medcezir,0.697,0.286,2,-14.804,1,0.0377,0.587,5.95e-06,0.0871,0.428,80.14,39Shd0A8AL4jZ7bmuvEWAu,4,Slow pure
+George Benson-You Are the Love of My Life,0.413,0.446,4,-8.798,1,0.0292,0.355,2.38e-05,0.138,0.226,127.979,50cZJ9FB4U0qDHd4hywCG0,4,Slow pure
+Eva Cassidy-Fields Of Gold,0.461,0.0859,9,-14.676,1,0.0309,0.974,1.12e-06,0.077,0.31,79.817,5vtOJrmovXGxGsnAck694H,4,Slow pure
+Shawn Colvin-Sunny Came Home,0.558,0.579,11,-8.05,0,0.0324,0.342,0.00831,0.0989,0.403,167.812,4mOxpj82q6n3EO7HBZCelX,4,Vivid - Soft
+Simge Pınar-Biz Hep Aynı,0.484,0.428,2,-10.026,0,0.0296,0.077,2.86e-06,0.116,0.172,160.079,4UP2ou7CmvOqQOPp9nyM04,3,Vivid - Soft
+Edip Akbayram-Çeşmi Siyahım,0.636,0.322,9,-16.586,0,0.0349,0.856,1.14e-05,0.0858,0.381,110.673,6jSMz87B0rv3DyKswnLEYh,4,Özgün coşku
+Grup Yorum-Çav Bella,0.55,0.304,10,-13.887,1,0.102,0.87,0.0,0.0997,0.625,68.302,5CX5ugcSOm6G24vZGhEPU0,4,
+Zülfü Livaneli-Yiğidim Aslanım,0.248,0.0123,0,-24.446,1,0.0492,0.948,0.000244,0.139,0.0926,83.296,0htQ4vGARrtvLmMxRUhm04,3,
+Ahmet Kaya-Kendine İyi Bak,0.65,0.496,0,-14.114,0,0.0315,0.585,0.0221,0.19,0.852,118.658,60O0xtbEoaRAaY6Khb7GFd,4,
+Johann Pachelbel-Canon in D,0.151,0.125,2,-20.414,1,0.0386,0.808,0.308,0.121,0.29,150.812,1c3GkbZBnyrQ1cm4TGHFrK,4,
+"Johann Sebastian Bach-Partita No. 1 In B Flat Major, BWV 825: Prelude",0.35,0.104,10,-25.867,1,0.0343,0.994,0.904,0.125,0.634,97.929,5NyZAGgWfau49QS8l8MVLA,4,Chillout - Old Classic
+"André Rieu-Love Theme (from ""Romeo and Juliet"")",0.236,0.224,7,-13.578,0,0.0378,0.835,0.843,0.232,0.0767,75.826,29lZKytTb56zzAwryJ3X38,3,Chillout - Instrumental
+Leonard Rosenman-Barry Lyndon: Sarabande (arr. L. Rosenman for orchestra),0.175,0.115,2,-17.094,0,0.0446,0.619,0.898,0.121,0.0792,172.535,2n3ol9NeR3sZWWP37jeje5,3,Chillout - Old Classic
+Enya-Only Time,0.418,0.249,3,-13.744,1,0.0301,0.841,0.661,0.112,0.213,82.803,6FLwmdmW77N1Pxb1aWsZmO,4,Chillout - New Age
+Ceza-Neyim Var Ki (feat. Sagopa K),0.904,0.462,2,-12.017,1,0.295,0.138,0.0,0.139,0.692,90.022,09XOVDSIbBxBf6Kr1vGnHf,4,Vivid- RapHiphop
+Dr. Dre-Still D.R.E.,0.816,0.775,11,-3.323,1,0.234,0.16,0.00031,0.0543,0.527,93.431,503OTo2dSqe7qk76rgsbep,4,Vivid- RapHiphop
+The Trouble Notes-Adriano,0.77,0.805,2,-6.865,0,0.0387,0.493,0.789,0.0816,0.956,124.963,5Vzu3wbncsbGG7jVQijvoG,4,Vivid- Instrumental
+Erik Satie-Gnossienne: No. 1,0.424,0.00798,5,-28.345,0,0.0496,0.996,0.925,0.0983,0.0794,124.166,4820SC1xnUaabzzYQTDkP2,3,Chillout - Old Classic
+"Yann Tiersen-Comptine d'un autre été, l'après-midi",0.484,0.192,2,-15.378,1,0.0465,0.991,0.908,0.106,0.0559,100.084,3YYKrn3iGOAel605Znt3ai,4,Chillout - Instrumental
+Elvis Presley-Suspicious Minds,0.487,0.382,7,-10.889,1,0.0309,0.0422,4.74e-06,0.411,0.714,116.557,1H5IfYyIIAlgDX8zguUzns,4,Vivid - Soft
+Elvis Presley-Can't Help Falling in Love,0.396,0.293,2,-14.062,1,0.0275,0.941,0.000196,0.105,0.343,100.307,44AyOl4qVkzS48vBsbNXaC,3,Slow pure
+Ennio Morricone-Gabriel's Oboe from The Mission - Excerpt,0.149,0.275,2,-12.602,1,0.0342,0.978,0.894,0.0889,0.0854,82.552,7zNfwWdqHdFXwg0qJylrrW,3,Chillout - Instrumental
+Mauricio Galbardi-Porto Fino,0.661,0.0812,4,-17.953,1,0.148,0.987,0.725,0.11,0.328,168.177,0fdPCpFOZeOUiW5qaBSrbr,4,Chillout - Instrumental
+Bette Midler-To Deserve You,0.645,0.573,5,-9.421,1,0.0254,0.142,0.00328,0.0962,0.246,102.979,5xG0YSgDMTkLlqksbBPjO6,4,Vivid - Soft
+Roxette-Spending My Time,0.42,0.574,4,-5.149,1,0.0292,0.238,0.000115,0.127,0.218,170.549,18eqtLHIuDSnx54o0IRUy0,4,Vivid - Soft
+"Roxette-It Must Have Been Love - From the Film ""Pretty Woman""",0.52,0.652,5,-6.655,1,0.0274,0.34,5.49e-05,0.256,0.722,80.609,6qB7YcFpeBEQa0D6QO482y,4,Vivid - Soft
+The Connells-'74-'75,0.53,0.59,11,-9.169,1,0.025,0.183,0.00227,0.0675,0.43,144.202,2MAVcVr2oylw2OZ3hojWYj,4,Vivid - Soft
+Titiyo-Come Along,0.645,0.787,5,-4.707,0,0.0274,0.0641,0.513,0.341,0.906,84.116,7GmHOAdriOnI9s5S79GAUr,4,Vivid - Soft
+Zeynep Sağdaş-Yarım Kalanlara Rağmen,0.641,0.446,5,-6.934,0,0.0283,0.573,0.0,0.118,0.245,109.978,2tvpX4cUEQxMLauelWXrFO,4,Slow pure
+Party Tyme Karaoke-Hey Baby (Drop It To The Floor) [Made Popular By Pitbull ft. T-Pain] [Karaoke Version],0.769,0.58,10,-9.721,0,0.0682,0.1,4.25e-05,0.0437,0.892,128.079,3zAi9c5uwUI2A0BIedGVse,4,
+Pitbull-Feel This Moment (feat. Christina Aguilera),0.673,0.758,7,-3.632,1,0.158,0.039,0.0,0.341,0.542,135.956,0Hf4aIJpsN4Os2f0y0VqWl,4,
+Adele-Skyfall,0.346,0.552,0,-6.864,0,0.0282,0.417,0.0,0.114,0.0789,75.881,3mr584ZFSkZrWja9kJAzlb,4,Vivid - Soft
+Sezen Aksu-Mia Pista Apo Fosforo / Her Şeyi Yak - Canlı,0.328,0.454,2,-10.384,0,0.0404,0.477,0.0,0.503,0.311,135.86,3ixXQPlo17Wm96kTXwxAPl,5,Vivid - Soft
+Reamonn-Tonight,0.54,0.7,4,-4.327,0,0.0282,0.319,0.0,0.164,0.208,145.092,1VIMJ84snstO50Bf9uXcdJ,4,Vivid - Soft
+Mabel Matiz-Gel,0.437,0.556,5,-7.224,0,0.0597,0.426,0.0,0.144,0.719,176.116,2D7ug4cz4Kt0Sys1h4gzDg,4,Vivid - Soft
+Yanni-The End Of August,0.146,0.381,1,-9.806,1,0.0307,0.98,0.905,0.883,0.0753,92.949,5SLULqJ4JTj6Es9Kt13igG,4,Chillout - Instrumental
+The Monkees-Daydream Believer,0.51,0.488,7,-10.304,1,0.0304,0.256,0.0,0.11,0.649,125.683,7uEcCGtM1FBBGIhPozhJjv,4,Vivid - Soft
+LP-Other People,0.546,0.665,11,-5.091,1,0.0257,0.0842,0.0,0.142,0.506,90.983,440hzEitMR0XzyemFndEiF,4,
+LP-Halo - Live,0.424,0.72,9,-8.605,1,0.0534,0.00666,0.0,0.674,0.0523,145.0,35LlWyY6u5ajhNbHkalXkB,4,Vivid - Soft
+Alphaville-Forever Young - 2019 Remaster,0.483,0.471,9,-9.711,0,0.0284,0.397,0.000336,0.331,0.291,137.012,6XHNIbru8xGohLzHNgxQvF,4,Vivid - Soft
+Lenka-Everything at Once,0.766,0.466,0,-8.036,1,0.0718,0.332,0.00378,0.379,0.839,145.003,1c97hmN3Z064RQZTvCfM84,4,Vivid - Soft
+Lenka-Trouble Is a Friend,0.657,0.83,8,-5.174,1,0.0248,0.0318,3.91e-05,0.122,0.653,118.026,2mxT8OWvZSjAzmYYGeBjoY,4,Vivid - Soft
+Lenka-The Show,0.753,0.59,0,-4.144,1,0.0317,0.259,0.0,0.0836,0.593,123.028,1mHoqHeQClLBp5UO3TbUac,4,Chillout - MorningCoffee
+Joy Williams-Sweet Love of Mine (Acoustic),0.565,0.136,11,-12.179,1,0.0299,0.943,1.68e-06,0.0952,0.349,83.013,1d4QAtlNQCnMARsacnkoyC,4,Chillout - MorningCoffee
+Lisa Hannigan-Snow,0.296,0.392,4,-12.987,0,0.0311,0.784,0.413,0.126,0.275,84.359,474nHoHfkz1BqEsv54QNec,4,Chillout - MorningCoffee
+Kina Grannis-Beyond The Sea,0.676,0.118,7,-11.443,1,0.032,0.935,0.0,0.292,0.517,103.948,2R6CGc2eQJjuVEbH1eUZjq,4,Chillout - MorningCoffee
+Joy Williams-Ordinary World,0.52,0.172,4,-11.422,0,0.0343,0.972,6.24e-06,0.109,0.0746,67.007,1Rzv9hwuNO1H7N947tD1e8,4,Chillout - MorningCoffee
+Nilipek.-Havada Bir Hinlik Var,0.496,0.0799,4,-20.419,0,0.0493,0.946,0.00551,0.0888,0.146,151.573,2VKEQKSDIOMK4xX6AGd119,3,Chillout - MorningCoffee
+Aşkın Nur Yengi-Yalancı Bahar,0.575,0.726,5,-8.306,0,0.07,0.606,0.0,0.158,0.625,79.943,1KC9nhTLsjBIFPlkV98lHM,4,Slow pure
+Luis Fonsi-Échame La Culpa,0.733,0.892,0,-3.641,1,0.0417,0.0376,0.0,0.137,0.675,95.989,2hl6q70unbviGo3g1R7uFx,4,
+Alan Walker-Alone,0.676,0.929,10,-3.194,1,0.0458,0.186,0.000405,0.121,0.157,97.019,0JiVRyTJcJnmlwCZ854K4p,4,
+Alan Walker-Faded,0.589,0.651,6,-5.097,1,0.0306,0.0291,3.2e-06,0.111,0.166,90.011,7gHs73wELdeycvS48JfIos,4,
+Clean Bandit-Rockabye (feat. Sean Paul & Anne-Marie),0.72,0.763,9,-4.068,0,0.0523,0.406,0.0,0.18,0.742,101.965,5knuzwU65gJK7IF5yJsuaW,4,
+Arash-Pure Love (feat. Helena),0.687,0.766,2,-3.058,0,0.028,0.211,0.0,0.0915,0.671,90.101,5rrmwzfwhbdtP445fOaWwX,4,Vivid - Soft
+Dynoro-In My Mind,0.694,0.77,6,-5.335,1,0.149,0.176,1.1e-05,0.118,0.163,125.905,0E9ZjEAyAwOXZ7wJC0PD33,4,
+Dana Winner-Moonlight Shadow,0.593,0.585,1,-7.104,0,0.0305,0.324,0.0,0.14,0.28,128.031,2hBvbJcK2JZL2kF6cN5hKL,4,Vivid - Soft
+Blackmore's Night-Moonlight Shadow - 2017 Version,0.616,0.255,3,-9.226,1,0.0339,0.752,0.0,0.112,0.436,121.407,5LcpApTwJ9IHizAzt5yhzi,4,Vivid - Soft
+Mike Oldfield-Moonlight Shadow - Remastered,0.625,0.703,4,-9.863,1,0.0263,0.262,1.02e-06,0.231,0.791,128.389,6Dn1eJuyjYEUzT7elXpi58,4,
+Mike Oldfield-Moonlight Shadow,0.611,0.72,4,-8.359,1,0.0259,0.291,0.0,0.356,0.8,128.594,4WpmwEdc4RBos8W8icSSxW,4,Vivid - Soft
+Marcel Depuis-Sonata Pathétique,0.71,0.05,11,-23.245,0,0.0566,0.967,0.806,0.116,0.142,115.298,2NCG0u2NT7KceLxCjseW3A,4,Chillout - Instrumental
+Isgaard-...Where The River Will Flow,0.383,0.543,6,-10.106,0,0.0433,0.259,0.0274,0.932,0.229,145.901,7JthGn6hR5xxPqvNxT0bQU,4,Vivid- Instrumental
+Enya-Caribbean Blue - 2009 Remaster,0.393,0.414,4,-12.262,1,0.0321,0.807,0.958,0.118,0.677,157.626,5KZ4DC772dYcRBAizx0yYk,3,Chillout - Instrumental
+Roque Baños-Vuelta a la Vida,0.192,0.144,7,-17.961,1,0.036,0.825,0.871,0.122,0.0572,136.141,6htoXgVGkK04J8cD2h5Q7v,3,Chillout - Instrumental
+U2-One,0.392,0.534,0,-8.793,1,0.0369,0.245,0.00104,0.155,0.325,181.305,3G69vJMWsX6ZohTykad2AU,4,Chillout - MorningCoffee
+Priscilla Ahn-Vampire,0.267,0.107,4,-15.426,0,0.0363,0.958,0.961,0.148,0.0355,76.477,6wHf6t5y9KjJ77N8zKPzzL,3,Chillout - MorningCoffee
+Katie Melua-Wonderful Life,0.904,0.341,6,-12.088,0,0.0417,0.792,0.021,0.0977,0.447,105.179,0cqLFzFYsQurUI3McUZkLg,4,Chillout - MorningCoffee
+Priscilla Ahn-Dream,0.512,0.248,2,-10.359,1,0.0275,0.75,2.96e-05,0.114,0.158,109.692,0ngtyvPUKR4YTtkVKvZP02,3,Chillout - MorningCoffee
+"Pyotr Ilyich Tchaikovsky-Tchaikovsky: Swan Lake, Op. 20, Act II: No. 10, Scene. Moderato",0.136,0.164,4,-18.756,0,0.0364,0.911,0.916,0.109,0.071,58.303,2xizRhme7pYeITbH1NLLGt,4,Chillout - Old Classic
+Orchestra Di Padova E Del Veneto & Peter Maag-Symphony No. 7 Op. 92: II. Allegretto (Beethoven),0.257,0.0214,4,-24.139,0,0.0412,0.926,0.248,0.0749,0.0479,128.491,7vz1mIFQKpIuj2krAU1MWS,4,Chillout - Old Classic
+Simon & Garfunkel-The Sound of Silence,0.534,0.235,6,-12.854,1,0.0302,0.885,3.49e-06,0.0994,0.325,106.847,7cmabScTwMw2NjjT2zZ3zj,4,
+Haris Alexiou-Mia Pista Apo Fosforo,0.526,0.507,2,-8.532,0,0.0262,0.653,0.000114,0.1,0.513,105.717,6hMwkf4DZfcVlKIzSQ6nkm,4,
+Georges Bizet-Carmen Suite No. 2: Habanera. Allegretto quasi Andantino (Act I),0.425,0.0928,7,-21.333,1,0.0431,0.925,0.127,0.133,0.505,124.611,279aYcgTTMetBKyMdlCJFN,4,
+Düşbaz-Bahar,0.572,0.824,7,-6.077,0,0.0528,0.671,0.0,0.238,0.213,91.979,2oc6qXBpRSVwRlq6GgayBF,4,
+yirmi7-Muhtemel Aşk,0.477,0.606,2,-7.37,0,0.0411,0.3,3.06e-05,0.168,0.247,99.924,7HF5VUUEpYN6R6dZrhRyn1,4,
+Emel Sayın-Duydum Ki Unutmuşsun,0.26,0.305,4,-11.131,0,0.0386,0.909,0.000356,0.127,0.428,172.13,5ciOzU5DXo4gRHYVuDqsRu,3,
+Tanju Okan-Öyle Sarhoş Olsam ki,0.573,0.578,10,-5.548,1,0.0364,0.847,5.07e-05,0.106,0.718,113.202,3iMBeyqsQSKjtT8G6wencW,4,
+mor ve ötesi-Bir Derdim Var,0.586,0.89,11,-1.988,0,0.0369,0.012,0.00508,0.114,0.426,119.062,5oecOcmSEHs7MZiB0NPbFu,4,
+Zeki Müren-Şimdi Uzaklardasın,0.341,0.322,4,-17.791,0,0.0933,0.666,0.00127,0.13,0.199,155.787,0qov8ElRIKtdCKqYbdQbbA,3,
+Isigin Yansimasi-Birdenbire,0.46,0.55,9,-7.71,0,0.0293,0.367,3.08e-06,0.0895,0.292,130.133,3WkLwto0IaaxjFeetMgdRJ,4,Slowish PopRock
+Duman-Senden Daha Güzel,0.775,0.438,4,-5.608,1,0.0333,0.0298,0.00103,0.0415,0.643,88.719,2sLAykCWyB1VA5hXDjU59T,4,
+Pinhani-Ne Güzel Güldün,0.264,0.482,10,-7.711,1,0.0372,0.461,6.42e-05,0.151,0.185,51.722,79bKKv3MNqU7jec2IFKw7d,4,Vivid - Soft
+Model-Değmesin Ellerimiz,0.615,0.757,2,-6.506,0,0.0685,0.123,0.0,0.275,0.556,99.96,7phvVbPmlxEGo6o0VQFsSp,3,
+Model-Değmesin Ellerimiz - Akustik,0.602,0.494,2,-6.843,0,0.0347,0.736,0.0,0.169,0.4,99.816,5rLTeYYoLnKbJG76xAvsht,3,
+Model-Pembe Mezarlık,0.538,0.84,8,-6.384,0,0.061,0.225,0.0,0.129,0.718,140.024,2q2uKIUC8wycTQt0183M40,4,
+Delerium-Silence - DJ Tiësto's In Search Of Sunrise Remix,0.601,0.85,11,-7.336,0,0.0542,0.00134,0.507,0.0663,0.155,137.984,2DLhrAOpgO0XjyfAPI9cuc,4,
+The Cranberries-Linger,0.439,0.434,7,-14.918,1,0.0265,0.0783,4.87e-05,0.14,0.204,94.845,0gEyKnHvgkrkBM6fbeHdwK,4,Vivid - Soft
+Kina Grannis-Can’t Help Falling in Love,0.266,0.0596,0,-18.515,1,0.0363,0.905,7.07e-05,0.132,0.143,181.74,7uuEfUMuPeQ7RlSWa0cES2,3,Chillout - MorningCoffee
+Ed Sheeran-Candle In The Wind - 2018 Version,0.549,0.449,4,-10.479,1,0.0455,0.732,0.0,0.117,0.506,76.028,73TXMz1i41sGfOuDg8gH4L,5,Vivid - Soft
+Lotte Kestner-Halo,0.576,0.121,9,-17.343,1,0.036,0.952,0.00111,0.1,0.063,116.826,5mVDhLnXTHlBWJnMHXa9Qs,4,Chillout - MorningCoffee
+Disturbed-The Sound of Silence,0.322,0.28,6,-9.367,0,0.0281,0.468,1.1e-06,0.102,0.175,85.794,1Cj2vqUwlJVG27gJrun92y,4,Vivid - Soft
+Simon & Garfunkel-The Sound of Silence,0.435,0.456,6,-10.305,1,0.0279,0.136,1.62e-06,0.124,0.529,107.529,2LkaNhCrNVmcYgXJeLVmsw,4,Vivid - Soft
+Yaşlı Amca-Ve Ben,0.399,0.556,8,-6.202,0,0.0407,0.599,2.38e-06,0.145,0.278,175.944,4CC8nusbxWLvfFGBGIhiVi,4,
+Can Kazaz-Sürsün Bahar,0.595,0.256,6,-13.377,0,0.0336,0.606,0.00217,0.243,0.282,115.827,0kGoVM72aaxK3pcTq5UEG3,4,
+Sedef Sebüktekin-Sen Istersin,0.782,0.343,2,-16.165,1,0.0601,0.753,0.00577,0.0844,0.501,99.97,1wMvP4KuZOcA3kum0TE6x6,4,Chillout - MorningCoffee
+Pinhani-Beni Al,0.734,0.443,7,-10.873,1,0.027,0.657,1.22e-06,0.251,0.552,118.021,5h3B2E7tSVOSkvfwp5JxhX,3,Slowish PopRock
+Pinhani-Hele Bi Gel,0.68,0.576,9,-8.637,0,0.0296,0.324,0.0,0.0448,0.624,146.037,5nuGiGWV1tGsLYqi0Y8RmZ,1,
+Can Kazaz-Keşke Uyuyabilsem,0.553,0.468,11,-10.812,0,0.0401,0.508,9.75e-06,0.101,0.525,72.973,0PjjVJLR4hsNvsOV9Q5zi8,4,
+Vera-Saklanır Nisan,0.524,0.68,6,-5.118,0,0.029,0.0639,0.0,0.106,0.363,170.013,2naE8OU5ZEqGifm6mzG4pY,3,
+Dolu Kadehi Ters Tut-Belki,0.636,0.456,7,-11.58,1,0.0303,0.394,0.00131,0.12,0.281,149.952,7rBUB7VkCaNCu1GSOJcH1f,4,
+Simge Pınar-Sangria,0.508,0.496,4,-9.374,1,0.0271,0.0377,0.00099,0.377,0.181,141.973,7JZB6QySpckCUpJ1benFYA,4,
+Kenan Doğulu-Yapma,0.685,0.656,11,-7.364,0,0.0667,0.362,0.441,0.349,0.672,142.956,70Ja6eFO4TL5ZFz90nUDbN,4,
+Gökhan Türkmen-Olmadı,0.488,0.345,7,-12.293,0,0.0327,0.769,0.0,0.336,0.37,124.988,3d7YArz6aeaJoKcj7GyFBc,4,
+Melisa Karakurt-Bir Fırtına Tuttu Bizi,0.553,0.107,5,-11.305,0,0.0333,0.977,8.76e-05,0.113,0.117,89.872,4Dlhyt24EWIHwa72Jv6ppU,4,
+Fikri Karayel-Hayal Edemezsin,0.526,0.51,9,-8.297,0,0.0485,0.888,0.0,0.267,0.381,67.245,7At465s7IzuuhSBAoqFQgT,4,
+Jabbar-Cesaretsizce Olmuyor,0.802,0.585,6,-6.871,0,0.042,0.55,0.000345,0.105,0.789,98.005,3GXkYMKJ443tsH5KmOABnw,4,
+Nazan Öncel-Kimler Gelmiş,0.589,0.785,6,-6.787,0,0.0447,0.284,0.0,0.359,0.715,79.984,78MXmKL5uGso6pI7Yq0XaR,4,
+Yalın-Sensiz Olmaz,0.612,0.56,0,-7.185,0,0.0389,0.45,0.0,0.119,0.317,145.897,27t7YHIlw0u1uVO302wpvD,4,
+Tuna Kiremitçi-Birden Geldin Aklıma,0.66,0.603,2,-7.228,0,0.103,0.264,7.62e-06,0.0882,0.534,163.991,4XVif6rh9oYMIjazZ5F65A,4,
+Moldoni-Cornfield Chase,0.408,0.227,9,-13.122,0,0.0308,0.922,0.932,0.322,0.132,115.936,0chqjQd5B56YfsAJwFfwAg,3,
+Burcu Güneş-Yansın Geceler,0.29,0.712,4,-5.56,0,0.0478,0.413,0.0,0.112,0.287,169.288,0IPpPlyYSgSEFybzwXwX09,4,
+Manian-Like a Prayer - Cascada Radio Edit,0.643,0.994,5,-7.27,1,0.117,0.00337,0.00012,0.182,0.546,140.027,67B1U4I4exYOxDogkJSQv1,4,
+Nilipek.-Son Mektup,0.643,0.218,4,-10.938,0,0.0692,0.882,0.0,0.137,0.4,109.347,4ySHSJw95jpVyBhdsLeK8b,4,
+Nilipek.-Gözleri Aşka Gülen,0.428,0.156,9,-18.923,0,0.085,0.742,0.0035,0.115,0.0398,141.261,4qzZm5EIdFurBpDieEmVc9,4,
+Sedef Sebüktekin-Bul Beni,0.692,0.513,4,-10.972,0,0.0345,0.775,0.842,0.409,0.0648,124.942,5CG349EjOLsKraA4SsTSbi,4,
+심현정-The last waltz,0.202,0.262,0,-14.071,0,0.0417,0.385,0.886,0.616,0.213,121.132,0BknnnoV4woE5pOg6APWxb,3,Chillout - Instrumental
+Burcu Güneş-Minnet Eylemem,0.537,0.352,0,-8.895,0,0.0339,0.803,0.0,0.172,0.208,123.928,1FOycRroXKRnbZBD24hHsk,4,
+Nil Karaibrahimgil-Bu Mudur - Akustik Versiyon,0.737,0.423,4,-7.133,0,0.0312,0.674,0.0,0.0924,0.47,109.931,3bsQtBg1Vu063xVh62jker,4,
+Redd-Prensesin Uykusuyum,0.402,0.313,7,-13.139,0,0.0265,0.453,0.00153,0.0902,0.2,145.136,0vEP3CrvuvvyuUWGK2DmWv,4,Chillout - MorningCoffee
+Canozan-Bul Beni (Akustik),0.712,0.375,6,-13.681,0,0.0376,0.836,0.069,0.115,0.271,122.063,05Q2f7D1WHIWdATmrDY9nR,4,Chillout - MorningCoffee
+Amason-California Dreamin',0.772,0.409,9,-9.226,0,0.0299,0.764,0.00323,0.101,0.338,109.978,41uHv2ZIT0YDUHoyNzvRQ1,4,
+Yüzyüzeyken Konuşuruz-Dinle Beni Bi',0.558,0.68,9,-9.301,0,0.0476,0.56,0.905,0.107,0.542,91.967,11PO9iu6PtpgL1JK4QNUEJ,4,
+Multitap-Ben Anlarım,0.653,0.668,4,-6.542,0,0.0309,0.202,0.0,0.507,0.663,115.936,3usbNeewitMkSZpbHo6Vey,4,
+Tuğçe Şenoğul-Kaptan,0.513,0.55,4,-7.82,0,0.0295,0.236,0.00239,0.179,0.262,94.987,5tAt8I91Y4ZG1tYLTr3hHP,4,
+Son Feci Bisiklet-Pazar Ve Ertesi,0.684,0.516,2,-8.066,0,0.024,0.547,3e-06,0.0758,0.746,104.975,6yBVfW4KwMvZDKdUTltqw8,4,
+Mabel Matiz-Boyalı Da Saçların,0.493,0.609,11,-7.344,0,0.0302,0.292,0.000122,0.155,0.195,100.034,6U5ASeAYXjmfvt6tBor0KJ,4,
+Grup Yorum-Uğurlama,0.629,0.47,7,-12.992,0,0.0374,0.545,3.97e-05,0.246,0.38,120.614,0FglgIQyoQ72Yw9FiEhYia,4,
+"Marcel Depuis-Pavane, Op. 50",0.667,0.0792,6,-22.079,0,0.0484,0.962,0.924,0.111,0.121,127.962,2cvTKsArRvSBWid2gRrJxo,4,Chillout - Instrumental
+Hoobastank-The Reason,0.447,0.668,4,-4.683,1,0.0294,0.0127,0.0,0.152,0.0695,82.904,1lHtE5JDCas1EwXhQIMOIj,4,Vivid - Soft
+Keith Richards-Bittersweet Symphony,0.351,0.867,9,-6.352,1,0.0433,1.35e-05,0.916,0.214,0.407,171.019,3UMLhkoOmf6cvpF6g842by,4,
+"Antonio Vivaldi-Vivaldi: The Four Seasons, Violin Concerto in F Minor, Op. 8 No. 4, RV 297 ""Winter"": I. Allegro non molto",0.513,0.254,5,-16.22,0,0.0473,0.922,0.272,0.181,0.341,144.858,7fng0GYDvMr2Sc2RaYjU11,4,Vivid - Classic
+"Francesco Geminiani-Concerto Grosso in D Minor for 2 violins, cello and strings (after La Follia)",0.349,0.107,2,-21.046,0,0.0409,0.8,0.506,0.202,0.223,119.944,1opJhsL0xzbi5cozmUqsG0,3,Vivid - Classic
+Escala-Sarabande,0.294,0.478,2,-8.37,0,0.0324,0.168,0.556,0.177,0.0642,134.128,02n8M9PdTez1wS3coIls24,3,Vivid - Classic
+George Frideric Handel-La grande sarabande pour cordes et basse continue,0.0842,0.117,2,-19.928,0,0.0436,0.874,0.931,0.1,0.0395,169.027,60mG4735LLAHSimFGh2eZ8,5,Chillout - Old Classic
+"Francesco Geminiani-Concerto Grosso No. 12 in D Minor (after Corelli's Sonata, Op. 5, No. 12, ""La Follia""): I. Adagio - II. Allegro - III. Adagio",0.215,0.325,1,-11.66,0,0.0312,0.516,0.101,0.365,0.166,70.036,2zXPgESvfZGkiJgkKoG8hw,3,Vivid - Classic
+"George Frideric Handel-Keyboard Suite in D Minor, HWV 437: III. Sarabande (Arr. for Chamber Orchestra)",0.221,0.0236,2,-26.007,0,0.048,0.943,0.865,0.278,0.198,171.121,0GbEbkIBYRqEz5E9ee5skP,3,Chillout - Old Classic
+"Yann Tiersen-Comptine d'un autre été, l'après-midi",0.484,0.192,2,-15.378,1,0.0465,0.991,0.908,0.106,0.0559,100.084,4O2N861eOnF9q8EtpH8IJu,4,Chillout - Instrumental
+Henrik Janson-Chi Mai,0.629,0.262,2,-10.763,1,0.0323,0.925,0.822,0.0892,0.0683,83.888,2MGRqvsd9i0N2KOzVRIFkU,3,Chillout - Instrumental
+George Frideric Handel-Sarabande from Keyboard Suite No.11 in D Minor (opening) - 1996 Remastered Version,0.563,0.0026,2,-32.693,0,0.372,0.993,0.973,0.0695,0.0504,96.809,2c0zRRIEPc6euLBiWzEW6O,4,Chillout - Old Classic
+Tomas Hilber-Game of Thrones Theme,0.814,0.114,0,-19.22,0,0.0635,0.979,0.969,0.111,0.383,120.244,70LA1qeP7w3yVVbW1R56IA,3,Chillout - Instrumental
+Lady Gaga-Bad Romance,0.696,0.921,0,-3.755,1,0.0363,0.00314,5.24e-05,0.0842,0.714,119.001,1CZOrmHUUjeDP7N2B4Ba6S,4,
+Lady Gaga-Alejandro,0.623,0.793,11,-6.63,0,0.0462,0.000397,0.0015,0.375,0.36,98.998,3t4i2ZrrPcIZLgK7VNqD36,4,
+Zaz-Je veux,0.525,0.807,2,-6.366,0,0.0725,0.251,0.0,0.0504,0.741,155.397,734dz1YaFITwawPpM25fSt,4,
+David Guetta-Flames,0.609,0.726,5,-4.346,0,0.0414,0.0723,8.45e-06,0.0895,0.362,93.958,33IOhptvC2Qoy2UhjiHXLV,4,
+Sia-Cheap Thrills,0.628,0.698,6,-5.608,0,0.105,0.0472,0.00143,0.0907,0.732,89.976,27SdWb2rFzO6GWiYDBTD9j,4,
+Sia-Chandelier,0.399,0.787,1,-2.88,1,0.0499,0.0197,6.07e-05,0.0685,0.572,117.089,4VrWlk8IQxevMvERoX08iC,5,
+Luis Fonsi-Despacito (Featuring Daddy Yankee),0.66,0.786,2,-4.757,1,0.17,0.209,0.0,0.112,0.846,177.833,4aWmUDTfIPGksMNLV2rQP2,4,
+Cutting Crew-(I Just) Died In Your Arms,0.632,0.727,11,-11.209,0,0.0438,0.0119,7.64e-05,0.0678,0.499,124.919,0YPXkQthLWrhNGoKTbwCJ8,4,Vivid - Soft
+Amy Macdonald-This Is The Life,0.628,0.882,1,-5.024,0,0.0323,0.259,0.0,0.065,0.853,95.083,4oKmnf4t9z2uEw0jN1GJ0z,4,
+Allison Mareek-Sound of Silence,0.461,0.134,10,-14.981,1,0.0451,0.882,0.0,0.327,0.218,89.682,2fw9l0TV9AiwQPIvVCms9J,4,Chillout - MorningCoffee
+Lana Del Rey-West Coast,0.543,0.58,6,-7.643,0,0.0381,0.187,0.0325,0.0921,0.515,123.16,01xAq8HMYTNqmsbH0ZvPMl,4,
+Van Morrison-Brown Eyed Girl,0.578,0.61,7,-9.643,1,0.0392,0.0798,0.0,0.261,0.827,74.812,11oPA9rpP5NmMZQb8gF35m,4,
+Escala-Chi Mai,0.342,0.159,6,-14.757,0,0.0319,0.809,0.626,0.08,0.044,90.076,5GxnHe2k8KVCBlxBgeoyjO,3,
+The Byrds-Mr. Tambourine Man,0.481,0.628,2,-6.942,1,0.0336,0.13,0.0153,0.417,0.808,121.56,05AxQjqjE0vFqYqujKaa95,4,
+Lana Del Rey-Big Eyes,0.296,0.331,10,-12.761,1,0.0309,0.814,0.000942,0.0939,0.055,93.874,5uDnsXnRqNT3FZmVVA5dsF,4,
+Indila-Boite en argent,0.467,0.299,7,-11.833,0,0.0371,0.7,0.0,0.118,0.256,133.879,5dvMHDHaB6Y2au3DXsWXEa,4,Vivid - Soft
+Indila-Feuille d'automne,0.533,0.437,2,-6.662,1,0.0294,0.0199,1.75e-06,0.175,0.0747,87.52,4WvsxOf6HXbSA8bPKb7bXA,4,Vivid - Soft
+LP-Lost on You,0.437,0.708,5,-6.613,0,0.0354,0.111,0.0,0.114,0.687,173.974,67jvIkRay68LxQ66DKWa2s,4,
+Lana Del Rey-West Coast,0.424,0.624,6,-7.651,0,0.0423,0.19,0.0597,0.0934,0.429,123.217,5TOwCJuRa9H82eklOv2nj6,4,Vivid - Soft
+Indila-S.O.S,0.531,0.587,6,-6.995,1,0.0328,0.271,0.0,0.228,0.208,93.023,2xirZKFWVrWiStflf4yYzd,4,
+Indila-Dernière danse,0.669,0.449,0,-7.658,0,0.0489,0.184,0.0,0.0729,0.327,114.926,6fhApGZALHXQ5AMrUeQgI3,4,
+Indila-Tourner Dans Le Vide,0.594,0.698,6,-8.645,0,0.0428,0.103,0.0,0.173,0.376,119.991,6oTNIPfJtH4JFTXfuP3cfO,4,
+Indila-Love Story,0.375,0.255,10,-12.279,0,0.0376,0.815,0.0,0.0845,0.331,95.978,43l0RVxkRenSlcrnqDlHaD,3,
+Indila-Run Run,0.81,0.537,11,-5.776,0,0.0351,0.0157,0.000149,0.0751,0.516,99.984,4nHrFFJVNTn9LY9urXQDVG,4,
+Indila-Ego,0.748,0.752,5,-6.828,0,0.0705,0.0185,5.41e-06,0.118,0.73,86.005,4Tj1X7LUv63ilJdF0LOq8F,4,
+Indila-Boite En Argent,0.445,0.302,7,-11.87,0,0.0373,0.704,0.0,0.122,0.267,133.507,1xbLfCAcnrfaEhXg3cMgMU,4,
+Indila-Mini World,0.563,0.541,11,-8.458,0,0.0359,0.296,0.000352,0.104,0.165,131.947,7LU4CAHJjhgpoaxo83kDrp,4,
+Indila-Dernière danse,0.658,0.457,0,-7.627,0,0.0592,0.183,0.0,0.0895,0.268,114.914,6sn7zCqptRm5JMz9olKqST,4,
+Lana Del Rey-Born To Die,0.428,0.626,4,-6.639,0,0.0339,0.222,8.22e-05,0.277,0.379,86.02,4Ouhoi2lAhrLJKFzUqEzwl,4,
+Birsen Tezer-Balıkesir,0.377,0.356,7,-10.273,0,0.0444,0.964,9.79e-05,0.104,0.484,172.072,1oeSGcKLgsY2srnp57TRLf,3,
+Lana Del Rey-Video Games,0.236,0.249,6,-9.595,0,0.0348,0.811,1e-06,0.087,0.181,72.847,0fBSs3fRoh1yJcne77fdu9,5,
+Lana Del Rey-This Is What Makes Us Girls,0.534,0.842,2,-7.031,0,0.0925,0.0904,0.0388,0.203,0.441,138.004,1Lw2xRuW5fcieRPfoskgog,4,
+Lana Del Rey-Lucky Ones,0.375,0.416,0,-7.149,1,0.0283,0.778,2.48e-06,0.23,0.271,134.923,24h1notzzKOcLZSdRYa7yn,4,
+Lana Del Rey-Blue Jeans,0.558,0.837,3,-4.405,1,0.0633,0.418,0.0,0.0821,0.488,117.963,4RyK6N4IQ85xxLgguQAFH5,4,
+Lana Del Rey-National Anthem,0.532,0.899,0,-5.935,0,0.244,0.531,0.000146,0.0957,0.436,85.0,7cNz65PfCatRXoX7QtqM2A,4,
+Lana Del Rey-Radio,0.423,0.857,2,-5.173,1,0.0687,0.188,2.63e-05,0.105,0.196,75.024,3taCbWWTilb7eNMsAzOBq4,4,
+Lana Del Rey-Summertime Sadness,0.565,0.654,1,-6.826,0,0.0335,0.0542,1.8e-06,0.122,0.235,111.968,3BJe4B8zGnqEdQPMvfVjuS,4,
+Lana Del Rey-Without You,0.586,0.593,6,-8.394,1,0.0329,0.636,0.000131,0.115,0.668,111.942,6g4RVB6qiuySTw9FCV1HEM,4,
+Lana Del Rey-Body Electric,0.245,0.492,1,-9.397,0,0.0593,0.466,0.0,0.0851,0.104,167.7,5ZyM4VMzHSaz8OlIZRuZBH,3,
+Lana Del Rey-Blue Velvet,0.189,0.317,10,-8.631,1,0.028,0.812,0.0719,0.214,0.251,84.809,5SzoFexynLVceTLggJTZZM,4,
+Lana Del Rey-Bel Air,0.346,0.42,2,-11.506,0,0.0298,0.864,0.0875,0.901,0.303,83.56,7E8A5k5VOhPmt6pGPDJhxQ,4,
+Madonna-Take a Bow,0.549,0.408,8,-7.698,1,0.024,0.341,0.0,0.0764,0.319,80.133,7izFzcBTx3DVXFeFYDeZKB,4,
+Lana Del Rey-Summertime Sadness [Lana Del Rey vs. Cedric Gervais] - Cedric Gervais Remix,0.567,0.813,1,-5.744,0,0.0581,0.0138,9.03e-06,0.125,0.114,126.044,6D5pfooPP6hi99RaXjkDsP,4,
